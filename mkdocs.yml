@@ -39,10 +39,10 @@ extra_css:
   - stylesheets/extra.css
 plugins:
   - search
-  - with-pdf:
-      cover_title: LAB-2851
-      cover_subtitle: Integrating Journey Data Service with Webex Contact Center
-      cover_logo: template_assets/wx1Splash_new.gif
+  # - with-pdf:
+  #     cover_title: LAB-2851
+  #     cover_subtitle: Integrating Journey Data Service with Webex Contact Center
+  #     cover_logo: template_assets/wx1Splash_new.gif
   - glightbox:
       touchNavigation: true
       loop: false

@@ -1,4 +1,4 @@
-# Lab 1 - Getting Started
+# Lab 1 - Query JDS in an IVR flow for greeting customization.
 
 ## Section 1
 
