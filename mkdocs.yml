@@ -79,6 +79,7 @@ nav:
   - Home: index.md
   - Lab:
       - Overview: overview.md
-      - Lab 1 - Query JDS in an IVR flow for greeting customization.: lab1_getting_started.md
+      - Lab 1 - Query JDS in an IVR flow for greeting customization.: lab1_query_JDS.md
+      - Lab 2 - Injecting custom JDS events from Flow Designer.: lab2_injecting_JDS_event.md
       - Conclusion: conclusion.md
   - Topologies: topologies.md
