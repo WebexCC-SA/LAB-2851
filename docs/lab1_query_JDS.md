@@ -55,6 +55,8 @@
 <br/><br/>
 <br/><br/>
 <br/><br/>
+<br/><br/>
+<br/><br/>
 
 8. Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.
 <br/><br/>
