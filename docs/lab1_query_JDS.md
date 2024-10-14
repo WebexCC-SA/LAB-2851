@@ -29,8 +29,8 @@
 
 
 7. Insert a new HTTP Request node AFTER the DB_DIP HTTP Request node. Make sure to Connect the exit connection from the DB_DIP node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
-
-    <img style="float: left; padding-right:15px" src="/assets/CJDS-3.gif" width="450" height="450"/>
+<br/><br/>
+    ![CJDS3 >](./assets/CJDS-3.gif)
 
     - Rename the new HTTP Request node to JDS_Query.
     - On the Connector drop down select the CJDS Connector.
@@ -57,8 +57,8 @@
 <br/><br/>
 
 8. Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.
-
-    <img style="float: right; padding-right:15px" src="/assets/CJDS-4.gif" width="450" height="450"/>
+<br/><br/>
+    ![CJDS4 <](./assets/CJDS-4.gif)
 
     - Connect the exit of the JDS_Query node to the entry of this new node.
     - Rename this new HTTP Request node to **Webhook_Debug_JDSGet**

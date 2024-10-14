@@ -24,3 +24,16 @@
     --md-typeset-a-color: #3a7fff;
     --md-accent-fg-color: #00bdeb;
 }
+img[alt$=">"] {
+    float: left;
+    padding-right:15px;
+    width: 40%; 
+    height: 40%
+  }
+
+img[alt$="<"] {
+    float: right;
+    padding-right:15px;
+    width: 40%; 
+    height: 40%
+  }
