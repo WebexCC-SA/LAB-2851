@@ -2,7 +2,7 @@
 
 ## Learning Objectives
 
-This lab will give you an introduction to ...
+This lab will give you an introduction to Customer Journey Data Service (CJDS) for Webex Contact Center. Next, you'll access a Webex Contact Center developer sandbox, get hands-on with modifying an IVR flow in the Flow Designer tool, and utilize a Postman collection to make API calls & send JDS events in the flow. Then, you'll validate the flow by calling the assigned inbound phone number and test the IVR as a customer. After that, you'll explore the Agent Desktop and observe how it all comes together inside of a Widget. 
 
 ## Disclaimer
 
@@ -10,7 +10,7 @@ Although the lab design and configuration examples could be used as a reference,
 
 ## Lab Access
 
-cdvfdv
+You'll be assigned a lab number and sandbox credentials by an instructor. 
 
 ## Getting Started
 
