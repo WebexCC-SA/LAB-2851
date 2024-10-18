@@ -1,7 +1,30 @@
-# Lab 1 - Query JDS in an IVR flow for greeting customization.
+# Query JDS in an IVR flow for greeting customization.
 
+1. We will start by sending a JDS event using Postman. Open the variables section of the Postman collection and update the following variables: 
+    - The variables firstName, lastName and address information can be random. 
+    - The phoneNumber has to match the PSTN number you will use to call, make sure the + is included. 
+    - The accountNumber can be random, but it needs to be 8 digits long. 
+
+    <figure markdown>
+    ![Flow Variables](./assets/Postman8.png)
+    </figure>
+
+2. Select the POST called "JDS Purchase Post" and click the "Send" button. You should receive an "Accepted for processing" message. 
+
+    <figure markdown>
+    ![Flow Variables](./assets/Postman9.png)
+    </figure>
+
+3. Let's confirm the event was successfully processed. Select the GET called "Get History Stream by Identity", select the "Scripts" tab and type your number including the + sign. 
+
+    <figure markdown>
+    ![Flow Variables](./assets/Postman10.png)
+    </figure>
+
+4. Send the GET message and you will see the event we sent via API in step 2. 
 
 5. Select the Contact Center option on the Services section in the left pane. Go to “Flows” and open the &lt;flow-name&gt; in Flow Designer.
+
 6. Once you are in the Flow Editor, the first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. On the right, you will your Flow variables that you created in Lab 1. Click the button to “Add Flow Variable” and create the following variables:
     - Name = JDS_Source, Variable Type = String
     - Name = Welcome_Message_Start, Variable Type = String
