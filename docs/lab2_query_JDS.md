@@ -6,19 +6,19 @@
     - The accountNumber can be random, but it needs to be 8 digits long. 
 
     <figure markdown>
-    ![Flow Variables](./assets/Postman8.png)
+    ![Postman Variables 2](./assets/Postman8.png)
     </figure>
 
 2. Select the POST called "JDS Purchase Post" and click the "Send" button. You should receive an "Accepted for processing" message. 
 
     <figure markdown>
-    ![Flow Variables](./assets/Postman9.png)
+    ![JDS Purchase Post](./assets/Postman9.png)
     </figure>
 
 3. Let's confirm the event was successfully processed. Select the GET called "Get History Stream by Identity", select the "Scripts" tab and type your number including the + sign. 
 
     <figure markdown>
-    ![Flow Variables](./assets/Postman10.png)
+    ![GET Identity filter](./assets/Postman10.png)
     </figure>
 
 4. Send the GET message and you will see the event we sent via API in step 2. 
@@ -53,9 +53,9 @@
 
     - Set the Method to: **GET**
         - Add three Query Parameters and set their values to the following:
-          * Key = **identity,** VALUE **= {{NewPhoneContact.ANI |  urlencode }}**
-          * Key = **pagesize,** VALUE **= 1**
-          * KEY = **filter,**  VALUE = **source%3D%3D%27web%27**
+          * Key = **identity** VALUE **= {{NewPhoneContact.ANI |  urlencode }}**
+          * Key = **pagesize** VALUE **= 1**
+          * KEY = **filter**  VALUE = **source%3D%3D%27web%27**
     - Set the Content Type to **Application/JSON**
     - Now edit the Parse Setting and set the following:
           * Content Type to **JSON**

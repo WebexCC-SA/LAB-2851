@@ -4,7 +4,7 @@
 2. Select the “Customer Journey Data” option from the Monitoring section in the left pane. You will find a preconfigured Journey Project for this lab.  
 
     <figure markdown>
-    ![ACI](./assets/CJDS1.png)
+    ![Control Hub](./assets/CJDS1.png)
     </figure>
 
 3. Click your journey project and activate the Webex Contact Center connector:  
