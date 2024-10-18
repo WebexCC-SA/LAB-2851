@@ -1,20 +1,6 @@
 # Lab 1 - Query JDS in an IVR flow for greeting customization.
 
-1. Open Control Hub (admin.webex.com) using Chrome and login with your admin credentials.
-2. Select the “Customer Journey Data” option from the Monitoring section in the left pane. You will find a preconfigured Journey Project for this lab.  
 
-    <figure markdown>
-    ![ACI](./assets/CJDS1.png)
-    </figure>
-
-3. Click your journey project and activate the Webex Contact Center connector:  
-    
-    <figure markdown>
-    ![WxCC Connector](./assets/CJDS-1.gif)
-    </figure>
-    
-
-4. Note that there’s a “Project ID” assigned to your Journey Project, copy this ID now as we will use it later in this lab.
 5. Select the Contact Center option on the Services section in the left pane. Go to “Flows” and open the &lt;flow-name&gt; in Flow Designer.
 6. Once you are in the Flow Editor, the first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. On the right, you will your Flow variables that you created in Lab 1. Click the button to “Add Flow Variable” and create the following variables:
     - Name = JDS_Source, Variable Type = String
@@ -36,11 +22,11 @@
     - On the Connector drop down select the CJDS Connector.
     - Set the Request URL to:
 
-        <https://api.wxcc-us1.cisco.com/v1/api/events/workspace-id/>
+        **/v1/api/events/workspace-id/**
 
     - At the end the of the URL you must add your JDS Project ID (Workspace ID and Project ID are the same). This value is stored in the variable CHJDS_ProjectID.
 
-        [https://api.wxcc-us1.cisco.com/v1/api/events/workspace-id/**xxxxxxxxxxxxxxx**](https://api.wxcc-us1.cisco.com/v1/api/events/workspace-id/xxxxxxxxxxxxxxx)
+        **/v1/api/events/workspace-id/xxxxxxxxxxxxxxx**
 
     - Set the Method to: **GET**
         - Add three Query Parameters and set their values to the following:
@@ -54,9 +40,7 @@
           * Path Expression = **$.data\[0\].source**
 <br/><br/>
 <br/><br/>
-<br/><br/>
-<br/><br/>
-<br/><br/>
+
 
 8. Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.
 <br/><br/>

@@ -1,3 +1,22 @@
+# Check your JDS tenant and Activate the WxCC Connector
+
+1. Open Control Hub (admin.webex.com) using Chrome and login with your admin credentials.
+2. Select the “Customer Journey Data” option from the Monitoring section in the left pane. You will find a preconfigured Journey Project for this lab.  
+
+    <figure markdown>
+    ![ACI](./assets/CJDS1.png)
+    </figure>
+
+3. Click your journey project and activate the Webex Contact Center connector:  
+    
+    <figure markdown>
+    ![WxCC Connector](./assets/CJDS-1.gif)
+    </figure>
+    
+
+4. Note that there’s a “Project ID” assigned to your Journey Project, copy this ID now as we will use it later in this lab.
+
+
 # Create a Webex App Integration
 
 1. Navigate to the following URL: https://developer.webex-cx.com
