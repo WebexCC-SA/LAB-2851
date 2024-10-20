@@ -86,12 +86,21 @@
 
 ## Lab 3.2 Agent Desktop JDS Widget
 
-1. Navigate to the WxCC Agent Desktop https://desktop.wxcc-us1.cisco.com/ and use your credentials provided by a lab proctor to login. 
+???+ webex "Instructions"
 
+    1. Navigate to the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">WxCC Agent Desktop</a> and use your credentials provided by a lab proctor to login.
+    2. We have pre-loaded a Desktop Layout that includes the JDS Widget, this will be visible while the agent is working an interaction.
+    3. Dial the IVR and follow the prompts. Select the Refund or Replacement options you configured in the flow and escalate the call to an agent. 
+    4. Answer the call and confirm the JDS event we posted from the IVR flow is visible. 
 
-    ???+ webex
-
-        ???+ tip "Webhook Debug POST GIF"
+        ???+ tip "Agent Desktop JDS Widget GIF"
             <figure markdown>
-            ![Webhook Debug POST 70](./assets/JDS_Widget.gif)
+            ![JDS Widget](./assets/JDS_Widget.gif)
             </figure>
+
+## Final IVR Flow
+
+???+ webex "IVR Flow IMG"
+    <figure markdown>
+    ![JDS Widget](./assets/Final_IVR_flow.png)
+    </figure>
