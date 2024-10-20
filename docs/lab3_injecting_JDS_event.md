@@ -1,57 +1,97 @@
-# Using Flow Designer to Inject JDS Events
+# Injecting custom JDS events from Flow Designer
 
-We will now push events to JDS from Flow Designer. 
+## Lab 3.1 Setup your IVR flow to POST JDS events
 
-1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to Refund_Request, select the variable Customer_Resolution and set the value to "Refund". 
+???+ webex "Instructions"
+    1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to Refund_Request, select the variable Customer_Resolution and set the value to "Refund". 
 
-    <figure markdown>
-    ![Refund Request](./assets/Refund.png)
-    </figure>
+        ???+ info "Refund Request Node IMG"
+            <figure markdown>
+            ![Refund Request 70](./assets/Refund.png)
+            </figure>
 
-2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to Replacement_Request, select the variable Customer_Resolution and set the value to "Replacement".
+    2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to Replacement_Request, select the variable Customer_Resolution and set the value to "Replacement".
 
-    <figure markdown>
-    ![Replacement Request](./assets/Replacement.png)
-    </figure>
+        ???+ info "Replacement Request Node IMG"
+            <figure markdown>
+            ![Replacement Request 70](./assets/Replacement.png)
+            </figure>
 
-3. Insert a new HTTP Request node AFTER the "Refund_Request" and "Replacement_Request" nodes. This new node will push an event to the JDS service.
+    3. Insert a new HTTP Request node AFTER the "Refund_Request" and "Replacement_Request" nodes. This new node will push an event to the JDS service.
 
-    - Rename the new HTTP Request node to JDS_Post.
-    - On the Connector drop down select the CJDS Connector.
-    - Set the Request URL to:
+        - Rename the new HTTP Request node to JDS_Post.
+        - On the Connector drop down select the CJDS Connector.
+        - Set the Request URL to:
 
-            /publish/v1/api/event
+                /publish/v1/api/event
 
-    - Set the Method to: **POST**
-        - Add one Query Parameter and set the value to the following:
-            - Key = **workspaceId** 
-            - Value **{{CHJDS_ProjectID}}**
-    - Set the Content Type to **Application/JSON**
-    - Copy the following JSON into the Request Body: 
+        - Set the Method to: **POST**
+            - Add one Query Parameter and set the value to the following:
+                - Key = **workspaceId** 
+                - Value **{{CHJDS_ProjectID}}**
+        - Set the Content Type to **Application/JSON**
+        - Copy the following JSON into the Request Body: 
 
-  {
-    "id": "{{NewPhoneContact.interactionId}}",
-    "specversion": "1.0",
-    "type": "task:new",
-    "source": "IVR",
-    "identity": "{{NewPhoneContact.ANI}}",
-    "identitytype": "phone",
-    "datacontenttype": "application/json",
-    "data": {
-        "origin":"IVR",
-        "firstName": "{{FirstName}}",
-        "lastName": "{{LastName}}",
-        "phone": "{{NewPhoneContact.ANI}}",
-        "channelType": "Sales",
-        "uiData": {
-            "title": "Product_Dispute",
-            "iconType": "task",
-            "subTitle": "{{Customer_Resolution}}"
-        }
-    }
-}
-    <figure markdown>
-    ![JDS Post](./assets/JDS_Post.gif)
-    </figure>
+            ``` JSON
+                {
+                "id": "{{NewPhoneContact.interactionId}}",
+                "specversion": "1.0",
+                "type": "task:new",
+                "source": "IVR",
+                "identity": "{{NewPhoneContact.ANI}}",
+                "identitytype": "phone",
+                "datacontenttype": "application/json",
+                "data": {
+                    "origin":"IVR",
+                    "firstName": "{{FirstName}}",
+                    "lastName": "{{LastName}}",
+                    "phone": "{{NewPhoneContact.ANI}}",
+                    "channelType": "Sales",
+                    "uiData": {
+                        "title": "Product_Dispute",
+                        "iconType": "task",
+                        "subTitle": "{{Customer_Resolution}}"
+                    }
+                }
+            }
+            ```
+        ???+ tip "JDS_POST GIF"
+            <figure markdown>
+            ![JDS Post 70](./assets/JDS_Post.gif)
+            </figure>
 
-    
+    4. Drag and drop another HTTP Request node close to the JDS_Post node. 
+        - Connect the exit of the JDS_Post node to the entry of this new node, then link this node to the Agent Escalation menu node. 
+        - Rename this new HTTP Request node to **Webhook_Debug_JDSPost**
+        - Turn off “**Use Authenticated Endpoint**”
+        - Paste the webhook.site URL from LAB 1 into the Request Path field on the **Webhook_Debug_JDSPost** node.
+        - Set the Method to: **POST**
+        - Scroll down to the Content Type field above the Request Body and set it to: **Application/JSON**
+        - Set the Request Body to:
+
+            ``` JSON
+                {
+                    {{JDS_Post.httpStatusCode}},
+                    {{JDS_Post.httpResponseBody}}
+                    }
+            ```
+
+        ???+ tip "Webhook Debug POST GIF"
+            <figure markdown>
+            ![Webhook Debug POST 70](./assets/Webhook_JDS_Post.gif)
+            </figure>
+
+
+    Our flow is now ready to push events to our JDS workspace, we will use the JDS widget in the WxCC Agent Desktop to confirm it works. 
+
+## Lab 3.2 Agent Desktop JDS Widget
+
+1. Navigate to the WxCC Agent Desktop https://desktop.wxcc-us1.cisco.com/ and use your credentials provided by a lab proctor to login. 
+
+
+    ???+ webex
+
+        ???+ tip "Webhook Debug POST GIF"
+            <figure markdown>
+            ![Webhook Debug POST 70](./assets/JDS_Widget.gif)
+            </figure>

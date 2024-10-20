@@ -24,4 +24,9 @@ To get started, you’ll need to download the Postman collection for this lab. T
     - Go to File > Import.
     - Select the downloaded collection file and import it.
 
+???+ tip "WxCC Connector GIF"
+    <figure markdown>
+    ![WxCC Connector](./assets/Postman_Import.gif)
+    </figure>
+
 Once imported, you’ll be able to access the collection and use it to complete the lab tasks.
