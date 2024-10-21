@@ -84,7 +84,7 @@
         - Rename this new HTTP Request node to **Webhook_Debug_JDSGet**
         - Turn off “**Use Authenticated Endpoint**”
         - Open a tab on your browser and navigate to <https://webhook.site>. Once there you will see a middle pane with a unique URL and email address. Copy the unique URL link, DON’T copy the link for the email address. Leave this browser tab open since we will use it to debug our IVR REST calls.
-        - Paste this URL into the Request Path field on the Webhook**\_Debug_JDSGet** node.
+        - Paste this URL into the Request Path field on the **Webhook_Debug_JDSGet** node.
         - Set the Method to: **POST**
         - Scroll down to the Content Type field above the Request Body and set it to: **Application/JSON**
         - Set the Request Body to:
@@ -93,9 +93,9 @@
         {
             Type: "JDS Query",
             Node: "JDS_QUERY",
-            JDS_Source: "{{JDS_Source}},
+            JDS_Source: "{{JDS_Source}}",
             HTTP Status: "{{JDS_Query.httpStatusCode}}"
-            }
+        }
         ```
 
         ???+ tip "Webhook Debug GIF"
@@ -116,8 +116,8 @@
             ![Check JDS Value](./assets/CJDS2.png)
             </figure>
 
-    10. Drag and drop a Set Variable node from the node pallet to the right of the Check_JDS_Value node.
-        - Connect the True branch of the Check_JDS_Value node to the entry of this new node.
+    10. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+        - Connect the True branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome_Back**
         - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Welcome Back {{FirstName}}{{LastName}}**
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
@@ -127,8 +127,8 @@
             ![Welcome Back Variable](./assets/CJDS3.png)
             </figure>
 
-    11. Drag and drop a Set Variable node from the node pallet to the right of the Check_JDS_Value node.
-        - Connect the False branch of the Check_JDS_Value node to the entry of this new node.
+    11. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+        - Connect the False branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome**
         - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Hello {{FirstName}}{{LastName}}.**
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
@@ -140,7 +140,9 @@
 
     12. Edit the **WelcomeCustomer** and replace the Text-to-Speech Message to the following:
 
-        **{{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.**
+        ```
+        {{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.
+        ```
 
         ???+ note "Welcome Message IMG"
             <figure markdown>

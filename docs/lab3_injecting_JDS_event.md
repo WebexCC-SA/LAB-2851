@@ -3,24 +3,24 @@
 ## Lab 3.1 Setup your IVR flow to POST JDS events
 
 ???+ webex "Instructions"
-    1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to Refund_Request, select the variable Customer_Resolution and set the value to "Refund". 
+    1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to **Refund_Request**, select the variable **Customer_Resolution** and set the value to `Refund`. 
 
         ???+ info "Refund Request Node IMG"
             <figure markdown>
             ![Refund Request 70](./assets/Refund.png)
             </figure>
 
-    2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to Replacement_Request, select the variable Customer_Resolution and set the value to "Replacement".
+    2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to **Replacement_Request**, select the variable **Customer_Resolution** and set the value to `Replacement`.
 
         ???+ info "Replacement Request Node IMG"
             <figure markdown>
             ![Replacement Request 70](./assets/Replacement.png)
             </figure>
 
-    3. Insert a new HTTP Request node AFTER the "Refund_Request" and "Replacement_Request" nodes. This new node will push an event to the JDS service.
+    3. Insert a new HTTP Request node AFTER the **Refund_Request** and **Replacement_Request** nodes. This new node will push an event to the JDS service.
 
-        - Rename the new HTTP Request node to JDS_Post.
-        - On the Connector drop down select the CJDS Connector.
+        - Rename the new HTTP Request node to **JDS_Post**.
+        - On the Connector drop down select **CJDS Connector**.
         - Set the Request URL to:
 
                 /publish/v1/api/event
@@ -33,7 +33,7 @@
         - Copy the following JSON into the Request Body: 
 
             ``` JSON
-                {
+            {
                 "id": "{{NewPhoneContact.interactionId}}",
                 "specversion": "1.0",
                 "type": "task:new",
@@ -60,8 +60,8 @@
             ![JDS Post 70](./assets/JDS_Post.gif)
             </figure>
 
-    4. Drag and drop another HTTP Request node close to the JDS_Post node. 
-        - Connect the exit of the JDS_Post node to the entry of this new node, then link this node to the Agent Escalation menu node. 
+    4. Drag and drop another HTTP Request node close to the **JDS_Post** node. 
+        - Connect the exit of the **JDS_Post** node to the entry of this new node, then link this node to the Agent Escalation menu node. 
         - Rename this new HTTP Request node to **Webhook_Debug_JDSPost**
         - Turn off “**Use Authenticated Endpoint**”
         - Paste the webhook.site URL from LAB 1 into the Request Path field on the **Webhook_Debug_JDSPost** node.
@@ -70,10 +70,10 @@
         - Set the Request Body to:
 
             ``` JSON
-                {
-                    {{JDS_Post.httpStatusCode}},
-                    {{JDS_Post.httpResponseBody}}
-                    }
+            {
+                {{JDS_Post.httpStatusCode}},
+                {{JDS_Post.httpResponseBody}}
+            }
             ```
 
         ???+ tip "Webhook Debug POST GIF"
