@@ -49,6 +49,10 @@
     5. Copy and save the Client ID and the Client Secret. 
 
 ## Lab 1.3 Configure Postman to send APIs to JDS
+
+!!! note
+    You can find the full API documentation <a href="https://developer.webex-cx.com/documentation/journey" target="_blank">here</a>
+
 ???+ webex "Instructions"
     
     You should see the collection that was exported during the Getting Started section of the lab. Now let’s change some of the collection settings: 
@@ -61,6 +65,8 @@
         - client_secretJDS – Set this to the Client Secret for the Webex App you added earlier named JDS with POSTMAN
         - org_idJDS – This is optional but set it to your Control Hub ORG ID
         - workspaceId – In Control Hub, open up the Customer Journey option under Monitoring and copy your project id of your “New Sandbox JDS” JDS project and place it in this field. Do not copy the old “sandbox” one!
+        !!! warning
+            Make sure you hit **SAVE** after modifying the variables. 
         ???+ info "Postman Authentication Variables IMG"
             <figure markdown>
             ![Postman Variables](./assets/Postman1.png)

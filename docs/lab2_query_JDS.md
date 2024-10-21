@@ -9,6 +9,9 @@
         - The phoneNumber has to match the PSTN number you will use to call, make sure the + is included. 
         - The accountNumber can be random, but it needs to be 8 digits long. 
 
+        !!! warning
+            Make sure you hit **SAVE** after modifying the variables. 
+
         ???+ info "Postman Variable IMG"
             <figure markdown>
             ![Postman Variables 2](./assets/Postman8.png)
@@ -39,6 +42,7 @@
         - Name = Welcome_Message_Start, Variable Type = String
         - Name = JDS_PostMessage, Variable Type = String
         - Name = AccessToken, Variable Type = String
+        - Name = Customer_Resolution, Variable Type = String
         - Name = CHJDS_ProjectID, Variable Type = String, Default Value = &lt;ProjectID&gt; (From step 4)
         ???+ tip "Flow Variables GIF"
             <figure markdown>
