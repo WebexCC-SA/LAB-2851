@@ -116,8 +116,8 @@
             ![Check JDS Value](./assets/CJDS2.png)
             </figure>
 
-    10. Drag and drop a Set Variable node from the node pallet to the right of the Check_JDS_Value node.
-        - Connect the True branch of the Check_JDS_Value node to the entry of this new node.
+    10. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+        - Connect the True branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome_Back**
         - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Welcome Back {{FirstName}}{{LastName}}**
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
@@ -127,8 +127,8 @@
             ![Welcome Back Variable](./assets/CJDS3.png)
             </figure>
 
-    11. Drag and drop a Set Variable node from the node pallet to the right of the Check_JDS_Value node.
-        - Connect the False branch of the Check_JDS_Value node to the entry of this new node.
+    11. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+        - Connect the False branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome**
         - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Hello {{FirstName}}{{LastName}}.**
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
