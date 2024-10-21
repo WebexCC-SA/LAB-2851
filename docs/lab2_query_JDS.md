@@ -84,7 +84,7 @@
         - Rename this new HTTP Request node to **Webhook_Debug_JDSGet**
         - Turn off “**Use Authenticated Endpoint**”
         - Open a tab on your browser and navigate to <https://webhook.site>. Once there you will see a middle pane with a unique URL and email address. Copy the unique URL link, DON’T copy the link for the email address. Leave this browser tab open since we will use it to debug our IVR REST calls.
-        - Paste this URL into the Request Path field on the Webhook**\_Debug_JDSGet** node.
+        - Paste this URL into the Request Path field on the **Webhook_Debug_JDSGet** node.
         - Set the Method to: **POST**
         - Scroll down to the Content Type field above the Request Body and set it to: **Application/JSON**
         - Set the Request Body to:
