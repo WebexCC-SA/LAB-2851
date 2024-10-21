@@ -140,7 +140,9 @@
 
     12. Edit the **WelcomeCustomer** and replace the Text-to-Speech Message to the following:
 
-        **{{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.**
+        ```
+        {{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.
+        ```
 
         ???+ note "Welcome Message IMG"
             <figure markdown>
