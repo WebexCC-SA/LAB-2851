@@ -64,8 +64,8 @@
 
         - Set the Method to: **GET**
             - Add three Query Parameters and set their values to the following:
-            * Key = **identity** VALUE **= {{NewPhoneContact.ANI |  urlencode }}**
-            * Key = **pagesize** VALUE **= 1**
+            * Key = **identity** VALUE = **{{NewPhoneContact.ANI |  urlencode }}**
+            * Key = **pagesize** VALUE = **1**
             * KEY = **filter**  VALUE = **source%3D%3D%27web%27**
         - Set the Content Type to **Application/JSON**
         - Now edit the Parse Setting and set the following:
