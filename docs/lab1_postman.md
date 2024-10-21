@@ -24,7 +24,7 @@
 ## Lab 1.2 Create a Webex App Integration
 ???+ webex "Instructions"
 
-    1. Navigate to the following URL: https://developer.webex-cx.com
+    1. Navigate to the <a href="https://developer.webex-cx.com" target="_blank">Contact Center for Developers</a> website. 
     2. Login via the button on the top right and use your admin credentials. 
     3. Once logged in navigate to “My Webex Apps” under your login avatar at the top right and then select “Create a New App”. 
     4. Create a new App with these parameters:
