@@ -72,8 +72,6 @@
             ![Postman Variables](./assets/Postman1.png)
             </figure>
 
-    3. Make sure you now **SAVE** the Collection tab named “Wx1 Simplified JDS Collection”.
-
     4. Now click on the Authorization sub tab to the left of the Variables tab and scroll to the bottom of the screen.
 
     5. Click on the orange “Get New Access Token” button.
