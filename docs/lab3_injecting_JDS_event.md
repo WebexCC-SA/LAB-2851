@@ -3,14 +3,14 @@
 ## Lab 3.1 Setup your IVR flow to POST JDS events
 
 ???+ webex "Instructions"
-    1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to Refund_Request, select the variable Customer_Resolution and set the value to "Refund". 
+    1. In the WX1JDSLabFlow, add a Set Variable node after the "Refund" node. Change the name of the node to **Refund_Request**, select the variable **Customer_Resolution** and set the value to `Refund`. 
 
         ???+ info "Refund Request Node IMG"
             <figure markdown>
             ![Refund Request 70](./assets/Refund.png)
             </figure>
 
-    2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to Replacement_Request, select the variable Customer_Resolution and set the value to "Replacement".
+    2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to **Replacement_Request**, select the variable **Customer_Resolution** and set the value to `Replacement`.
 
         ???+ info "Replacement Request Node IMG"
             <figure markdown>
