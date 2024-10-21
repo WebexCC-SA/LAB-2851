@@ -104,3 +104,5 @@
     <figure markdown>
     ![JDS Widget](./assets/Final_IVR_flow.png)
     </figure>
+
+Congratulations! You have completed LAB-2851 Integrating Journey Data Service with Webex Contact Center. 
