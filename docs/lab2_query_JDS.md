@@ -93,9 +93,9 @@
         {
             Type: "JDS Query",
             Node: "JDS_QUERY",
-            JDS_Source: "{{JDS_Source}},
+            JDS_Source: "{{JDS_Source}}",
             HTTP Status: "{{JDS_Query.httpStatusCode}}"
-            }
+        }
         ```
 
         ???+ tip "Webhook Debug GIF"
