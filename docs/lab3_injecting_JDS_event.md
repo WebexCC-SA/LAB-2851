@@ -9,6 +9,7 @@
             <figure markdown>
             ![Refund Request 70](./assets/Refund.png)
             </figure>
+    Remove the connection to the **DisconnectCustomer** node and create a connection to this new Set Variable node.
 
     2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to **Replacement_Request**, select the variable **Customer_Resolution** and set the value to `Replacement`.
 
@@ -16,6 +17,7 @@
             <figure markdown>
             ![Replacement Request 70](./assets/Replacement.png)
             </figure>
+    Remove the connection to the **DisconnectCustomer** node and create a connection to this new Set Variable node.
 
     3. Insert a new HTTP Request node AFTER the **Refund_Request** and **Replacement_Request** nodes. This new node will push an event to the JDS service.
 
@@ -60,6 +62,8 @@
             ![JDS Post 70](./assets/JDS_Post.gif)
             </figure>
 
+        - Connect the exit of the **Refund_Request** and **Replacement_Request** nodes to the entry of this new node.
+
     4. Drag and drop another HTTP Request node close to the **JDS_Post** node. 
         - Connect the exit of the **JDS_Post** node to the entry of this new node, then link this node to the Agent Escalation menu node. 
         - Rename this new HTTP Request node to **Webhook_Debug_JDSPost**
@@ -80,7 +84,7 @@
             <figure markdown>
             ![Webhook Debug POST 70](./assets/Webhook_JDS_Post.gif)
             </figure>
-
+        - Connect the exit of the **Webhook_Debug_JDSPost** node to the entry of the Agent Escalation menu node.
 
     Our flow is now ready to push events to our JDS workspace, we will use the JDS widget in the WxCC Agent Desktop to confirm it works. 
 
