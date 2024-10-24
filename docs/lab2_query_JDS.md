@@ -50,17 +50,13 @@
             </figure>
 
 
-    3. Insert a new HTTP Request node AFTER the DB_DIP HTTP Request node. Make sure to Connect the exit connection from the DB_DIP node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
+    3. Insert a new **HTTP Request** node AFTER the **DB_DIP HTTP Request** node. Make sure to Connect the exit connection from the **DB_DIP** node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
 
         - Rename the new HTTP Request node to JDS_Query.
         - On the Connector drop down select the CJDS Connector.
         - Set the Request URL to:
 
-            **/v1/api/events/workspace-id/**
-
-        - At the end the of the URL you must add your JDS Project ID (Workspace ID and Project ID are the same). This value is stored in the variable CHJDS_ProjectID.
-
-            **/v1/api/events/workspace-id/xxxxxxxxxxxxxxx**
+            **/v1/api/events/workspace-id/{{CHJDS_ProjectID}}**
 
         - Set the Method to: **GET**
             - Add three Query Parameters and set their values to the following:
@@ -79,7 +75,7 @@
             </figure>
     
 
-    8. Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.
+    4. Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.
         - Connect the exit of the JDS_Query node to the entry of this new node.
         - Rename this new HTTP Request node to **Webhook_Debug_JDSGet**
         - Turn off “**Use Authenticated Endpoint**”
@@ -104,7 +100,7 @@
             </figure>
 
 
-    9. Drag and drop a Condition node from the left node pallet.
+    5. Drag and drop a Condition node from the left node pallet.
         - Rename the node to **Check_JDS_Value**
         - Set the Expression to:
             ```
@@ -116,10 +112,10 @@
             ![Check JDS Value](./assets/CJDS2.png)
             </figure>
 
-    10. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+    6. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
         - Connect the True branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome_Back**
-        - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Welcome Back {{FirstName}}{{LastName}}**
+        - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Welcome Back {{FirstName}} {{LastName}}**
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
 
         ???+ note "Set Welcome Back Variable IMG"
@@ -127,10 +123,10 @@
             ![Welcome Back Variable](./assets/CJDS3.png)
             </figure>
 
-    11. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
+    7. Drag and drop a Set Variable node from the node pallet to the right of the **Check_JDS_Value** node.
         - Connect the False branch of the **Check_JDS_Value** node to the entry of this new node.
         - Rename this node to **Welcome**
-        - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Hello {{FirstName}}{{LastName}}.**
+        - Under the Variable Settings, select the Variable = **Welcome_Message_Start** and set the Set Value = **Hello {{FirstName}} {{LastName}}**.
         - Connect the exit connector to the entry connector of the **WelcomeCustomer** node
 
         ???+ note "Set Welcome Variable IMG"
@@ -138,7 +134,7 @@
             ![Welcome Variable](./assets/CJDS4.png)
             </figure>
 
-    12. Edit the **WelcomeCustomer** and replace the Text-to-Speech Message to the following:
+    8. Edit the **WelcomeCustomer** and replace the Text-to-Speech Message to the following:
 
         ```
         {{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.
@@ -149,7 +145,7 @@
             ![Welcome Message 70](./assets/CJDS5.png)
             </figure>
 
-    13. Next let us test the JDS query and make sure it works. The idea here is that because we injected an event using Postman in the first part of this lab, we will query for that event and if we find it, customize our message to our customer. We either greet them with “Welcome Back…” or “Hello…” We will also see a post event written to webhook.site showing the value of the JDS_Source variable which should be “web”.
+    9. Next let us test the JDS query and make sure it works. The idea here is that because we injected an event using Postman in the first part of this lab, we will query for that event and if we find it, customize our message to our customer. We either greet them with “Welcome Back…” or “Hello…” We will also see a post event written to webhook.site showing the value of the **JDS_Source** variable which should be “web”.
         - Publish your flow
 
         ???+ tip "Publish Flow"
@@ -157,7 +153,7 @@
             ![Publish Flow](./assets/CJDS-5.gif)
             </figure>
         
-        - Dial the IVR and follow the prompts.  First it will ask for the account number that you setup in the Postman variables, once you confirm the account, you will hear the Welcome message. If the prompt says "Welcome Back", it means the flow was configured correctly. You can disconnect the call now. 
+        - Dial the IVR via the number given for your tenant with the phone number you added in step 1 and follow the prompts.  First it will ask for the account number that you setup in the Postman variables, once you confirm the account, you will hear the Welcome message. If the prompt says "Welcome Back", it means the flow was configured correctly. You can disconnect the call now. 
         
         - You should also see an event show up on webhook.site. Inspect that event and you should see the following in Raw Content. 
         
