@@ -87,6 +87,13 @@
             </figure>
         - Connect the exit of the **Webhook_Debug_JDSPost** node to the entry of the Agent Escalation menu node.
 
+    5.  Publish your flow
+
+        ???+ tip "Publish Flow"
+            <figure markdown>
+            ![Publish Flow](./assets/CJDS-5.gif)
+            </figure>
+    
     Our flow is now ready to push events to our JDS workspace, we will use the JDS widget in the WxCC Agent Desktop to confirm it works. 
 
 ## Lab 3.2 Agent Desktop JDS Widget
