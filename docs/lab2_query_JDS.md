@@ -43,7 +43,7 @@
         - Name = JDS_PostMessage, Variable Type = String
         - Name = AccessToken, Variable Type = String
         - Name = Customer_Resolution, Variable Type = String
-        - Name = CHJDS_ProjectID, Variable Type = String, Default Value = &lt;ProjectID&gt; (From step 4)
+        - Name = CHJDS_ProjectID, Variable Type = String, Default Value = &lt;ProjectID&gt; (From Lab 1.1, step 4)
         ???+ tip "Flow Variables GIF"
             <figure markdown>
             ![Flow Variables](./assets/CJDS-2.gif)
