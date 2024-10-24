@@ -37,7 +37,7 @@
 ???+ webex "Instructions"
     1. Login to [Webex Control Hub](https://admin.webex.com) with your tenant's administrator account. Select the Contact Center option on the Services section in the left pane. Go to “Flows” and open the &lt;flow-name&gt; in Flow Designer.
 
-    2. Once you are in the Flow Editor, the first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. On the right, you will your Flow variables that you created in Lab 1. Click the button to “Add Flow Variable” and create the following variables:
+    2. Once you are in the Flow Editor, click the "Edit" toggle to switch to Edit mode. The first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. On the right, you will your Flow variables that you created in Lab 1. Click the button to “Add Flow Variable” and create the following variables:
         - Name = JDS_Source, Variable Type = String
         - Name = Welcome_Message_Start, Variable Type = String
         - Name = JDS_PostMessage, Variable Type = String
