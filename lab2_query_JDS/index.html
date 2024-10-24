@@ -1,0 +1,849 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LAB-2851 Integrating Journey Data Service with Webex Contact Center">
+      
+      
+        <meta name="author" content="John Doe">
+      
+      
+      
+        <link rel="prev" href="../lab1_postman/">
+      
+      
+        <link rel="next" href="../lab3_injecting_JDS_event/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Lab 2 - Query JDS in an IVR flow for greeting customization. - LAB-2851 Integrating Journey Data Service with Webex Contact Center</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#query-jds-in-an-ivr-flow-for-greeting-customization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-2851 Integrating Journey Data Service with Webex Contact Center" class="md-header__button md-logo" aria-label="LAB-2851 Integrating Journey Data Service with Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-2851 Integrating Journey Data Service with Webex Contact Center
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 2 - Query JDS in an IVR flow for greeting customization.
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+    
+  
+  Lab
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-2851 Integrating Journey Data Service with Webex Contact Center" class="md-nav__button md-logo" aria-label="LAB-2851 Integrating Journey Data Service with Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-2851 Integrating Journey Data Service with Webex Contact Center
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lab
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_postman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 1 - Using Postman to interact with JDS.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 2 - Query JDS in an IVR flow for greeting customization.
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 2 - Query JDS in an IVR flow for greeting customization.
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-21-send-events-to-jds-using-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 2.1 Send events to JDS using Postman
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-22-setup-your-ivr-flow-to-query-jds-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 2.2 Setup your IVR flow to query JDS events.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_injecting_JDS_event/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 3 - Injecting custom JDS events from Flow Designer.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="query-jds-in-an-ivr-flow-for-greeting-customization">Query JDS in an IVR flow for greeting customization.</h1>
+<h2 id="lab-21-send-events-to-jds-using-postman">Lab 2.1 Send events to JDS using Postman</h2>
+<details class="webex" open="open">
+<summary>Instructions</summary>
+<ol>
+<li>
+<p>We will start by sending a JDS event using Postman. Open the variables section of the Postman collection and update the following variables: </p>
+<ul>
+<li>The variables firstName, lastName and address information can be random. </li>
+<li>The phoneNumber has to match the PSTN number you will use to call, make sure the + is included. </li>
+<li>The accountNumber can be random, but it needs to be 8 digits long. </li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure you hit <strong>SAVE</strong> after modifying the variables. </p>
+</div>
+<details class="info" open="open">
+<summary>Postman Variable IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/Postman8.png" data-type="image" data-width="100%" data-height="auto" data-title="Postman Variables 2" data-desc-position="top"><img alt="Postman Variables 2" src="../assets/Postman8.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Select the POST called "JDS Purchase Post" and click the "Send" button. You should receive an "Accepted for processing" message. </p>
+<details class="info" open="open">
+<summary>JDS Purchase Post IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/Postman9.png" data-type="image" data-width="100%" data-height="auto" data-title="JDS Purchase Post" data-desc-position="top"><img alt="JDS Purchase Post" src="../assets/Postman9.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Let's confirm the event was successfully processed. Select the GET called "Get History Stream by Identity", select the "Scripts" tab, then select "Pre-request" and type your number including the + sign. </p>
+<details class="info" open="open">
+<summary>JDS Purchase Post IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/Postman10.png" data-type="image" data-width="100%" data-height="auto" data-title="GET Identity filter" data-desc-position="top"><img alt="GET Identity filter" src="../assets/Postman10.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Send the GET message and you will see the event we sent via API in step 2. </p>
+</li>
+</ol>
+</details>
+<h2 id="lab-22-setup-your-ivr-flow-to-query-jds-events">Lab 2.2 Setup your IVR flow to query JDS events.</h2>
+<details class="webex" open="open">
+<summary>Instructions</summary>
+<ol>
+<li>
+<p>Login to <a href="https://admin.webex.com">Webex Control Hub</a> with your tenant's administrator account. Select the Contact Center option on the Services section in the left pane. Go to “Flows” and open the &lt;flow-name&gt; in Flow Designer.</p>
+</li>
+<li>
+<p>Once you are in the Flow Editor, click the "Edit" toggle to switch to Edit mode. The first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. On the right, you will your Flow variables that you created in Lab 1. Click the button to “Add Flow Variable” and create the following variables:</p>
+<ul>
+<li>Name = JDS_Source, Variable Type = String</li>
+<li>Name = Welcome_Message_Start, Variable Type = String</li>
+<li>Name = JDS_PostMessage, Variable Type = String</li>
+<li>Name = AccessToken, Variable Type = String</li>
+<li>Name = Customer_Resolution, Variable Type = String</li>
+<li>Name = CHJDS_ProjectID, Variable Type = String, Default Value = &lt;ProjectID&gt; (From Lab 1.1, step 4)</li>
+</ul>
+<details class="tip" open="open">
+<summary>Flow Variables GIF</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS-2.gif" data-type="image" data-width="100%" data-height="auto" data-title="Flow Variables" data-desc-position="top"><img alt="Flow Variables" src="../assets/CJDS-2.gif" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Insert a new <strong>HTTP Request</strong> node AFTER the <strong>DB_DIP HTTP Request</strong> node. Make sure to Connect the exit connection from the <strong>DB_DIP</strong> node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.</p>
+<ul>
+<li>Rename the new HTTP Request node to JDS_Query.</li>
+<li>On the Connector drop down select the CJDS Connector.</li>
+<li>
+<p>Set the Request URL to:</p>
+<p><strong>/v1/api/events/workspace-id/{{CHJDS_ProjectID}}</strong></p>
+</li>
+<li>
+<p>Set the Method to: <strong>GET</strong></p>
+<ul>
+<li>Add three Query Parameters and set their values to the following:</li>
+<li>Key = <strong>identity</strong> VALUE = <strong>{{NewPhoneContact.ANI |  urlencode }}</strong></li>
+<li>Key = <strong>pagesize</strong> VALUE = <strong>1</strong></li>
+<li>KEY = <strong>filter</strong>  VALUE = <strong>source%3D%3D%27web%27</strong></li>
+</ul>
+</li>
+<li>Set the Content Type to <strong>Application/JSON</strong></li>
+<li>Now edit the Parse Setting and set the following:<ul>
+<li>Content Type to <strong>JSON</strong></li>
+<li>Output Variable = <strong>JDS_Source</strong></li>
+<li>Path Expression = <strong>$.data[0].source</strong></li>
+</ul>
+</li>
+</ul>
+<details class="tip" open="open">
+<summary>JDS_Query GIF</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS-3.gif" data-type="image" data-width="100%" data-height="auto" data-title="CJDS3 70" data-desc-position="top"><img alt="CJDS3 70" src="../assets/CJDS-3.gif" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Drag and drop another HTTP Request node from the left node pallet to the canvas and move it below the JDS_Query node you just added in the previous step.</p>
+<ul>
+<li>Connect the exit of the JDS_Query node to the entry of this new node.</li>
+<li>Rename this new HTTP Request node to <strong>Webhook_Debug_JDSGet</strong></li>
+<li>Turn off “<strong>Use Authenticated Endpoint</strong>”</li>
+<li>Open a tab on your browser and navigate to <a href="https://webhook.site">https://webhook.site</a>. Once there you will see a middle pane with a unique URL and email address. Copy the unique URL link, DON’T copy the link for the email address. Leave this browser tab open since we will use it to debug our IVR REST calls.</li>
+<li>Paste this URL into the Request Path field on the <strong>Webhook_Debug_JDSGet</strong> node.</li>
+<li>Set the Method to: <strong>POST</strong></li>
+<li>Scroll down to the Content Type field above the Request Body and set it to: <strong>Application/JSON</strong></li>
+<li>Set the Request Body to:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="err">Type</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JDS Query&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">Node</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JDS_QUERY&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">JDS_Source</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{JDS_Source}}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">HTTP</span><span class="w"> </span><span class="err">S</span><span class="kc">tatus</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{JDS_Query.httpStatusCode}}&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="tip" open="open">
+<summary>Webhook Debug GIF</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS-4.gif" data-type="image" data-width="100%" data-height="auto" data-title="CJDS4 70" data-desc-position="top"><img alt="CJDS4 70" src="../assets/CJDS-4.gif" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Drag and drop a Condition node from the left node pallet.</p>
+<ul>
+<li>Rename the node to <strong>Check_JDS_Value</strong></li>
+<li>Set the Expression to:
+    <div class="highlight"><pre><span></span><code>{{JDS_Source== &#39;web&#39;}}
+</code></pre></div></li>
+<li>Connect the exit of the <strong>Webhook_Debug_JDSGet</strong> node to the entry of this new condition node.</li>
+</ul>
+<details class="note" open="open">
+<summary>Check JDS Value IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS2.png" data-type="image" data-width="100%" data-height="auto" data-title="Check JDS Value" data-desc-position="top"><img alt="Check JDS Value" src="../assets/CJDS2.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Drag and drop a Set Variable node from the node pallet to the right of the <strong>Check_JDS_Value</strong> node.</p>
+<ul>
+<li>Connect the True branch of the <strong>Check_JDS_Value</strong> node to the entry of this new node.</li>
+<li>Rename this node to <strong>Welcome_Back</strong></li>
+<li>Under the Variable Settings, select the Variable = <strong>Welcome_Message_Start</strong> and set the Set Value = <strong>Welcome Back {{FirstName}} {{LastName}}</strong></li>
+<li>Connect the exit connector to the entry connector of the <strong>WelcomeCustomer</strong> node</li>
+</ul>
+<details class="note" open="open">
+<summary>Set Welcome Back Variable IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS3.png" data-type="image" data-width="100%" data-height="auto" data-title="Welcome Back Variable" data-desc-position="top"><img alt="Welcome Back Variable" src="../assets/CJDS3.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Drag and drop a Set Variable node from the node pallet to the right of the <strong>Check_JDS_Value</strong> node.</p>
+<ul>
+<li>Connect the False branch of the <strong>Check_JDS_Value</strong> node to the entry of this new node.</li>
+<li>Rename this node to <strong>Welcome</strong></li>
+<li>Under the Variable Settings, select the Variable = <strong>Welcome_Message_Start</strong> and set the Set Value = <strong>Hello {{FirstName}} {{LastName}}</strong>.</li>
+<li>Connect the exit connector to the entry connector of the <strong>WelcomeCustomer</strong> node</li>
+</ul>
+<details class="note" open="open">
+<summary>Set Welcome Variable IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS4.png" data-type="image" data-width="100%" data-height="auto" data-title="Welcome Variable" data-desc-position="top"><img alt="Welcome Variable" src="../assets/CJDS4.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Edit the <strong>WelcomeCustomer</strong> and replace the Text-to-Speech Message to the following:</p>
+<div class="highlight"><pre><span></span><code>{{Welcome_Message_Start}}. Our records show that in {{LastPurchase}} you purchased {{Product}} in the amount of ${{Balance}}. Have you been satisfied with this product? If you have been satisfied, please press 1. If you have had any issues, please press 2.
+</code></pre></div>
+<details class="note" open="open">
+<summary>Welcome Message IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS5.png" data-type="image" data-width="100%" data-height="auto" data-title="Welcome Message 70" data-desc-position="top"><img alt="Welcome Message 70" src="../assets/CJDS5.png" /></a>
+</figure></p>
+</details>
+</li>
+<li>
+<p>Next let us test the JDS query and make sure it works. The idea here is that because we injected an event using Postman in the first part of this lab, we will query for that event and if we find it, customize our message to our customer. We either greet them with “Welcome Back…” or “Hello…” We will also see a post event written to webhook.site showing the value of the <strong>JDS_Source</strong> variable which should be “web”.</p>
+<ul>
+<li>Publish your flow</li>
+</ul>
+<details class="tip" open="open">
+<summary>Publish Flow</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/CJDS-5.gif" data-type="image" data-width="100%" data-height="auto" data-title="Publish Flow" data-desc-position="top"><img alt="Publish Flow" src="../assets/CJDS-5.gif" /></a>
+</figure></p>
+</details>
+<ul>
+<li>
+<p>Dial the IVR via the number given for your tenant with the phone number you added in step 1 and follow the prompts.  First it will ask for the account number that you setup in the Postman variables, once you confirm the account, you will hear the Welcome message. If the prompt says "Welcome Back", it means the flow was configured correctly. You can disconnect the call now. </p>
+</li>
+<li>
+<p>You should also see an event show up on webhook.site. Inspect that event and you should see the following in Raw Content. </p>
+</li>
+</ul>
+<details class="note" open="open">
+<summary>Webhook site JDS_Source IMG</summary>
+<p><figure markdown>
+<a class="glightbox" href="../assets/Webhook_JDS_Source.png" data-type="image" data-width="100%" data-height="auto" data-title="Webhook site JDS_Source 70" data-desc-position="top"><img alt="Webhook site JDS_Source 70" src="../assets/Webhook_JDS_Source.png" /></a>
+</figure></p>
+</details>
+<ul>
+<li>This is the body that you passed to the Webhook_Debug_JDSQuery node. The JDS_Source variable should say "web", because the "JDS Purchase POST" we sent was set to "source": "web".</li>
+</ul>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>If you did not hear the "Welcome Back" message, confirm that the JDS event you sent using the "JDS Purchase POST" exists, this can be done by running the "Get History Stream by Identity" API. Check the value of the {{JDS_Query.httpStatusCode}} variable, this should be posted in the webhook site. </p>
+</details>
+</li>
+</ol>
+</details>
+<p>Congratulations! You have completed this section of the lab.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab1_postman/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 1 - Using Postman to interact with JDS.">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 1 - Using Postman to interact with JDS.
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab3_injecting_JDS_event/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 3 - Injecting custom JDS events from Flow Designer.">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 3 - Injecting custom JDS events from Flow Designer.
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
