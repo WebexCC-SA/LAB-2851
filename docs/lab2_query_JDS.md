@@ -24,7 +24,7 @@
             ![JDS Purchase Post](./assets/Postman9.png)
             </figure>
 
-    3. Let's confirm the event was successfully processed. Select the GET called "Get History Stream by Identity", select the "Scripts" tab and type your number including the + sign. 
+    3. Let's confirm the event was successfully processed. Select the GET called "Get History Stream by Identity", select the "Scripts" tab, then select "Pre-request" and type your number including the + sign. 
 
         ???+ info "JDS Purchase Post IMG"
             <figure markdown>
