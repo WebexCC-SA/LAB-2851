@@ -85,7 +85,7 @@
             <figure markdown>
             ![Webhook Debug POST 70](./assets/Webhook_JDS_Post.gif)
             </figure>
-        - Connect the exit of the **Webhook_Debug_JDSPost** node to the entry of the Agent Escalation menu node.
+        - Connect the exit of the **Webhook_Debug_JDSPost** node to the entry of the **Agent_Escalation** menu node.
 
     5.  Publish your flow
 
@@ -100,10 +100,12 @@
 
 ???+ webex "Instructions"
 
-    1. Navigate to the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">WxCC Agent Desktop</a> and use your credentials provided by a lab proctor to login.
-    2. We have pre-loaded a Desktop Layout that includes the JDS Widget, this will be visible while the agent is working an interaction.
-    3. Dial the IVR and follow the prompts. Select the Refund or Replacement options you configured in the flow and escalate the call to an agent. 
-    4. Answer the call and confirm the JDS event we posted from the IVR flow is visible. 
+    1. In an incognito window, navigate to the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">WxCC Agent Desktop</a> and use your Agent credentials provided by a lab proctor to login.
+    2. Set your "Station Credentionals" to **Desktop** telephony option.
+    3. We have pre-loaded a Desktop Layout that includes the JDS Widget, this will be visible while the agent is working an interaction.
+    4. Set your agent availability to "Available" in order to receive a call.
+    5. Dial the IVR and follow the prompts. Select the Refund or Replacement options you configured in the flow and escalate the call to an agent. 
+    6. Answer the call and confirm the JDS event we posted from the IVR flow is visible. 
 
         ???+ tip "Agent Desktop JDS Widget GIF"
             <figure markdown>
