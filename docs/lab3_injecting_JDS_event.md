@@ -24,7 +24,7 @@
 
         - Rename the new HTTP Request node to **JDS_Post**.
         - On the Connector drop down select **CJDS Connector**.
-        - Set the Request URL to:
+        - Set the Request Path to:
 
                 /publish/v1/api/event
 
