@@ -9,7 +9,7 @@
             <figure markdown>
             ![Refund Request 70](./assets/Refund.png)
             </figure>
-    - Remove the connection between the **Refund** and **DisconnectCustomer** node and create a connection to this new Set Variable node.
+    - Remove the connection between the **Refund** and **Agent_Escalation** node and create a connection to this new Set Variable node.
 
     2. Add another "Set Variable" node after the "Replacement" node. Change the name of the node to **Replacement_Request**, select the variable **Customer_Resolution** and set the value to `Replacement`.
 
@@ -17,7 +17,7 @@
             <figure markdown>
             ![Replacement Request 70](./assets/Replacement.png)
             </figure>
-    - Remove the connection between the **Replacement** and **DisconnectCustomer** nodes and create a connection to this new Set Variable node from the **Replacement** node.
+    - Remove the connection between the **Replacement** and **Agent_Escalation** nodes and create a connection to this new Set Variable node from the **Replacement** node.
 
     3. Insert a new HTTP Request node AFTER the **Refund_Request** and **Replacement_Request** nodes. This new node will push an event to the JDS service.
 
