@@ -1,0 +1,945 @@
+{
+  "name": "Wx1 JDS Collection",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Create Journey Actions for Profile",
+      "filename": "Create Journey Actions for Profile.bru",
+      "seq": 8,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/<<TEMPLATE-ID>>",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"name\": \"Order Discount\",\n    \"isActive\": true,\n    \"cooldownPeriodInMinutes\": 1,\n    \"rules\": {\n        \"logic\": \"SINGLE\",\n        \"condition\": \"PageVisit,channelType,string,Count EQ 2\"\n    },\n    \"actionTriggers\": [\n        {\n            \"type\": \"Webhook\",\n            \"webhookURL\": \"<<Webhook_URL>>\",\n            \"attributes\": {\n                \"httpverb\": \"post\",\n                \"requestbody\": \"{\\\"SMS\\\":\\\"\\\",\\\"callID\\\":\\\"\\\",\\\"MessageToSend\\\":\\\"\\\"}\"\n            }\n        }\n    ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Create Person",
+      "filename": "Create Person.bru",
+      "seq": 2,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"phone\": [\n    \"\",\n    \"\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"\"\n  ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Create Profile Template",
+      "filename": "Create Profile Template.bru",
+      "seq": 5,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"name\": \"\",\n    \"attributes\": [\n        {\n            \"version\": \"1.0\",\n            \"event\": \"\",\n            \"metaDataType\": \"\",\n            \"metaData\": \"\",\n            \"limit\": 100,\n            \"displayName\": \"Page Visits within 2 hours\",\n            \"lookBackDurationType\": \"minutes\",\n            \"lookBackPeriod\": 120,\n            \"aggregationMode\": \"\",\n            \"rules\": {\n                \"logic\": \"SINGLE\",\n                \"condition\": \"\"\n            },\n            \"widgetAttributes\": {\n                \"type\": \"table\"\n            },\n            \"verbose\": false\n        },\n        {\n                    \"displayName\": \"Contacts within last 10 days\",\n                    \"version\": \"1.0\",\n                    \"event\": \"task:new\",\n                    \"metaDataType\": \"STRING\",\n                    \"metaData\": \"origin\",\n                    \"limit\": 10000,\n                    \"lookBackDurationType\": \"DAYS\",\n                    \"lookBackPeriod\": 10,\n                    \"aggregationMode\": \"COUNT\",\n                    \"verbose\": true,\n                    \"widgetAttributes\": {\n                        \"type\": \"table\"\n                    },\n                    \"rules\": null\n                },\n                {\n                    \"displayName\": \"Contacts within 24 hours\",\n                    \"version\": \"0.1\",\n                    \"event\": \"task:new\",\n                    \"metaDataType\": \"STRING\",\n                    \"metaData\": \"origin\",\n                    \"limit\": 1000,\n                    \"lookBackDurationType\": \"HOURS\",\n                    \"lookBackPeriod\": 24,\n                    \"aggregationMode\": \"COUNT\",\n                    \"verbose\": true,\n                    \"widgetAttributes\": {\n                        \"type\": \"table\"\n                    },\n                    \"rules\": null\n                }\n    ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {
+          "req": "\n"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Full Featured Custom Post w/ Comments needs to be edited",
+      "filename": "Full Featured Custom Post w- Comments needs to be edited.bru",
+      "seq": 17,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "workspaceId",
+            "value": "{{workspaceId}}",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "See https://github.com/CiscoDevNet/cjaas-widgets/blob/main/CustomerJourney/README_VERSION_10.0.0.md\n{\n  \"id\": \"{{$guid}}\",\n  \"specversion\": \"1.0\",\n  \"type\": \"task:new\",\n  \"source\": \"custom/{{$guid}}\",\n  \"identity\": \"12223334444\",\n  \"identitytype\": \"phone\",\n  \"datacontenttype\": \"application/json\",\n  \"data\": {\n    \"Website visited\": \"[google](https://www.google.com)\",\n    \"Visit Duration\": \"any fields you want goes in the data section\",\n    \"transcript\":\"Text here will go into a modal window! You can fetch your transcript using the Captures API and post it in here! You may want to parse the script first\",\n    \"uiData\": {\n      \"division\": \"Department 1\", <-- If you set the CAD Variable JDSDivision within flow control, the widget will only show events filtered by that value\n      \"hidden\": \"Test\",   <--  This will hide your entry from the agent desktop, but will still store it in JDS\n      \"title\": \"My main title screen\",\n      \"iconType\": \"Pick your custom ICON here!\",\n      \"subTitle\": \"Smaller case subtitle! You can use Java escape codes in any text for emoji's \\u2705\",\n      \"filterTags\": [\"mortage\"]  <-- If you set the CAD Variable JDSDefaultFilter within flow control, the widget will initially load with that particular filter set.\n    }\n  }\n} \n",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get History Stream by Identity",
+      "filename": "Get History Stream by Identity.bru",
+      "seq": 15,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/v1/api/events/workspace-id/{{workspaceId}}?identity=<<identity>>",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "identity",
+            "value": "<<identity>>",
+            "type": "query",
+            "enabled": true
+          },
+          {
+            "name": "organizationId",
+            "value": "",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "sortBy",
+            "value": "identity",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "sort",
+            "value": "desc",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "filter",
+            "value": "identityType%3D%3D%27email%27",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "data",
+            "value": "agentid%3D%3D%273224343fddfdfdf%27",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "taskId",
+            "value": "a924734b-4cd2-4c61-b9f5-6d94211c2c2a",
+            "type": "query",
+            "enabled": false
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get History Stream",
+      "filename": "Get History Stream.bru",
+      "seq": 16,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/v1/api/events/workspace-id/{{workspaceId}}",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "sortBy",
+            "value": "identity",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "sort",
+            "value": "desc",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "filter",
+            "value": "",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "data",
+            "value": "",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "pageSize",
+            "value": "10",
+            "type": "query",
+            "enabled": false
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get Journey Actions",
+      "filename": "Get Journey Actions.bru",
+      "seq": 9,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/<<TEMPLATE-ID>>",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get Profile View per Identity",
+      "filename": "Get Profile View per Identity.bru",
+      "seq": 14,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/v1/api/progressive-profile-view/workspace-id/{{workspaceId}}/person-id/<<Person ID>>/template-id/<<Template-ID>>",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get Profiles",
+      "filename": "Get Profiles.bru",
+      "seq": 7,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "organizationId",
+            "value": "1eb65fdf-9643-417f-9974-ad72cae0e10f",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "filter",
+            "value": "createdBy%3D%3Dsatjonna%40cisco.com",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "sort",
+            "value": "DESC",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "sortBy",
+            "value": "updatedAt",
+            "type": "query",
+            "enabled": false
+          },
+          {
+            "name": "pageSize",
+            "value": "10",
+            "type": "query",
+            "enabled": false
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "JDS Deflection",
+      "filename": "JDS Deflection.bru",
+      "seq": 13,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "workspaceId",
+            "value": "{{workspaceId}}",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"SMSDeflection\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"channelType\": \"IVR\",\n        \"uiData\": {\n            \"title\": \"Digital Channel Deflection\",\n            \"iconType\": \"icon-sms_16\",\n            \"subTitle\": \"SMS\",\n            \"filterTags\": [\"Digital Channel Deflection\"]\n        }\n    }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "JDS Order Status Post",
+      "filename": "JDS Order Status Post.bru",
+      "seq": 12,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "workspaceId",
+            "value": "{{workspaceId}}",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"Order Status\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"product\": \"{{product}}\",\n        \"paymentType\": \"{{paymentType}}\",\n        \"channelType\": \"IVR\",\n        \"lastUpdate\": \"{{lastUpdate}}\",\n        \"expectedArrival\": \"{{expectedDate}}\",\n        \"currentArrival\": \"{{delayedDate}}\",\n        \"uiData\": {\n            \"title\": \"Check Order Status\",\n            \"iconType\": \"\",\n            \"subTitle\": \"{{orderStatus}}\",\n            \"filterTags\": [\"Order Status\"]\n        }\n    }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "JDS PageVisit",
+      "filename": "JDS PageVisit.bru",
+      "seq": 9,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "workspaceId",
+            "value": "{{workspaceId}}",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"id\": \"{{$guid}}\",\n  \"specversion\": \"1.0\",\n  \"type\": \"task:new\",\n  \"source\": \"web\",\n  \"identity\": \"\",\n  \"identitytype\": \"email\",\n  \"datacontenttype\": \"application/json\",\n  \"data\": {\n    \"taskId\": \"{{$guid}}\",\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"phone\": \"{{phoneNumber}}\",\n    \"channelType\": \"Website\",\n    \"uiData\": {\n      \"title\": \"Page Visit\",\n      \"iconType\": \"Page Visit\",\n      \"subTitle\": \"No Purchase\",\n      \"filterTags\": [\n        \"Page Visit\"\n      ]\n    }\n  }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "JDS Purchase Post",
+      "filename": "JDS Purchase Post.bru",
+      "seq": 11,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [
+          {
+            "name": "workspaceId",
+            "value": "{{workspaceId}}",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"WebsiteOrder\",\n    \"source\": \"web\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"channelType\": \"Website\",\n        \"paymentType\": \"Credit Card\",\n        \"product\": \"Sneakers\",\n        \"uiData\": {\n            \"title\": \"Website Order\",\n            \"iconType\": \"Page Visit\",\n            \"subTitle\": \"Single Purchase\",\n            \"filterTags\": [\"Website Order\"]\n        }\n    }\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {
+          "res": "//Get call to Mockio to get all records and print them to the Postman Console\n/*var url = pm.collectionVariables.get(\"MockioURL\") + \"?\" +\"AccountNumber=\" + pm.collectionVariables.get(\"accountNumber\")\npm.sendRequest(url, (error, response) => {\n  if (error) {\n    console.log(error);\n  } else {\n  console.log(response);\n  }\n});*/\n\n//Add the purchase to Mockio so IVR can find the record based on account number\nvar postURL = bru.getVar(\"MockioURL\") + \"?\" + \"AccountNumber=\" + bru.getVar(\"accountNumber\")\nconst postRequest = {\n  url: postURL,\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n  },\n  data: JSON.stringify({\n      \"First\": bru.getVar(\"firstName\"),\n      \"Last\": bru.getVar(\"lastName\"),\n      \"Street\": bru.getVar(\"street\"),\n      \"City\": bru.getVar(\"city\"),\n      \"State\": bru.getVar(\"state\"),\n      \"Zip\": bru.getVar(\"zip\"),\n      \"Phone\": bru.getVar(\"phoneNumber\"),\n      \"Price\": \"130.00\",\n      \"AccountNumber\": bru.getVar(\"accountNumber\"),\n      \"Product\": \"Sneakers\",\n      \"PurchaseDate\": \"Sept. 20th\",\n      \"PreferVoice\": false,\n      \"lastUpdate\":\"Sept. 28th\",\n      \"initialArrival\":\"Sept. 28th\",\n      \"currentArrival\":\"Sept. 30th\",\n      \"paymentType\":\"Credit Card\",\n      \"orderStatus\":\"Delayed\"\n  })\n};\nawait bru.sendRequest(postRequest, async function(error, response) {\n  console.log(error ? error : response.data);\n});"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Merge Identity",
+      "filename": "Merge Identity.bru",
+      "seq": 4,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/person/merge-identities/workspace-id/{{workspaceId}}",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"phone\": [\n    \"{{phoneNumber}}\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"{{accountNumber}}\"\n  ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Person Delete",
+      "filename": "Person Delete.bru",
+      "seq": 17,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}/person-id/68d146b41284a516dac7b0d3",
+        "method": "DELETE",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Person Details",
+      "filename": "Person Details.bru",
+      "seq": 3,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}/aliases/search",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n\"identities\": [\"\"]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Update Profile Template",
+      "filename": "Update Profile Template.bru",
+      "seq": 6,
+      "settings": {
+        "encodeUrl": true
+      },
+      "tags": [],
+      "request": {
+        "url": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}/template-id/68c763a9499ca09376342b1a",
+        "method": "PUT",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n    \"name\": \"PageVisits\",\n    \"attributes\": [\n        {\n            \"version\": \"1.0\",\n            \"event\": \"PageVisit\",\n            \"metaDataType\": \"string\",\n            \"metaData\": \"channelType\",\n            \"limit\": 100,\n            \"displayName\": \"Page Visits within 2 hours\",\n            \"lookBackDurationType\": \"minutes\",\n            \"lookBackPeriod\": 120,\n            \"aggregationMode\": \"Count\",\n            \"rules\": {\n                \"logic\": \"SINGLE\",\n                \"condition\": \"PageVisit,channelType,string,Value EQ Website\"\n            },\n            \"widgetAttributes\": {\n                \"type\": \"table\"\n            },\n            \"verbose\": false\n        },\n        {\n                    \"displayName\": \"Contacts within last 10 days\",\n                    \"version\": \"1.0\",\n                    \"event\": \"task:new\",\n                    \"metaDataType\": \"STRING\",\n                    \"metaData\": \"origin\",\n                    \"limit\": 10000,\n                    \"lookBackDurationType\": \"DAYS\",\n                    \"lookBackPeriod\": 10,\n                    \"aggregationMode\": \"COUNT\",\n                    \"verbose\": true,\n                    \"widgetAttributes\": {\n                        \"type\": \"table\"\n                    },\n                    \"rules\": null\n                },\n                {\n                    \"displayName\": \"Contacts within 24 hours\",\n                    \"version\": \"0.1\",\n                    \"event\": \"task:new\",\n                    \"metaDataType\": \"STRING\",\n                    \"metaData\": \"origin\",\n                    \"limit\": 1000,\n                    \"lookBackDurationType\": \"HOURS\",\n                    \"lookBackPeriod\": 24,\n                    \"aggregationMode\": \"COUNT\",\n                    \"verbose\": true,\n                    \"widgetAttributes\": {\n                        \"type\": \"table\"\n                    },\n                    \"rules\": null\n                }\n    ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "oauth2",
+        "oauth2": {
+          "grantType": "authorization_code",
+          "callbackUrl": "https://oauth.pstmn.io/v1/callback",
+          "authorizationUrl": "https://webexapis.com/v1/authorize",
+          "accessTokenUrl": "https://webexapis.com/v1/access_token",
+          "refreshTokenUrl": "",
+          "clientId": "{{client_id}}",
+          "clientSecret": "{{client_secret}}",
+          "scope": "cjp:config cjp:config_read cjp:config_write",
+          "state": "new",
+          "pkce": false,
+          "credentialsPlacement": "body",
+          "credentialsId": "credentials",
+          "tokenPlacement": "header",
+          "tokenHeaderPrefix": "Bearer",
+          "tokenQueryKey": "access_token",
+          "autoFetchToken": true,
+          "autoRefreshToken": false
+        }
+      },
+      "vars": {
+        "req": [
+          {
+            "name": "client_id",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "QL1RHxbG9JAlHYD6N5e6F"
+          },
+          {
+            "name": "client_secret",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "bGNzbh60SuXuMvglh3XYY"
+          },
+          {
+            "name": "org_id",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "uTQGc7rvy4ipORStX9pZu"
+          },
+          {
+            "name": "baseUrl",
+            "value": "https://api.wxcc-us1.cisco.com",
+            "enabled": true,
+            "local": false,
+            "uid": "cymQKJNPKd7c9Kl5ZZ5GX"
+          },
+          {
+            "name": "workspaceId",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "ywRj1E8OxfIGgbbuaiIlw"
+          },
+          {
+            "name": "identity",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "i8pXIJFR9Wyf6fCOfSaEJ"
+          },
+          {
+            "name": "phoneNumber",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "01YxxYTMjG0MFh720hgFO"
+          },
+          {
+            "name": "MockioURL",
+            "value": "https://66d8867237b1cadd8054f426.mockapi.io/CustomerDatabase",
+            "enabled": true,
+            "local": false,
+            "uid": "kQVyKjoODBz3a9dsPHg2k"
+          },
+          {
+            "name": "firstName",
+            "value": "John",
+            "enabled": true,
+            "local": false,
+            "uid": "Z0UgNBLaS3A3QHqZBgvrX"
+          },
+          {
+            "name": "lastName",
+            "value": "Doe",
+            "enabled": true,
+            "local": false,
+            "uid": "yyFxlILMA3I6PGd67MZBD"
+          },
+          {
+            "name": "street",
+            "value": "1122 mystreet",
+            "enabled": true,
+            "local": false,
+            "uid": "iobDPefl0yeO9r7UWiTMW"
+          },
+          {
+            "name": "city",
+            "value": "Denver",
+            "enabled": true,
+            "local": false,
+            "uid": "JDItNIT9Dyo3BeqLho63S"
+          },
+          {
+            "name": "state",
+            "value": "Colorado",
+            "enabled": true,
+            "local": false,
+            "uid": "69y6pnGi0L79ATuomomi3"
+          },
+          {
+            "name": "zip",
+            "value": "80107",
+            "enabled": true,
+            "local": false,
+            "uid": "lb48JfY33bry2Wdhb09P3"
+          },
+          {
+            "name": "accountNumber",
+            "value": "12345678",
+            "enabled": true,
+            "local": false,
+            "uid": "4YIGQDh5O3ObafKRUQQ5o"
+          },
+          {
+            "name": "product",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "u9jQw6W3NJcCEyfL30ut3"
+          },
+          {
+            "name": "paymentType",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "Ilf400LEZOnadOAsgiqKk"
+          },
+          {
+            "name": "lastUpdate",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "LLJkGeFFNTFrhb44zXbTq"
+          },
+          {
+            "name": "expectedDate",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "xH6jz2in3OnZyVFkG96u2"
+          },
+          {
+            "name": "delayedDate",
+            "value": "",
+            "enabled": true,
+            "local": false,
+            "uid": "KqMMjfPOYLKtMcZJBMvWS"
+          },
+          {
+            "name": "orderStatus",
+            "value": "Delayed",
+            "enabled": true,
+            "local": false,
+            "uid": "3MA2Lss8sQ6zOesfFvOeE"
+          }
+        ]
+      }
+    },
+    "meta": {
+      "name": "Wx1 JDS Collection"
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "Wx1 JDS Collection",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0.015244483947753906,
+    "filesCount": 18
+  }
+}
