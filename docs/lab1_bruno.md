@@ -1,10 +1,12 @@
-# Lab 1 - Using Bruno/Postman to interact with JDS
+# Lab 1 - Using Bruno/Postman to interact with CJDS
+
+CJDS is an API-first service, meaning that most of the configuration will be done via API using tools such as Postman and Bruno. For this lab, we prefer using Bruno as it doesn't require an account for you to import an API collection later in the lab. Also, all the instructions (including screenshots and gifs) were done using Bruno. 
 
 ???+ warning
-    Bruno and Postman clients are already installed in the laptop, do not use any web versions. 
+    Bruno and Postman clients are installed in the laptop, do not use any web versions. 
 
 ???+ tip "WxCC Connector GIF"
-    In this lab tenant, the Webex Contact Center connector for JDS has been enabled. You DO NOT need to do it and your admin account doesn't have access. However, here's a video showing you how to do it for your learning:  
+    In this lab tenant, the Webex Contact Center connector for CJDS has been enabled. You DO NOT need to do it and your admin account doesn't have access. However, here's a video showing you how to do it for your learning:  
      <figure markdown>
      ![WxCC Connector](./assets/CJDS-1.gif)
      </figure>
@@ -37,7 +39,7 @@
 
     5. Copy and save the Client ID and the Client Secret. 
 
-## Lab 1.2 Configure Postman/Bruno to send APIs to JDS
+## Lab 1.2 Configure Postman/Bruno to send APIs to CJDS
 
 !!! note
     You can find the full API documentation <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/customer-identification" target="_blank">here</a>
@@ -59,9 +61,9 @@
             ![Bruno Variables](./assets/bruno_variables.png)
             </figure>
 
-    4. Now click on the Authorization sub tab to the left of the Variables tab and scroll to the bottom of the screen.
+    4. Now click on the Authorization tab to the right of the Variables tab and scroll to the bottom of the screen.
 
-    5. Click on the orange “Get New Access Token” button.
+    5. Click on the “Get Access Token” button.
 
         ???+ info "Get New Access Token IMG"
             <figure markdown>
@@ -75,7 +77,7 @@
             ![Bruno Permission](./assets/Postman3.png){ width="300" }
             </figure>
         
-    7. Bruno will intercept the bearer Access Token and a Refresh Token from the CallbackURL you setup in the app integration, now you can use the token to send API calls to JDS. Bruno will also manage the Access Token expiration by using the Refresh Token on your behalf.
+    7. Bruno will intercept the bearer Access Token and a Refresh Token from the CallbackURL you setup in the app integration, now you can use the token to send API calls to CJDS. Bruno will also manage the Access Token expiration by using the Refresh Token on your behalf.
 
         ???+ info "Bruno Token IMG"
             ![Bruno Token](./assets/bruno_accesstoken.png)
@@ -96,7 +98,7 @@
 
         - The variables firstName, lastName and address information can be random. 
         - The phoneNumber and identity has to match the PSTN number you will use to call, make sure the + is included. 
-        - The accountNumber can be random, but it needs to be 8 digits long. 
+        - The accountNumber is a random value you assign, it needs to be 8 digits long. In order to avoid duplicates in the lab, don't use account numbers such as: 12345678, 11111111, 87654321, etc.
 
         ???+ info "Update Collection Variables"
             <figure markdown>

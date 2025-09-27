@@ -26,7 +26,7 @@
 The JDS widget is now included in the Default Desktop Layout, but for this lab we would like to see the JDS widget without an active interaction. In order to do this, you have to add the JDS widget to the navigation pane section of the Desktop Layout. 
 
 ???+ webex "Instructions"
-    1. In Control Hub, go to the Desktop Layouts menu. CLick the option "Create Desktop Layout", a menu to configure your template will come up, enter the name POD<XX>_Layout and select the Team associated to your POD number. 
+    1. In Control Hub, go to the Desktop Layouts menu. Click the option "Create Desktop Layout", a menu to configure your template will come up, enter the name POD-XX_Layout and select the Team associated to your POD number. 
     2. Download the "Default Desktop Layout" and open it using Notepad++. Find the Navigation section and enter the following widget information:
     ```
     {

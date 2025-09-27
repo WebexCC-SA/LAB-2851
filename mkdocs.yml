@@ -88,10 +88,10 @@ nav:
   - Home: index.md
   - Lab:
       - Overview: overview.md
-      - Lab 1 - Using Postman to interact with JDS.: lab1_bruno.md
-      - Lab 2 - JDS Identity Management, Progressive Profiles and Actions.: lab2_query_JDS.md
-      - Lab 3 - Injecting custom JDS events from Flow Designer.: lab3_injecting_JDS_event.md
-      - Lab 4 - AI Agent Integration with JDS: lab4_ai_agent_jds.md
+      - Lab 1 - Using Postman to interact with CJDS.: lab1_bruno.md
+      - Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.: lab2_query_JDS.md
+      - Lab 3 - IVR flow integration with CJDS: lab3_injecting_JDS_event.md
+      - Lab 4 - AI Agent Integration with CJDS: lab4_ai_agent_jds.md
   - How to use this guide:
       - Setting up and using the tool:
         - Initial Setup: howToUse/initialSetup.md

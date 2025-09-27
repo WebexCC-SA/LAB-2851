@@ -18,7 +18,7 @@ In this section, we’ll prepare the environment needed to complete the lab. Ple
 
 To get started, you’ll need to download the Bruno collection for this lab. This collection contains all the necessary API requests to complete the exercises. Follow these steps:
 
-1. Download the Collection: <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/Wx1_Simplified_JDS_Collection.postman_collection.json" target="_blank">WebexOne JDS Bruno Collection</a>  - Click on the link to download the Bruno collection file.
+1. Download the Collection: <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/Wx1_Bruno_JDS_Collection.json" target="_blank">WebexOne JDS Bruno Collection</a>  - Click on the link to download the Bruno collection file.
 2. Import into Bruno:
     - Open Bruno.
     - Go to File > Import.
