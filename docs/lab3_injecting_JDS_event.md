@@ -14,16 +14,11 @@
             <figure markdown>
             ![Flow Variables](./assets/CJDS-2.gif)
             </figure>
-
-
     5. Insert a new **HTTP Request** node AFTER the **NewPhoneContact** node. Make sure to connect the exit connection from the **NewPhoneContact** node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
-
         - Rename the new HTTP Request node to JDS_Person_Query.
         - On the Connector drop down select the WxCC_Read_Write.
         - Set the Request URL to:
-
             **/admin/v1/api/person/workspace-id/{{CJDS_ProjectID}}/aliases/search**
-
         - Set the Method to: **POST**
         - Set the Content Type to **Application/JSON**
         - Enter the following JSON in the request body section: 
@@ -32,7 +27,6 @@
             "identities": ["{{NewPhoneContact.ANI}}"]
         }
         ```
-
         - Now edit the Parse Setting and set the following:
             * Content Type to **JSON**
             * Output Variable = **firstName**
@@ -41,12 +35,10 @@
             * Output Variable = **lastName**
             * Path Expression = **$.data\[0\].lastName**
         - Enable the decryption toggle in this node. 
-
         ???+ tip "JDS_Person_Query GIF"
             <figure markdown>
             ![CJDS3 70](./assets/CJDS-3.gif)
             </figure>
-    
     6. Add a menu node from the left node pallet to the canvas and move it below the JDS_Person_Query node you just added in the previous step.
         - Connect the exit of the JDS_Person_Query node to the entry of this new node.
         - Turn on the "Enable Text-to-Speech" toggle and click the option "Add Text-to-Speech message". 
@@ -63,9 +55,7 @@
         - Rename the new HTTP Request node to JDS_Event_Post.
         - On the Connector drop down select the WxCC_Read_Write.
         - Set the Request URL to:
-
             **/publish/v1/api/event?workspaceId={{CJDS_ProjectID}}**
-
         - Set the Method to: **POST**
         - Set the Content Type to **Application/JSON**
         - Enter the following JSON in the request body section:
