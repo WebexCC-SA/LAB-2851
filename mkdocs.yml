@@ -92,13 +92,13 @@ nav:
       - Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.: lab2_query_JDS.md
       - Lab 3 - IVR flow integration with CJDS: lab3_injecting_JDS_event.md
       - Lab 4 - AI Agent Integration with CJDS: lab4_ai_agent_jds.md
-  - How to use this guide:
-      - Setting up and using the tool:
-        - Initial Setup: howToUse/initialSetup.md
-        - Using the tool after the initial setup: howToUse/postInitial.md
-        - Publishing your changes: howToUse/syncChanges.md
-      - Styling and Advanced Features:
-        - Markdown and Other References: howToUse/references.md
-        - Custom Features: howToUse/customFeatures.md
-        - Custom Admonitions: howToUse/admonition.md
+  #- How to use this guide:
+  #    - Setting up and using the tool:
+  #      - Initial Setup: howToUse/initialSetup.md
+  #      - Using the tool after the initial setup: howToUse/postInitial.md
+  #      - Publishing your changes: howToUse/syncChanges.md
+  #    - Styling and Advanced Features:
+  #      - Markdown and Other References: howToUse/references.md
+  #      - Custom Features: howToUse/customFeatures.md
+  #      - Custom Admonitions: howToUse/admonition.md
  

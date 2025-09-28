@@ -9,7 +9,7 @@ In order to start this lab, go back to Control Hub and select the AI Agents card
 ???+ webex "Creating a Knowledge Base for Webex AI Agent"
     1. From the AI Agent Studio, select the notebook icon on the left navigation menu. This is where you will manage your Knowledge Bases. 
     2. Click **Create Knowledge Base**, provide Knowledge base name as **PODXX_AI_KB** (replace the XX with your POD number), then click **Create**.
-    3. Download this generic KB:  <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/JDS_LAB_Flow_PODXX.json" target="_blank">Webex_Sneakers_KB</a>. 
+    3. Download this generic KB:  <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/WebexSneakers.txt" target="_blank">Webex_Sneakers_KB</a>. 
     3. Go to the **Files** tab and select the option **Add File**.
     4. Upload the Webex Sneakers KB and select the option **Process Files**.
     <br>
@@ -40,16 +40,20 @@ In order to start this lab, go back to Control Hub and select the AI Agents card
 Webex Connect has a powerful and intuitive flow builder tool, with its low-code/no-code approach it makes it easy for administrators to build fulfillment flows for our AI Agents. 
 In order to start this lab, go back to Control Hub and select the Overview card on the left pane. In the Quick Links section you will see the Webex Connect hyperlink, that will open in another tab of your browser. 
 
+???+ warning
+    The variables used in Webex Connect contain the node ID at the beginning, for example in this variable $(n4.Customer_ANI) the **n4** is the node ID. This node ID might be different in your flow, so always double check that the node id matches. This can be done by double clicking the node that is generating the variable and looking at the node id on the bottom left corner. 
+
 ???+ webex "Create Fulfillment Flows in Webex Connect"
     1. Find the Service matching your POD ID and click it. 
     2. This will open the dashboard section of your service, click the flows tab to start building. 
-    3. Select the option Create Flow and add the name **JDS_Identity**. Click the "Create" button. 
+    3. Let's start by building a Connect flow that allows the AI Agent to fetch the caller details:
+        - Select the option Create Flow and add the name **JDS_Identity**. Click the "Create" button. 
         - This opens the trigger category page, select the **AI Agent** integration trigger. 
         - Now you should see the **Configure AI Agent Event** window open up. In the sample JSON box, remove all of the default values and just leave an empty JSON, like this: 
         ``` JSON
         {}
         ```
-        - Click the **Parse** blue button and hit save. 
+        - Click the **Parse** blue button and hit save.
         - From the Node Palette on the left, drag and drop an **Evaluate** node into the canvas. Connect the AI Agent node to the Evaluate node. Double click the **Evaluate** node and enter this code: 
         ```
         var ANItoTime = Date.now() + "";
@@ -57,69 +61,227 @@ In order to start this lab, go back to Control Hub and select the Overview card 
         var ANIfromTime = lookbacktime + "";
         1;
         ```
-        - In the same node, enter the number 1 in the **Script Output** field and in the **Branch Name** enter the word Success. Hit Save. 
-        - Let's add another node, look for a node called WxCC API and bring it to the canvas. Connect the **Evaluate** green output to this new node. Double Click the WxCC API node and enter the following information: 
+        - In the same node, enter the number 1 in the **Script Output** field and in the **Branch Name** enter the word Success. Hit **Save**. 
+        - Let's add another node, look for a node called WxCC API and bring it to the canvas. Connect the **Evaluate** green output to this new node. Double Click the **WxCC API** node and enter the following information: 
         > From: $(ANIfromTime)
         >
         > To: $(ANItoTime)
         >
         > Corrid: $(corrid)
-        - Hit Save. 
-        
+        - Hit **Save**. 
+        - Now we are ready to use the CJDS node from Webex Connect, in the node palette find the node called **Journey** and bring it into the canvas. 
+        - Connect the success output of the **WxCC API** node into the **Journey** node. Doucle click it and fill out the fill out the following: 
+        > Method Name: Get Identity by Aliases
+        >
+        > Node Authentication: JDS_CPaaS
+        >
+        > Project Name: Customer-Journey-Widget
+        >
+        > Aliases: $(n4.Customer_ANI)
+        - Click the **Save** button. 
+        - Go into the flow **Settings** by clicking the gear icon on the top right corner. From here, select the **Flow Outcomes** tab and expand the **Last Execution Status** menu. 
+        - In this menu you can configure what is going to be sent back to the AI Agent when the action is executed. For this scenario, we want to send back the customer phone number, first name and last name. In the key value section, add the following variables: 
+        >| Key    | Value     |
+        >| :--------:   | :-------: |
+        >| firstName  |  $(n5.firstName)   | 
+        >| lastName  | $(n5.lastName) |
+        >| phoneNumber | $(n4.Customer_ANI)  |  
+        - Click the **Save** button. Also, click the **Save** button for the flow on the top right corner and then click on **Make Live**. A window will pop up, click the **Make Live** option. 
+        - Exit the flow from the top left corner. 
+        - As an explanation of the flow, the AI Agent will trigger this flow to collect the user details from CJDS. In order to do this, you configured the **Evaluate** node to get the current time in epoch format and then you are using those values to run a Search API with the **WxCC API** node. This Search API returns the Customer ANI number, then this is used in the **Journey** node to collect the person profile details. 
 
-Lab 4.3 Integrate to JDS using Fulfillment Actions
+    4. Now let's build a Fulfillment flow to check the status of an order from an external DB: 
+        - Select the option Create Flow and add the name **CheckOrder**. Click the "Create" button. 
+        - This opens the trigger category page, select the **AI Agent** integration trigger. 
+        - Now you should see the **Configure AI Agent Event** window open up. In the sample JSON box, enter the following information: 
+        ``` JSON
+        {
+        "phone": "",
+        "accountNumber": ""
+        }
+        ```
+        - Click the **Parse** blue button and hit save.
+        - From the Node Palette on the left, drag and drop an **HTTP Request** node into the canvas. Connect the AI Agent node to the **HTTP Request** node. Double click the **HTTP Request** and setup the following fields: 
+          * Method: GET
+          * Endpoint URL: https://66d8867237b1cadd8054f426.mockapi.io/CustomerDatabase?AccountNumber=$(n2.aiAgent.accountNumber)
+          * Connection Timeout: 10000
+          * Request Timeout: 10000
+          * Output Variables: 
+        >| Output Variable Name     | Response Entity     | Response Path  |
+        >| :--------:               | :-------:           |    :----:      |
+        >| FirstName                | Body                |    $[0].First  | 
+        >| LastName                | Body                |    $[0].Last  | 
+        >| Product                | Body                |    $[0].Product  | 
+        >| InitialArrival                | Body                |    $[0].initialArrival  |
+        >| CurrentArrival                | Body                |    $[0].currentArrival  | 
+        >| PaymentType                | Body                |    $[0].paymentType  | 
+        >| OrderStatus                | Body                |    $[0].orderStatus  |
+        - Click the **Save** button.
+        - Drag and drop the Journey node into the canvas. Connect the success output of the **HTTP Request** node into the **Journey** node. Double click it and fill out the fill out the following: 
+        > Method Name: Write to CJDS
+        >
+        > Node Authentication: JDS_CPaaS
+        >
+        > Project Name: Customer-Journey-Widget
+        >
+        > Request Body Object: Complete Object
+        >
+        > Request Body Object JSON: 
+        ``` JSON
+        {
+           "id":"$(n2.aiAgent.transId)",
+           "specversion":"1.0",
+           "type":"Order Status",
+           "source":"IVR",
+           "identity":"$(n2.aiAgent.phone)",
+           "identitytype":"phone",
+           "datacontenttype":"application/json",
+           "data":{
+              "taskId":"$(corrid)",
+              "firstName":"$(n3.FirstName)",
+              "lastName":"$(n3.LastName)",
+              "phone":"$(n2.aiAgent.phone)",
+              "product":"$(n3.Product)",
+              "paymentType":"$(n3.PaymentType)",
+              "channelType":"IVR",
+              "initialArrival":"$(n3.InitialArrival)",
+              "currentArrival":"$(n3.CurrentArrival)",
+              "uiData":{
+                 "title":"Check Order Status",
+                 "iconType":"",
+                 "subTitle":"$(n3.OrderStatus)",
+                 "filterTags":[
+                    "Order Status"
+                 ]
+              }
+           }
+        }
+        ```
+        - Click the **Save** button. 
+        - Go into the flow **Settings** by clicking the gear icon on the top right corner. From here, select the **Flow Outcomes** tab and expand the **Last Execution Status** menu. 
+        - In the key value section, add the following variables: 
+        >| Key    | Value     |
+        >| :--------:   | :-------: |
+        >| product  |  $(n3.Product)   | 
+        >| paymentType  | $(n3.PaymentType) |
+        >| InitialArrival | $(n3.InitialArrival)  |  
+        >| CurrentArrival | $(n3.CurrentArrival) |
+        >| OrderStatus | $(n3.OrderStatus) |
+        - Click the **Save** button. Also, click the **Save** button for the flow on the top right corner and then click on **Make Live**. A window will pop up, click the **Make Live** option. 
+        - Exit the flow from the top left corner. 
+    5. We are down to our last fulfillment flow, this will be a **SMS Deflection** flow. The AI Agent will offer customers to use our SMS digital channel: 
+        - Select the option Create Flow and add the name **SMS_Deflection**. Click the "Create" button. 
+        - This opens the trigger category page, select the **AI Agent** integration trigger. 
+        - Now you should see the **Configure AI Agent Event** window open up. In the sample JSON box, enter the following information: 
+        ``` JSON
+        {
+          "phone": "",
+          "firstName": "",
+          "lastName": ""
+        }
+        ```
+        - Click the **Parse** blue button and hit save.
+        - From the Node Palette on the left, drag and drop a **SMS** node into the canvas. Connect the AI Agent node to the **SMS** node. Double click the **SMS** and setup the following fields:
+          > Destination Type: msisdn
+          >
+          > Destination: $(n2.aiAgent.phone)
+          >
+          > From Number: **Select the SMS number assigned to your POD**
+          >
+          > Message Type: Text
+          >
+          > Message: Thank you for accepting to try our customer support service over digital channels! If this is a good moment to connect you to an agent, please reply with the phrase "GoToQueue".
+        - Click the **Save** button.
+        - Drag and drop the Journey node into the canvas. Connect the success output of the **SMS** node into the **Journey** node. Double click it and fill out the fill out the following: 
+        > Method Name: Write to CJDS
+        >
+        > Node Authentication: JDS_CPaaS
+        >
+        > Project Name: Customer-Journey-Widget
+        >
+        > Request Body Object: Complete Object
+        >
+        > Request Body Object JSON: 
+        ``` JSON
+        {
+          "id":"$(n2.aiAgent.transId)",
+          "specversion":"1.0",
+          "type":"SMSDeflection",
+          "source":"IVR",
+          "identity":"$(n2.aiAgent.phone)",
+          "identitytype":"phone",
+          "datacontenttype":"application/json",
+          "data":{
+             "taskId":"$(corrid)",
+             "firstName":"$(n2.aiAgent.firstName)",
+             "lastName":"$(n2.aiAgent.lastName)",
+             "phone":"$(n2.aiAgent.phone)",
+             "channelType":"IVR",
+             "uiData":{
+                "title":"Digital Channel Deflection",
+                "iconType":"IMI_Outbound",
+                "subTitle":"SMS",
+                "filterTags":[
+                   "Digital Channel Deflection"
+                ]
+             }
+          }
+        }
+        ```
+        - Click the **Save** button. 
+        - Click the **Save** button. Also, click the **Save** button for the flow on the top right corner and then click on **Make Live**. A window will pop up, click the **Make Live** option. 
+        - Exit the flow from the top left corner. 
+
+
+##Lab 4.3 AI Agent Instructions and Actions
+In this section, you will setup AI Agent actions that use the fulfillment flows created in the previous section. Also, you will add the instructions on when to use those actions. 
 
 ???+ webex "Create Actions"
-    14. Switch to the **Actions** tab and click the **New action** button. Proceed to name the action **generate_OTP**, add a description and select the action scope option called **Slot filling and fulfillment**. 
-    15. Create new input entities for the data required to authenticate, these are the details for each entity:
-    <br>
-      > | Entity Name      | Type     | Value  | Description  |
-      > | :--------:       | :-------:| :----: | :---------:  |
-      > | name             | string   |    -   | Customer name |
-      > | phone_number     | Phone    | **Use default regex**| A valid phone number with country code. 
-    16. In the **Webex Connect Flow Builder Fulfillment** section, select the **CCW_Admin_Flows** service and the flow **generate_OTP**. Click the "Add" button. 
-    14. click the **New action** button again, and proceed to name the action **validate_OTP**, add a description and select the action scope option called **Slot filling and fulfillment**. 
-    15. Create new input entities for the data required to authenticate, these are the details for each entity:
+    1. Switch to the **Actions** tab and click the **New action** button. Proceed to name the action **JDS_Identity**, add a description and select the **Action Scope** option called **Slot filling and fulfillment**. 
+    2. In the **Webex Connect Flow Builder Fulfillment** section, select the **POD XX** service and the flow **JDS_Identity**. Click the "Add" button. 
+    3. Click the **New action** button again, and proceed to name the action **Check_Order**, add a description and select the action scope option called **Slot filling and fulfillment**. 
+    4. Create new input entities for the data required to check the order status, these are the details for each entity:
     <br>
       >| Entity Name      | Type     | Value  | Description  |
       >| :--------:       | :-------:| :----: | :---------:  |
-      >| otp              | string   |    -   | The 6 digit OTP given by the customer |
-      >| phone_number     | Phone    | **Use default regex**| A valid phone number with country code. |
-      >| transaction      | string   |    -   | transid received in the authenticate_generate_OTP response. Do not ask the user for this |
-    16. In the **Webex Connect Flow Builder Fulfillment** section, select the **CCW_Admin_Flows** service and the flow **validate_OTP**. Click the "Add" button.  
-    17. You are ready to test your AI Agent. 
+      >| accountNumber    | number   |    -   | account number, 8 digits |
+      >| phone     | phone    | **Use default regex**| A valid phone number with country code. This phone number will be returned from the JDS_Identity action. |
+    5. In the **Webex Connect Flow Builder Fulfillment** section, select the **POD XX** service and the flow **CheckOrder**. Click the "Add" button.  
+    6. Click the **New action** button again, and proceed to name the action **SMS_Deflection**, add a description and select the action scope option called **Slot filling and fulfillment**. 
+    7. Create new input entities for the data required to send a SMS to the user, these are the details for each entity:
     <br>
-    <br>
-    ![Profiles](../assets/create_your_own_Actions.gif)
-    <br>
-    <br>
+      >| Entity Name      | Type     | Value  | Description  |
+      >| :--------:       | :-------:| :----: | :---------:  |
+      >| firstName | string   |    -   | This variable was returned from the JDS_Identity action. Do not ask the user. |
+      >| lastName  | string   |    -   | This variable was returned from the JDS_Identity action. Do not ask the user. |
+      >| phone     | phone    | **Use default regex**| A valid phone number with country code. This phone number will be returned from the JDS_Identity action. |
+    7. In the **Webex Connect Flow Builder Fulfillment** section, select the **POD XX** service and the flow **CheckOrder**. Click the "Add" button.  
+    8. Go back to the Profile tab on the AI Agent configuration page. In the instructions section, enter the following: 
+    ```
+    # Instructions
+      **Execute step 1 before answering any questions or triggering any other actions**
+      1. Inform the user that you will fetch their details, do this by executing the action JDS_Identity. 
+      2. After getting the user details from the JDS_Identity action, greet the user by their first and last name. 
+      3. Answer the user questions. 
+      4. If the user wants to check their order status, collect their account number and use the action Check_Order to get the details. 
+      5. If there are any issues with the order (delays, lost in transit, etc), ask the user if they want to proceed with a refund or replacement. Use the {{initialArrival}} and {{currentArrival}} dates to verify how much time the order has been delayed or lost. **Follow policies from the KB to determine if you can process the refund** 
+      6. **Voice Channel Only** If the user wants to talk to a human agent or the company policies require you to do the transfer, first offer the user if they would like to continue this transaction over SMS. Inform them that our digital queue is faster and this way they won't have to wait long times on queue.  
+      7. If they accept, trigger the action SMS_Initiate and inform the user they will receive a SMS shortly.
+    ```
+    9. Click the option **Save Changes** and then **Publish**, provide any version name. Your AI Agent is now ready for testing. 
 
+## Testing
+In Lab 3 you configured a voice flow and selected a placeholder AI Agent in the VA V2 node, go back to your voice flow and update that node to use your new AI Agent. Once you make the changes, remember to validate and publish your IVR flow. Once this is done, here's what you can do to test: 
 
+???+ webex "Testing AI Agent Integration with CJDS"
+    1. Place a call to your voice flow and select option 1 in the menu. 
+    2. Ask a couple of questions that are included in the Knowledge Base file you uploaded, for example: 
+        - Are there any ongoing promotions? 
+        - How long does shipping normally take? 
+        - Are your sneakers authentic? 
+    3. After you get some answers, ask about your order status. 
+    4. It should tell you the order is delayed, but that it can't help with a refund or replacement for you because of store policies. 
+    5. Insist that you want a refund and the AI Agent should offer you to use the SMS channel to talk to a human agent. Say yes and you should receive a SMS (Only US numbers). 
+    6. Go to your Agent Desktop and on the JDS widget do a search for your phone number, you should see the events pushed from the AI Agent for Order Status and SMS Deflection. 
 
-
-
-
-
-
-        There's a pre-configured action that will authenticate you via OTP to your mobile device (US numbers only), these are the instructions:
-      ```
-      ##Tasks
-      ### Authenticate the user via OTP with the action \[generate_OTP\] and \[validate_OTP\]. 
-      Execute the step \[validate_OTP\] a maximum of 3 times for every OTP generated. 
-      ## Response Guidelines
-      Formatting Rules:
-      Provide clear, concise responses. Use bullet points or short paragraphs for clarity.
-      Language Style: Keep a polite and professional tone.
-      ##Completion:
-      Ask if the user needs additional help before ending.
-      ```
-    12. Switch to **Knowledge** tab and from **Knowledge base** drop-down list select **<span id="attendee-id">---</span>_AI_KB**
-    13. Click **Save Changes**, then click **Publish**. Provide any version name in popped up window (ex. "1.0").
-    <br>
-    <br>
-    ![Profiles](../assets/create_your_own_Agent.gif)
-    <br>
-    <br>
-
-
-you need to add **Instructions** to orchestrate how the AI Agent will execute an action
+You have completed the JDS 2851 Lab, Congratulations! 
