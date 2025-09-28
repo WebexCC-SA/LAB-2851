@@ -27,7 +27,7 @@ The JDS widget is now included in the Default Desktop Layout, but for this lab w
 
 ???+ webex "Instructions"
     1. In Control Hub, go to the Desktop Layouts menu. Click the option "Create Desktop Layout", a menu to configure your template will come up, enter the name POD-XX_Layout and select the Team associated to your POD number. 
-    2. Download the "Default Desktop Layout" and open it using Notepad++. Find the Navigation section and enter the following widget information:
+    2. Download the "Default Desktop Layout" and open it using Notepad++. Find the Navigation section and replace the existing data with the following widget information:
     ```
     {
       "nav": {
@@ -117,9 +117,9 @@ Administrators can use profile templates to customize the data presented to the 
             "verbose": false
         },
     ```
-    2. Confirm tha the other metrics for "Contacts within 10 days" and "Contacts within 24 hours" are included in the JSON body. 
+    2. Confirm that the other metrics for "Contacts within 10 days" and "Contacts within 24 hours" are included in the JSON body. 
     3. Send the POST API call to create the profile.
-    4. Select the GET Customer Profiles API and run it to confirm you see both the default profile template and your new profile template. Copy the id of your profile template. 
+    4. Select the GET Profiles API and run it to confirm you see both the default profile template and your new profile template. Copy the id of your profile template. 
     5. Open the Desktop Layout you previously modified, you need to configure your template ID into it so that the JDS widget know what information to show. 
     6. In the Desktop Layout, you need to modify the JDS widget that comes up when calls or digital tasks are active, and the JDS widget in the navigation pane. Add the line "template-id": "<YOUR_TEMPLATE_ID>" to the attributes section, Here's an example: 
     **Navigation pane:**
@@ -159,7 +159,7 @@ Administrators can use profile templates to customize the data presented to the 
 
 
 
-## Lab 2.3 JDS Actions
+## Lab 2.4 JDS Actions
 
 Although, being able to aggregate and define the data within the profile template can be very useful for customers. We algo got something better.. JDS Actions. Within a profile, you can configure Actions that will take place when a certain threshold is met. Meaning you could trigger actions if you see more than 2 abandoned calls from a customer on the same day or offer a discount to someone that visited your online store 3 times on the same day. Let's check how this works! 
 
