@@ -1,4 +1,4 @@
-# JDS Identity Management, Progressive Profiles and Actions. 
+# JDS Identity Management and Progressive Profiles. 
 
 ## Lab 2.1 Identity Management
 
@@ -27,7 +27,7 @@ The JDS widget is now included in the Default Desktop Layout, but for this lab w
 
 ???+ webex "Instructions"
     1. In Control Hub, go to the Desktop Layouts menu. Click the option "Create Desktop Layout", a menu to configure your template will come up, enter the name POD-XX_Layout and select the Team associated to your POD number. 
-    2. Download the "Default Desktop Layout" and open it using Notepad++. Find the Navigation section and replace the existing data with the following widget information:
+    2. Download the <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/JDS_LAB_Layout.json" target="_blank">JDS_LAB_Layout</a> and open it using Notepad++. Find the Navigation section and replace the existing data with the following widget information:
     ```
     {
       "nav": {
@@ -77,8 +77,11 @@ The JDS widget is now included in the Default Desktop Layout, but for this lab w
       }
     }
     ```
-
-     3. Save the changes in the file and select the option "Replace file" back in the Desktop Layout menu. Select the modified file and the click the "Create" option. 
+    ??? webex "JDS Navigation Section"
+        <figure markdown>
+        ![JDS Navigation Section](./assets/JDS_Navigation.png)
+        </figure>
+     3. Save the changes in the file and select the option "Replace file" back in the Desktop Layout menu. Select the modified file and then click the "Create" option. 
      4. In an incognito window, navigate to the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">WxCC Agent Desktop</a> and use your Agent credentials provided by a lab proctor to login.
      5. Set your "Station Credentials" to **Desktop** telephony option.
      6. You should now see the JDS widget in the navigation page, select it and do a search for your identity. 
@@ -123,7 +126,7 @@ Administrators can use profile templates to customize the data presented to the 
     5. Open the Desktop Layout you previously modified, you need to configure your template ID into it so that the JDS widget know what information to show. 
     6. In the Desktop Layout, you need to modify the JDS widget that comes up when calls or digital tasks are active, and the JDS widget in the navigation pane. Add the line "template-id": "<YOUR_TEMPLATE_ID>" to the attributes section, Here's an example: 
     **Navigation pane:**
-    ```
+    ``` JSON
     "page": {
             "id": "customerJourneyWidget",
             "widgets": {
@@ -136,8 +139,8 @@ Administrators can use profile templates to customize the data presented to the 
                   "template-id": "68d627030750c0634702a46e"
                 },
     ```
-    **Active Task Widget:**
-    ```
+    **Widget for Active Calls:**
+    ``` JSON
     {
             "comp": "md-tab-panel",
             "attributes": {
@@ -156,20 +159,5 @@ Administrators can use profile templates to customize the data presented to the 
     ```
     7. Save and upload the new desktop layout file. 
     8. Reload the agent desktop and confirm that the new profile template value is coming up. 
-
-
-
-## Lab 2.4 JDS Actions
-
-Although, being able to aggregate and define the data within the profile template can be very useful for customers. We algo got something better.. JDS Actions. Within a profile, you can configure Actions that will take place when a certain threshold is met. Meaning you could trigger actions if you see more than 2 abandoned calls from a customer on the same day or offer a discount to someone that visited your online store 3 times on the same day. Let's check how this works! 
-
-
-
-Create Webex Connect webhook flow
-Create action inside the progressive profile
-Test action
-
-
-
 
 Congratulations! You have completed this section of the lab.
