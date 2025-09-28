@@ -272,7 +272,7 @@ In order to start this lab, go back to Control Hub and select the Overview card 
              "channelType":"IVR",
              "uiData":{
                 "title":"Digital Channel Deflection",
-                "iconType":"IMI_Outbound",
+                "iconType":"icon-sms_16",
                 "subTitle":"SMS",
                 "filterTags":[
                    "Digital Channel Deflection"
