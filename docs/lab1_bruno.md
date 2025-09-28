@@ -15,13 +15,15 @@ CJDS is an API-first service, meaning that most of the configuration will be don
 ## Lab 1.1 Create a Webex App Integration
 ???+ webex "Instructions"
 
-    1. Navigate to the <a href="https://developer.webex-cx.com" target="_blank">Contact Center for Developers</a> website. 
+    1. Navigate to the <a href="https://developer.webex.com" target="_blank">Webex for Developers</a> website. 
     2. Login via the button on the top right and use your admin credentials. 
     3. Once logged in navigate to “My Webex Apps” under your login avatar at the top right and then select “Create a New App”. 
-    4. Create a new App with these parameters:
+    4. Create a new intergration app by clicking "Create an Integration"
+    5. Fill out the new integration with these parameters:
 
         - Integration Name : JDS with Bruno
-        - Description: JDS with Bruno  
+        - Icon: pick your favorite
+        - App Hub Description: JDS with Bruno  
         - Redirect URL(s): https://oauth.pstmn.io/v1/callback
         - Scopes: Check the top three check boxes.
             ```
@@ -29,7 +31,6 @@ CJDS is an API-first service, meaning that most of the configuration will be don
             -cjp:config_write
             -cjp:config_read
             ```
-        - Accept the terms check box.
         - Click Add Integration
 
         ???+ tip "Webex App Integration GIF"
