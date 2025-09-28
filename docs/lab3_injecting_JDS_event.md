@@ -35,10 +35,6 @@
             * Output Variable = **lastName**
             * Path Expression = **$.data\[0\].lastName**
         - Enable the decryption toggle in this node. 
-        ???+ tip "JDS_Person_Query GIF"
-            <figure markdown>
-            ![CJDS3 70](./assets/CJDS-3.gif)
-            </figure>
     6. Add a menu node from the left node pallet to the canvas and move it below the JDS_Person_Query node you just added in the previous step.
         - Connect the exit of the JDS_Person_Query node to the entry of this new node.
         - Turn on the "Enable Text-to-Speech" toggle and click the option "Add Text-to-Speech message". 
