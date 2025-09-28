@@ -5,10 +5,11 @@
     1. Download the IVR flow <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/JDS_LAB_Flow_PODXX.json" target="_blank">JDS_LAB_Flow_PODXX</a>. Open the json file using notepad++, find the name section and replace the XX within the name to match your POD number, example: "name":"JDS_LAB_Flow_POD91". 
     2. Login to [Webex Control Hub](https://admin.webex.com) with your administrator account. Select the Contact Center option on the Services section in the left pane. 
     3. Go to “Flows” and click the "Manage Flows" dropdown, select the option "Import Flows". Select the json file you downloaded and click the option "Import".
-    4. Once you are in the Flow Editor, click the "Edit" toggle to switch to Edit mode. The first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. Click the button “Add Flow Variable” and create the following variables:
+    4. Click on the "Go to Flow Designer" icon to the right of the date modified of the flow that was just imported.
+    5. Once you are in the Flow Designer, click the "Edit" toggle to switch to Edit mode. The first thing we want to do is to create the following flow variables by clicking anywhere in the canvas, not on a specific node. Click the button “Add Flow Variable” and create the following variables:
         - Name = firstName, Variable Type = String
         - Name = lastName, Variable Type = String
-        - Name = CJDS_ProjectID, Variable Type = String, Default Value = &lt;ProjectID&gt; (From Lab 1.2, step 2)
+        - Name = CJDS_ProjectID, Variable Type = String, Default Value = &lt;WorkspaceID&gt; (From Lab 1.2, step 2)
         ???+ tip "Flow Variables GIF"
             <figure markdown>
             ![Flow Variables](./assets/CJDS-2.gif)
@@ -47,7 +48,7 @@
             </figure>
     
     6. Add a menu node from the left node pallet to the canvas and move it below the JDS_Person_Query node you just added in the previous step.
-        - Connect the exit of the JDS_Query node to the entry of this new node.
+        - Connect the exit of the JDS_Person_Query node to the entry of this new node.
         - Turn on the "Enable Text-to-Speech" toggle and click the option "Add Text-to-Speech message". 
         - Delete the Audio File that is included by default. 
         - Inside the "Text-to-Speech Message" box, enter the following: 
@@ -109,6 +110,6 @@
     1. Find the PSTN phone number in your POD channel. 
     2. Call using the phone number you entered in the API collection. You should hear a welcome message with the name you entered in the postman variable in lab 2. 
     3. Select the option 1 to connect to the virtual agent and when you hear it, disconnect the call. 
-    4. Click on the “Get History Stream by identity” call and replace the identity with the phone number you used to call. Send the request and you should see a new AI Agent event in the JDS tape! 
+    4. In Bruno, click on the “Get History Stream by identity” call and replace the identity with the phone number you used to call. Send the request and you should see a new AI Agent event in the JDS tape! 
 
 Congratulations! You have completed LAB 3.  
