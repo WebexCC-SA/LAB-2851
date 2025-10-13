@@ -4,43 +4,6 @@
   "items": [
     {
       "type": "http",
-      "name": "Create Journey Actions for Profile",
-      "filename": "Create Journey Actions for Profile.bru",
-      "seq": 8,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/<<TEMPLATE-ID>>",
-        "method": "POST",
-        "headers": [
-          {
-            "name": "Content-Type",
-            "value": "application/json",
-            "enabled": true
-          }
-        ],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "json": "{\n    \"name\": \"Order Discount\",\n    \"isActive\": true,\n    \"cooldownPeriodInMinutes\": 1,\n    \"rules\": {\n        \"logic\": \"SINGLE\",\n        \"condition\": \"PageVisit,channelType,string,Count EQ 2\"\n    },\n    \"actionTriggers\": [\n        {\n            \"type\": \"Webhook\",\n            \"webhookURL\": \"<<Webhook_URL>>\",\n            \"attributes\": {\n                \"httpverb\": \"post\",\n                \"requestbody\": \"{\\\"SMS\\\":\\\"\\\",\\\"callID\\\":\\\"\\\",\\\"MessageToSend\\\":\\\"\\\"}\"\n            }\n        }\n    ]\n}",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "inherit"
-        }
-      }
-    },
-    {
-      "type": "http",
       "name": "Create Person",
       "filename": "Create Person.bru",
       "seq": 2,
@@ -61,7 +24,7 @@
         "params": [],
         "body": {
           "mode": "json",
-          "json": "{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"phone\": [\n    \"\",\n    \"\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"\"\n  ]\n}",
+          "json": "{\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"phone\": [\n    \"{{phoneNumber}}\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"{{accountNumber}}\"\n  ]\n}",
           "formUrlEncoded": [],
           "multipartForm": [],
           "file": []
@@ -309,43 +272,6 @@
     },
     {
       "type": "http",
-      "name": "Get Journey Actions",
-      "filename": "Get Journey Actions.bru",
-      "seq": 9,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/<<TEMPLATE-ID>>",
-        "method": "GET",
-        "headers": [
-          {
-            "name": "Content-Type",
-            "value": "application/json",
-            "enabled": true
-          }
-        ],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "json": "",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "",
-        "auth": {
-          "mode": "inherit"
-        }
-      }
-    },
-    {
-      "type": "http",
       "name": "Get Profile View per Identity",
       "filename": "Get Profile View per Identity.bru",
       "seq": 14,
@@ -397,31 +323,31 @@
         "params": [
           {
             "name": "organizationId",
-            "value": "1eb65fdf-9643-417f-9974-ad72cae0e10f",
+            "value": "",
             "type": "query",
             "enabled": false
           },
           {
             "name": "filter",
-            "value": "createdBy%3D%3Dsatjonna%40cisco.com",
+            "value": "",
             "type": "query",
             "enabled": false
           },
           {
             "name": "sort",
-            "value": "DESC",
+            "value": "",
             "type": "query",
             "enabled": false
           },
           {
             "name": "sortBy",
-            "value": "updatedAt",
+            "value": "",
             "type": "query",
             "enabled": false
           },
           {
             "name": "pageSize",
-            "value": "10",
+            "value": "",
             "type": "query",
             "enabled": false
           }
@@ -515,7 +441,7 @@
         ],
         "body": {
           "mode": "json",
-          "json": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"Order Status\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"product\": \"{{product}}\",\n        \"paymentType\": \"{{paymentType}}\",\n        \"channelType\": \"IVR\",\n        \"lastUpdate\": \"{{lastUpdate}}\",\n        \"expectedArrival\": \"{{expectedDate}}\",\n        \"currentArrival\": \"{{delayedDate}}\",\n        \"uiData\": {\n            \"title\": \"Check Order Status\",\n            \"iconType\": \"\",\n            \"subTitle\": \"{{orderStatus}}\",\n            \"filterTags\": [\"Order Status\"]\n        }\n    }\n}",
+          "json": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"Order Status\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"product\": \"{{product}}\",\n        \"paymentType\": \"{{paymentType}}\",\n        \"channelType\": \"IVR\",\n        \"lastUpdate\": \"{{lastUpdate}}\",\n        \"expectedArrival\": \"{{expectedDate}}\",\n        \"currentArrival\": \"{{delayedDate}}\",\n        \"uiData\": {\n            \"title\": \"Check Order Status\",\n            \"iconType\": \"icon-event_16\",\n            \"subTitle\": \"{{orderStatus}}\",\n            \"filterTags\": [\"Order Status\"]\n        }\n    }\n}",
           "formUrlEncoded": [],
           "multipartForm": [],
           "file": []
@@ -609,7 +535,7 @@
           "file": []
         },
         "script": {
-          "res": "//Get call to Mockio to get all records and print them to the Postman Console\n/*var url = pm.collectionVariables.get(\"MockioURL\") + \"?\" +\"AccountNumber=\" + pm.collectionVariables.get(\"accountNumber\")\npm.sendRequest(url, (error, response) => {\n  if (error) {\n    console.log(error);\n  } else {\n  console.log(response);\n  }\n});*/\n\n//Add the purchase to Mockio so IVR can find the record based on account number\nvar postURL = bru.getVar(\"MockioURL\") + \"?\" + \"AccountNumber=\" + bru.getVar(\"accountNumber\")\nconst postRequest = {\n  url: postURL,\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n  },\n  data: JSON.stringify({\n      \"First\": bru.getVar(\"firstName\"),\n      \"Last\": bru.getVar(\"lastName\"),\n      \"Street\": bru.getVar(\"street\"),\n      \"City\": bru.getVar(\"city\"),\n      \"State\": bru.getVar(\"state\"),\n      \"Zip\": bru.getVar(\"zip\"),\n      \"Phone\": bru.getVar(\"phoneNumber\"),\n      \"Price\": \"130.00\",\n      \"AccountNumber\": bru.getVar(\"accountNumber\"),\n      \"Product\": \"Sneakers\",\n      \"PurchaseDate\": \"Sept. 20th\",\n      \"PreferVoice\": false,\n      \"lastUpdate\":\"Sept. 28th\",\n      \"initialArrival\":\"Sept. 28th\",\n      \"currentArrival\":\"Sept. 30th\",\n      \"paymentType\":\"Credit Card\",\n      \"orderStatus\":\"Delayed\"\n  })\n};\nawait bru.sendRequest(postRequest, async function(error, response) {\n  console.log(error ? error : response.data);\n});"
+          "res": "//Get call to Mockio to get all records and print them to the Postman Console\n/*var url = pm.collectionVariables.get(\"MockioURL\") + \"?\" +\"AccountNumber=\" + pm.collectionVariables.get(\"accountNumber\")\npm.sendRequest(url, (error, response) => {\n  if (error) {\n    console.log(error);\n  } else {\n  console.log(response);\n  }\n});*/\n\n//Add the purchase to Mockio so IVR can find the record based on account number\nvar postURL = bru.getCollectionVar(\"MockioURL\") + \"?\" + \"AccountNumber=\" + bru.getCollectionVar(\"accountNumber\")\nconst postRequest = {\n  url: postURL,\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n  },\n  data: JSON.stringify({\n      \"First\": bru.getCollectionVar(\"firstName\"),\n      \"Last\": bru.getCollectionVar(\"lastName\"),\n      \"Street\": bru.getCollectionVar(\"street\"),\n      \"City\": bru.getCollectionVar(\"city\"),\n      \"State\": bru.getCollectionVar(\"state\"),\n      \"Zip\": bru.getCollectionVar(\"zip\"),\n      \"Phone\": bru.getCollectionVar(\"phoneNumber\"),\n      \"Price\": \"130.00\",\n      \"AccountNumber\": bru.getCollectionVar(\"accountNumber\"),\n      \"Product\": \"Sneakers\",\n      \"PurchaseDate\": \"Sept. 20th\",\n      \"PreferVoice\": false,\n      \"lastUpdate\":\"Sept. 28th\",\n      \"initialArrival\":\"Sept. 28th\",\n      \"currentArrival\":\"Sept. 30th\",\n      \"paymentType\":\"Credit Card\",\n      \"orderStatus\":\"Delayed\"\n  })\n};\nawait bru.sendRequest(postRequest, async function(error, response) {\n  console.log(error ? error : response.data);\n});"
         },
         "vars": {},
         "assertions": [],
@@ -782,147 +708,147 @@
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "QL1RHxbG9JAlHYD6N5e6F"
+            "uid": "uJGXwC0vwTXQFfUh1IFYE"
           },
           {
             "name": "client_secret",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "bGNzbh60SuXuMvglh3XYY"
+            "uid": "zRJx7IbytHqBWlHjiq55N"
           },
           {
             "name": "org_id",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "uTQGc7rvy4ipORStX9pZu"
+            "uid": "Jy9gxBX1shmKNPfhwnmbA"
           },
           {
             "name": "baseUrl",
             "value": "https://api.wxcc-us1.cisco.com",
             "enabled": true,
             "local": false,
-            "uid": "cymQKJNPKd7c9Kl5ZZ5GX"
+            "uid": "RIaPW20n9PZNsrwTNIyC8"
           },
           {
             "name": "workspaceId",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "ywRj1E8OxfIGgbbuaiIlw"
+            "uid": "mwanGRrGEkL8OABXAnmrc"
           },
           {
             "name": "identity",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "i8pXIJFR9Wyf6fCOfSaEJ"
+            "uid": "QSJlpx3clqg46ZJIzbfxY"
           },
           {
             "name": "phoneNumber",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "01YxxYTMjG0MFh720hgFO"
+            "uid": "bJ5fpEaq0ytcejA4Y6JPb"
           },
           {
             "name": "MockioURL",
             "value": "https://66d8867237b1cadd8054f426.mockapi.io/CustomerDatabase",
             "enabled": true,
             "local": false,
-            "uid": "kQVyKjoODBz3a9dsPHg2k"
+            "uid": "j72EPoDe7jWXoLbFn0vuZ"
           },
           {
             "name": "firstName",
             "value": "John",
             "enabled": true,
             "local": false,
-            "uid": "Z0UgNBLaS3A3QHqZBgvrX"
+            "uid": "jh9lUJlF98dLpjipSyH8O"
           },
           {
             "name": "lastName",
             "value": "Doe",
             "enabled": true,
             "local": false,
-            "uid": "yyFxlILMA3I6PGd67MZBD"
+            "uid": "kFu8bVJm1s1egTjDElJ7F"
           },
           {
             "name": "street",
             "value": "1122 mystreet",
             "enabled": true,
             "local": false,
-            "uid": "iobDPefl0yeO9r7UWiTMW"
+            "uid": "PUznbWLHwtrNJWoDmFhpS"
           },
           {
             "name": "city",
             "value": "Denver",
             "enabled": true,
             "local": false,
-            "uid": "JDItNIT9Dyo3BeqLho63S"
+            "uid": "8W8iVeXwtFQDX8SwvlZqJ"
           },
           {
             "name": "state",
             "value": "Colorado",
             "enabled": true,
             "local": false,
-            "uid": "69y6pnGi0L79ATuomomi3"
+            "uid": "BKu3Ug594lLmaJVczk3rJ"
           },
           {
             "name": "zip",
             "value": "80107",
             "enabled": true,
             "local": false,
-            "uid": "lb48JfY33bry2Wdhb09P3"
+            "uid": "FkoLBu9mqX336rD4ET9Pt"
           },
           {
             "name": "accountNumber",
             "value": "12345678",
             "enabled": true,
             "local": false,
-            "uid": "4YIGQDh5O3ObafKRUQQ5o"
+            "uid": "63YrDR19zEi2OSaP8WrVE"
           },
           {
             "name": "product",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "u9jQw6W3NJcCEyfL30ut3"
+            "uid": "0aHxo8IazSLjzGthnACgj"
           },
           {
             "name": "paymentType",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "Ilf400LEZOnadOAsgiqKk"
+            "uid": "xwGeo9IR4857YaXjpqf5X"
           },
           {
             "name": "lastUpdate",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "LLJkGeFFNTFrhb44zXbTq"
+            "uid": "cxvpWJKV7nfNWizGKLNCz"
           },
           {
             "name": "expectedDate",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "xH6jz2in3OnZyVFkG96u2"
+            "uid": "XVpFqnF1lViK8ZLX9Ieia"
           },
           {
             "name": "delayedDate",
             "value": "",
             "enabled": true,
             "local": false,
-            "uid": "KqMMjfPOYLKtMcZJBMvWS"
+            "uid": "SzW6IkqpJdM9tBb7bMT86"
           },
           {
             "name": "orderStatus",
             "value": "Delayed",
             "enabled": true,
             "local": false,
-            "uid": "3MA2Lss8sQ6zOesfFvOeE"
+            "uid": "IEfG0dhRvtuVbl0OarFKD"
           }
         ]
       }
@@ -939,7 +865,7 @@
       "node_modules",
       ".git"
     ],
-    "size": 0.015244483947753906,
+    "size": 0.016088485717773438,
     "filesCount": 18
   }
 }

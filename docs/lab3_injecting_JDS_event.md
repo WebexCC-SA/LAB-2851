@@ -1,4 +1,4 @@
-# WxCC Flow Designer Integration with CJDS
+# WxCC Flow Designer Integration with CJDS :telephone:
 
 ## Lab 3.1 Query JDS in an IVR flow for greeting customization. 
 ???+ webex "Instructions"
@@ -90,7 +90,7 @@
     10. Save and validate the flow, if there are no errors, proceed with publishing the flow. 
     11. Go back to Control Hub and navigate to the Channels configuration. Find the channel matching your POD number and open it. Assign your new flow to the "Routing Flow" setting. Save changes. 
 
-## Testing
+## Testing :test_tube:
 
 ???+ webex "Instructions"
     1. Find the PSTN phone number in your POD channel. 
