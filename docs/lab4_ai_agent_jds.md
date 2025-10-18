@@ -30,6 +30,7 @@ To begin this lab, navigate to Control Hub and select the AI Agents card from th
       > AI engine: **Webex AI Pro-US 1.0**
     5. In the **Agent's goal** section, enter the following:
       > Answer general questions about our online store, Webex Sneakers! Provide information about the customer orders and route to human agents when required.
+    6. Click **Create** on the bottom right corner. 
     6. Once the agent is created, update the Welcome Message to say" 
       >Hey! Welcome to Webex Sneakers! How can I help you? 
     7. Switch to **Knowledge** tab and from **Knowledge base** drop-down list select the knowledge base you created. 
@@ -326,7 +327,7 @@ In this section, you will setup AI Agent actions that use the fulfillment flows 
       >| firstName | string   |    -   | This variable was returned from the JDS_Identity action. Do not ask the user. |
       >| lastName  | string   |    -   | This variable was returned from the JDS_Identity action. Do not ask the user. |
       >| phone     | phone    | **Use default regex**| A valid phone number with country code. This phone number will be returned from the JDS_Identity action. |
-    7. In the **Webex Connect Flow Builder Fulfillment** section, select the **POD XX** service and the flow **CheckOrder**. Click the "Add" button.  
+    7. In the **Webex Connect Flow Builder Fulfillment** section, select the **POD XX** service and the flow **SMS_Deflection**. Click the "Add" button.  
 
         ???+ info "SMS Deflection Action IMG"
             <figure markdown>

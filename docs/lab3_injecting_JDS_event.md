@@ -14,10 +14,10 @@
             <figure markdown>
             ![Flow Variables](./assets/CJDS-2.gif)
             </figure>
-    5. Insert a new **HTTP Request** node AFTER the **NewPhoneContact** node. Make sure to connect the exit connection from the **NewPhoneContact** node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
+    6. Insert a new **HTTP Request** node AFTER the **NewPhoneContact** node. Make sure to connect the exit connection from the **NewPhoneContact** node to the incoming connection on this new node.  This new node will be used to send a query to the JDS service.
         - Rename the new HTTP Request node to JDS_Person_Query.
         - On the Connector drop down select the WxCC_Read_Write.
-        - Set the Request URL to:
+        - Set the Request Path to:
             **/admin/v1/api/person/workspace-id/{{CJDS_ProjectID}}/aliases/search**
         - Set the Method to: **POST**
         - Set the Content Type to **Application/JSON**
@@ -37,7 +37,7 @@
         - Enable the decryption toggle in this node. 
     6. Add a menu node from the left node pallet to the canvas and move it below the JDS_Person_Query node you just added in the previous step.
         - Connect the exit of the JDS_Person_Query node to the entry of this new node.
-        - Turn on the "Enable Text-to-Speech" toggle and click the option "Add Text-to-Speech message". 
+        - Turn on the "Enable Text-to-Speech" toggle, from the "Connector" drop down select "Cisco Cloud text to speech", and click the option "Add Text-to-Speech message". 
         - Delete the Audio File that is included by default. 
         - Inside the "Text-to-Speech Message" box, enter the following: 
         ```
@@ -50,7 +50,7 @@
     7. Insert a new **HTTP Request** node AFTER the **Menu** node. Make sure to connect the option 1 menu output to the incoming connection on this new node.  This new node will be used to post a new event to the JDS service.
         - Rename the new HTTP Request node to JDS_Event_Post.
         - On the Connector drop down select the WxCC_Read_Write.
-        - Set the Request URL to:
+        - Set the Request Path to:
             **/publish/v1/api/event?workspaceId={{CJDS_ProjectID}}**
         - Set the Method to: **POST**
         - Set the Content Type to **Application/JSON**
