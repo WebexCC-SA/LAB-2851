@@ -45,6 +45,7 @@ CJDS is an API-first service, meaning that most of the configuration will be don
         - client_secret – Set this to the Client Secret for the Webex App you added earlier.
         - org_id – This is an optional setting. 
         - workspaceId – This is the ID for your lab tenant: **67e2e90ec4b84e752570056c**
+        
             ???+ info "Bruno Authentication Variables IMG"
                 <figure markdown>
                 ![Bruno Variables](./assets/bruno_variables.png)
