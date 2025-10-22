@@ -1,0 +1,1249 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Integrating Customer Journey Data Services for enhanced customer experiences">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado">
+      
+      
+      
+        <link rel="prev" href="../lab3_injecting_JDS_event/">
+      
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lab 4 - AI Agent Integration with CJDS - LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#webex-ai-agent-integration-with-cjds" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-header__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 4 - AI Agent Integration with CJDS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Lab
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-nav__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_bruno/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Using Postman to interact with CJDS.
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_query_JDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_injecting_JDS_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - IVR flow integration with CJDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 4 - AI Agent Integration with CJDS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4 - AI Agent Integration with CJDS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-41-create-an-ai-agent-and-a-knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 4.1 Create an AI Agent and a Knowledge Base
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-42-build-connect-ai-agent-fulfillment-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 4.2 Build Connect AI Agent Fulfillment Flows.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-43-ai-agent-instructions-and-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 4.3 AI Agent Instructions and Actions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="webex-ai-agent-integration-with-cjds">Webex AI Agent Integration with CJDS <img alt="🤖" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f916.svg" title=":robot:"></h1>
+<p>Webex AI Agents allow you to use the power of GenAI inside our Customer Experience flows. Our Autonomous agents assist customers in real time by leveraging a knowledge base with Retrieval-Augmented Generation (RAG) techniques and executing actions through Webex Connect flows. This lab focuses on creating an AI Agent that can retrieve information from and post events to CJDS while supporting customer interactions.</p>
+<h2 id="lab-41-create-an-ai-agent-and-a-knowledge-base">Lab 4.1 Create an AI Agent and a Knowledge Base</h2>
+<p>To begin this lab, navigate to Control Hub and select the AI Agents card from the left pane of the Contact Center menu. Click the <strong>Build your AI Agent</strong> button. The AI Agent Studio will open in a new browser tab, where you will configure your AI Agent and Knowledge Base. </p>
+<details class="webex" open="open">
+<summary>Create a Knowledge Base for your Webex AI Agent</summary>
+<ol>
+<li>From the AI Agent Studio, select the notebook icon on the left navigation menu. This is where you will manage your Knowledge Bases. </li>
+<li>Click <strong>Create Knowledge Base</strong>, enter the name as <strong>PODXX_AI_KB</strong> (replace the XX with your POD number), then click <strong>Create</strong>.</li>
+<li>Download this generic KB:  <a href="https://github.com/WebexCC-SA/LAB-2851/blob/main/docs/assets/WebexSneakers.txt" target="_blank">Webex_Sneakers_KB</a>. </li>
+<li>Go to the <strong>Files</strong> tab and select the option <strong>Add File</strong>.</li>
+<li>Upload the Webex Sneakers KB and select the option <strong>Process Files</strong>.</li>
+</ol>
+<details class="info" open="open">
+<summary>Knowledge Base with Files Processed IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Processed_KB.png" data-title="Knowledge Base with Files Processed" data-desc-position="top"><img alt="Knowledge Base with Files Processed" src="../assets/Processed_KB.png"></a>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Create your AI Agent</summary>
+<ol>
+<li>Navigate to <strong>Dashboard</strong> from the right-hand side menu panel and click <strong>Create Agent</strong></li>
+<li>Select <strong>Start from Scratch</strong> and click <strong>Next</strong></li>
+<li>On the <strong>Create an AI agent</strong> page, select the type of agent: <strong>Autonomous</strong></li>
+<li>A new section called <strong>Add the essential details</strong> will appear. Enter the following information:<blockquote>
+<p>Agent Name: <strong>PODXX_JDS_AI</strong> (Replace the XX with the POD ID)</p>
+<p>System ID is created automatically</p>
+<p>AI engine: <strong>Webex AI Pro-US 1.0</strong></p>
+</blockquote>
+</li>
+<li>In the <strong>Agent's goal</strong> section, enter the following:<blockquote>
+<p>Answer general questions about our online store, Webex Sneakers! Provide information about the customer orders and route to human agents when required.</p>
+</blockquote>
+</li>
+<li>Click <strong>Create</strong> on the bottom right corner. </li>
+<li>Once the agent is created, update the Welcome Message to say" <blockquote>
+<p>Hey! Welcome to Webex Sneakers! How can I help you? </p>
+</blockquote>
+</li>
+<li>Switch to <strong>Knowledge</strong> tab and from <strong>Knowledge base</strong> drop-down list select the knowledge base you created. </li>
+<li>Click <strong>Save Changes</strong>. </li>
+</ol>
+<p>You need to add <strong>Instructions</strong> to orchestrate how the AI Agent will execute an action, but first the Webex Connect flows have to be built. Let's do that! </p>
+</details>
+<h2 id="lab-42-build-connect-ai-agent-fulfillment-flows">Lab 4.2 Build Connect AI Agent Fulfillment Flows.</h2>
+<p>Webex Connect has a powerful and intuitive flow builder tool, with its low-code/no-code approach it makes it easy for administrators to build fulfillment flows for our AI Agents. 
+In order to start this lab, go back to Control Hub and select the Overview card on the left pane. In the Quick Links section you will see the Webex Connect hyperlink, that will open in another tab of your browser. </p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>The variables used in Webex Connect contain the node ID at the beginning, for example in this variable $(n4.Customer_ANI) the <strong>n4</strong> is the node ID. This node ID might be different in your flow, so always double check that the node id matches. This can be done by double clicking the node that is generating the variable and looking at the node id on the bottom left corner. </p>
+</details>
+<details class="webex" open="open">
+<summary>Create Fulfillment Flows in Webex Connect</summary>
+<ol>
+<li>Find the Service matching your POD ID and click it. </li>
+<li>This will open the dashboard section of your service, click the flows tab to start building. </li>
+<li>Let's start by building a Connect flow that allows the AI Agent to fetch the caller details:<ul>
+<li>Select the option Create Flow and add the name <strong>JDS_Identity</strong>. Click the "Create" button. </li>
+<li>This opens the trigger category page, select the <strong>AI Agent</strong> integration trigger. </li>
+<li>Now you should see the <strong>Configure AI Agent Event</strong> window open up. In the sample JSON box, remove all of the default values and just leave an empty JSON, like this: 
+<div class="highlight"><pre><span></span><code><span class="p">{}</span>
+</code></pre></div></li>
+<li>Click the <strong>Parse</strong> blue button and hit save.</li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity Trigger IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Trigger.png" data-title="JDS_Identity Trigger IMG" data-desc-position="top"><img alt="JDS_Identity Trigger IMG" src="../assets/JDS_Identity_Trigger.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>From the Node Palette on the left, drag and drop an <strong>Evaluate</strong> node into the canvas. Connect the AI Agent node to the Evaluate node. Double click the <strong>Evaluate</strong> node and enter this code: 
+<div class="highlight"><pre><span></span><code>var ANItoTime = Date.now() + "";
+var lookbacktime = ANItoTime - 30000;
+var ANIfromTime = lookbacktime + "";
+1;
+</code></pre></div></li>
+<li>In the same node, enter the number 1 in the <strong>Script Output</strong> field and in the <strong>Branch Name</strong> enter the word Success. Hit <strong>Save</strong>. </li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity Evaluate IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Evaluate.png" data-title="JDS_Identity Evaluate IMG" data-desc-position="top"><img alt="JDS_Identity Evaluate IMG" src="../assets/JDS_Identity_Evaluate.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Let's add another node, look for a node called WxCC API and bring it to the canvas. Connect the <strong>Evaluate</strong> green output to this new node. Double Click the <strong>WxCC API</strong> node and enter the following information: <blockquote>
+<p>From: $(ANIfromTime)</p>
+<p>To: $(ANItoTime)</p>
+<p>Corrid: $(corrid)</p>
+</blockquote>
+</li>
+<li>Hit <strong>Save</strong>. </li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity WxCC API IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_WxCCAPI.png" data-title="JDS_Identity WxCC API IMG" data-desc-position="top"><img alt="JDS_Identity WxCC API IMG" src="../assets/JDS_Identity_WxCCAPI.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Now we are ready to use the CJDS node from Webex Connect, in the node palette find the node called <strong>Journey</strong> and bring it into the canvas. </li>
+<li>Connect the success output of the <strong>WxCC API</strong> node into the <strong>Journey</strong> node. Double click it and fill out the fill out the following: <blockquote>
+<p>Method Name: Get Identity by Aliases</p>
+<p>Node Authentication: JDS_CPaaS</p>
+<p>Project Name: Customer-Journey-Widget</p>
+<p>Aliases: $(n4.Customer_ANI)</p>
+</blockquote>
+</li>
+<li>Click the <strong>Save</strong> button. </li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity Journey IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Journey.png" data-title="JDS_Identity Journey IMG" data-desc-position="top"><img alt="JDS_Identity Journey IMG" src="../assets/JDS_Identity_Journey.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Go into the flow <strong>Settings</strong> by clicking the gear icon on the top right corner. From here, select the <strong>Flow Outcomes</strong> tab and expand the <strong>Last Execution Status</strong> menu. </li>
+<li>In this menu you can configure what is going to be sent back to the AI Agent when the action is executed. For this scenario, we want to send back the customer phone number, first name and last name. In the key value section, add the following variables: <blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Key</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">firstName</td>
+<td style="text-align: center;">$(n5.firstName)</td>
+</tr>
+<tr>
+<td style="text-align: center;">lastName</td>
+<td style="text-align: center;">$(n5.lastName)</td>
+</tr>
+<tr>
+<td style="text-align: center;">phoneNumber</td>
+<td style="text-align: center;">$(n4.Customer_ANI)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity Outcome IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Outcome.png" data-title="JDS_Identity Outcome IMG" data-desc-position="top"><img alt="JDS_Identity Outcome IMG" src="../assets/JDS_Identity_Outcome.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Click the <strong>Save</strong> button. Also, click the <strong>Save</strong> button for the flow on the top right corner and then click on <strong>Make Live</strong>. A window will pop up, click the <strong>Make Live</strong> option. </li>
+<li>Exit the flow from the top left corner. </li>
+<li>As an explanation of the flow, the AI Agent will trigger this flow to collect the user details from CJDS. In order to do this, you configured the <strong>Evaluate</strong> node to get the current time in epoch format and then you are using those values to run a Search API with the <strong>WxCC API</strong> node. This Search API returns the Customer ANI number, then this is used in the <strong>Journey</strong> node to collect the person profile details. </li>
+</ul>
+<details class="info" open="open">
+<summary>JDS_Identity Final Flow IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Final.png" data-title="JDS_Identity Final Flow IMG" data-desc-position="top"><img alt="JDS_Identity Final Flow IMG" src="../assets/JDS_Identity_Final.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>Now let's build a Fulfillment flow to check the status of an order from an external DB: <ul>
+<li>Select the option Create Flow and add the name <strong>CheckOrder</strong>. Click the "Create" button. </li>
+<li>This opens the trigger category page, select the <strong>AI Agent</strong> integration trigger. </li>
+<li>Now you should see the <strong>Configure AI Agent Event</strong> window open up. In the sample JSON box, enter the following information: 
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="nt">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>Click the <strong>Parse</strong> blue button and hit save.</li>
+</ul>
+<details class="info" open="open">
+<summary>Check Order Trigger IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_Trigger.png" data-title="Check Order Trigger IMG" data-desc-position="top"><img alt="Check Order Trigger IMG" src="../assets/Check_Order_Trigger.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>From the Node Palette on the left, drag and drop an <strong>HTTP Request</strong> node into the canvas. Connect the AI Agent node to the <strong>HTTP Request</strong> node. Double click the <strong>HTTP Request</strong> and setup the following fields: </li>
+<li>Method: GET</li>
+<li>Endpoint URL: https://66d8867237b1cadd8054f426.mockapi.io/CustomerDatabase?AccountNumber=$(n2.aiAgent.accountNumber)</li>
+<li>Connection Timeout: 10000</li>
+<li>Request Timeout: 10000</li>
+<li>Output Variables: <blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Output Variable Name</th>
+<th style="text-align: center;">Response Entity</th>
+<th style="text-align: center;">Response Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">FirstName</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].First</td>
+</tr>
+<tr>
+<td style="text-align: center;">LastName</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].Last</td>
+</tr>
+<tr>
+<td style="text-align: center;">Product</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].Product</td>
+</tr>
+<tr>
+<td style="text-align: center;">InitialArrival</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].initialArrival</td>
+</tr>
+<tr>
+<td style="text-align: center;">CurrentArrival</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].currentArrival</td>
+</tr>
+<tr>
+<td style="text-align: center;">PaymentType</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].paymentType</td>
+</tr>
+<tr>
+<td style="text-align: center;">OrderStatus</td>
+<td style="text-align: center;">Body</td>
+<td style="text-align: center;">$[0].orderStatus</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>Click the <strong>Save</strong> button.</li>
+</ul>
+<details class="info" open="open">
+<summary>Check Order HTTP Request IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_HTTP.png" data-title="Check Order HTTP Request IMG" data-desc-position="top"><img alt="Check Order HTTP Request IMG" src="../assets/Check_Order_HTTP.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Drag and drop the Journey node into the canvas. Connect the success output of the <strong>HTTP Request</strong> node into the <strong>Journey</strong> node. Double click it and fill out the fill out the following: <blockquote>
+<p>Method Name: Write to CJDS</p>
+<p>Node Authentication: JDS_CPaaS</p>
+<p>Project Name: Customer-Journey-Widget</p>
+<p>Request Body Object: Complete Object</p>
+<p>Request Body Object JSON: 
+</p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">   </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.transId)"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"specversion"</span><span class="p">:</span><span class="s2">"1.0"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"Order Status"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"IVR"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"identity"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.phone)"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"identitytype"</span><span class="p">:</span><span class="s2">"phone"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"datacontenttype"</span><span class="p">:</span><span class="s2">"application/json"</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">"data"</span><span class="p">:{</span>
+<span class="w">      </span><span class="nt">"taskId"</span><span class="p">:</span><span class="s2">"$(corrid)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"$(n3.FirstName)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"$(n3.LastName)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.phone)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"product"</span><span class="p">:</span><span class="s2">"$(n3.Product)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"paymentType"</span><span class="p">:</span><span class="s2">"$(n3.PaymentType)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"channelType"</span><span class="p">:</span><span class="s2">"IVR"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"initialArrival"</span><span class="p">:</span><span class="s2">"$(n3.InitialArrival)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"currentArrival"</span><span class="p">:</span><span class="s2">"$(n3.CurrentArrival)"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"uiData"</span><span class="p">:{</span>
+<span class="w">         </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Check Order Status"</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">"iconType"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">"subTitle"</span><span class="p">:</span><span class="s2">"$(n3.OrderStatus)"</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">"filterTags"</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">"Order Status"</span>
+<span class="w">         </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+</blockquote>
+</li>
+<li>Click the <strong>Save</strong> button. </li>
+</ul>
+<details class="info" open="open">
+<summary>Check Order Journey IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_Journey.png" data-title="Check Order Journey IMG" data-desc-position="top"><img alt="Check Order Journey IMG" src="../assets/Check_Order_Journey.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Go into the flow <strong>Settings</strong> by clicking the gear icon on the top right corner. From here, select the <strong>Flow Outcomes</strong> tab and expand the <strong>Last Execution Status</strong> menu. </li>
+<li>In the key value section, add the following variables: <blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Key</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">product</td>
+<td style="text-align: center;">$(n3.Product)</td>
+</tr>
+<tr>
+<td style="text-align: center;">paymentType</td>
+<td style="text-align: center;">$(n3.PaymentType)</td>
+</tr>
+<tr>
+<td style="text-align: center;">InitialArrival</td>
+<td style="text-align: center;">$(n3.InitialArrival)</td>
+</tr>
+<tr>
+<td style="text-align: center;">CurrentArrival</td>
+<td style="text-align: center;">$(n3.CurrentArrival)</td>
+</tr>
+<tr>
+<td style="text-align: center;">OrderStatus</td>
+<td style="text-align: center;">$(n3.OrderStatus)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+</ul>
+<details class="info" open="open">
+<summary>Check Order Outcome IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_Outcome.png" data-title="Check Order Outcome IMG" data-desc-position="top"><img alt="Check Order Outcome IMG" src="../assets/Check_Order_Outcome.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Click the <strong>Save</strong> button. Also, click the <strong>Save</strong> button for the flow on the top right corner and then click on <strong>Make Live</strong>. A window will pop up, click the <strong>Make Live</strong> option. </li>
+<li>Exit the flow from the top left corner. </li>
+</ul>
+<details class="info" open="open">
+<summary>Check Order Final Flow IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_Final.png" data-title="Check Order Final Flow IMG" data-desc-position="top"><img alt="Check Order Final Flow IMG" src="../assets/Check_Order_Final.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>We are down to our last fulfillment flow, this will be a <strong>SMS Deflection</strong> flow. The AI Agent will offer customers to use our SMS digital channel: <ul>
+<li>Select the option Create Flow and add the name <strong>SMS_Deflection</strong>. Click the "Create" button. </li>
+<li>This opens the trigger category page, select the <strong>AI Agent</strong> integration trigger. </li>
+<li>Now you should see the <strong>Configure AI Agent Event</strong> window open up. In the sample JSON box, enter the following information: 
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>Click the <strong>Parse</strong> blue button and hit save.</li>
+</ul>
+<details class="info" open="open">
+<summary>SMS Deflection Trigger IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/SMS_Deflection_Trigger.png" data-title="SMS Deflection Trigger IMG" data-desc-position="top"><img alt="SMS Deflection Trigger IMG" src="../assets/SMS_Deflection_Trigger.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>From the Node Palette on the left, drag and drop a <strong>SMS</strong> node into the canvas. Connect the AI Agent node to the <strong>SMS</strong> node. Double click the <strong>SMS</strong> and setup the following fields:<blockquote>
+<p>Destination Type: msisdn</p>
+<p>Destination: $(n2.aiAgent.phone)</p>
+<p>From Number: <strong>Select the SMS number assigned to your POD</strong></p>
+<p>Message Type: Text</p>
+<p>Message: Thank you for accepting to try our customer support service over digital channels! If this is a good moment to connect you to an agent, please reply with the phrase "GoToQueue".</p>
+</blockquote>
+</li>
+<li>Click the <strong>Save</strong> button.</li>
+</ul>
+<details class="info" open="open">
+<summary>SMS Deflection SMS IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/SMS_Deflection_SMS.png" data-title="SMS Deflection SMS IMG" data-desc-position="top"><img alt="SMS Deflection SMS IMG" src="../assets/SMS_Deflection_SMS.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Drag and drop the Journey node into the canvas. Connect the success output of the <strong>SMS</strong> node into the <strong>Journey</strong> node. Double click it and fill out the fill out the following: <blockquote>
+<p>Method Name: Write to CJDS</p>
+<p>Node Authentication: JDS_CPaaS</p>
+<p>Project Name: Customer-Journey-Widget</p>
+<p>Request Body Object: Complete Object</p>
+<p>Request Body Object JSON: 
+</p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.transId)"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"specversion"</span><span class="p">:</span><span class="s2">"1.0"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"SMSDeflection"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"IVR"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"identity"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.phone)"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"identitytype"</span><span class="p">:</span><span class="s2">"phone"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"datacontenttype"</span><span class="p">:</span><span class="s2">"application/json"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:{</span>
+<span class="w">     </span><span class="nt">"taskId"</span><span class="p">:</span><span class="s2">"$(corrid)"</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.firstName)"</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.lastName)"</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"$(n2.aiAgent.phone)"</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">"channelType"</span><span class="p">:</span><span class="s2">"IVR"</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">"uiData"</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Digital Channel Deflection"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"iconType"</span><span class="p">:</span><span class="s2">"icon-sms_16"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"subTitle"</span><span class="p">:</span><span class="s2">"SMS"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"filterTags"</span><span class="p">:[</span>
+<span class="w">           </span><span class="s2">"Digital Channel Deflection"</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+</blockquote>
+</li>
+<li>Click the <strong>Save</strong> button. </li>
+</ul>
+<details class="info" open="open">
+<summary>SMS Deflection Journey IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/SMS_Deflection_Journey.png" data-title="SMS Deflection Journey IMG" data-desc-position="top"><img alt="SMS Deflection Journey IMG" src="../assets/SMS_Deflection_Journey.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Click the <strong>Save</strong> button. Also, click the <strong>Save</strong> button for the flow on the top right corner and then click on <strong>Make Live</strong>. A window will pop up, click the <strong>Make Live</strong> option. </li>
+<li>Exit the flow from the top left corner. </li>
+</ul>
+<details class="info" open="open">
+<summary>SMS Deflection Final Flow IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/SMS_Deflection_Final.png" data-title="SMS Deflection Final IMG" data-desc-position="top"><img alt="SMS Deflection Final IMG" src="../assets/SMS_Deflection_Final.png"></a>
+</figure><p></p>
+</details>
+</li>
+</ol>
+</details>
+<h2 id="lab-43-ai-agent-instructions-and-actions">Lab 4.3 AI Agent Instructions and Actions</h2>
+<p>In this section, you will setup AI Agent actions that use the fulfillment flows created in the previous section. Also, you will add the instructions on when to use those actions. </p>
+<details class="webex" open="open">
+<summary>Create Actions</summary>
+<ol>
+<li>Switch to the <strong>Actions</strong> tab and click the <strong>New action</strong> button. Proceed to name the action <strong>JDS_Identity</strong>, add a description and select the <strong>Action Scope</strong> option called <strong>Slot filling and fulfillment</strong>. </li>
+<li>
+<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the <strong>POD XX</strong> service and the flow <strong>JDS_Identity</strong>. Click the "Add" button. </p>
+<details class="info" open="open">
+<summary>JDS Identity Action IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_Identity_Action.png" data-title="JDS Identity Action IMG" data-desc-position="top"><img alt="JDS Identity Action IMG" src="../assets/JDS_Identity_Action.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Click the <strong>New action</strong> button again, and proceed to name the action <strong>Check_Order</strong>, add a description and select the action scope option called <strong>Slot filling and fulfillment</strong>. </p>
+</li>
+<li>Create new input entities for the data required to check the order status, these are the details for each entity:
+<br><blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Entity Name</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Value</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">accountNumber</td>
+<td style="text-align: center;">number</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">account number, 8 digits</td>
+</tr>
+<tr>
+<td style="text-align: center;">phone</td>
+<td style="text-align: center;">phone</td>
+<td style="text-align: center;"><strong>Use default regex</strong></td>
+<td style="text-align: center;">A valid phone number with country code. This phone number will be returned from the JDS_Identity action.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the <strong>POD XX</strong> service and the flow <strong>CheckOrder</strong>. Click the "Add" button.  </p>
+<details class="info" open="open">
+<summary>Check Order Action IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Check_Order_Action.png" data-title="Check Order Action IMG" data-desc-position="top"><img alt="Check Order Action IMG" src="../assets/Check_Order_Action.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Click the <strong>New action</strong> button again, and proceed to name the action <strong>SMS_Deflection</strong>, add a description and select the action scope option called <strong>Slot filling and fulfillment</strong>. </p>
+</li>
+<li>Create new input entities for the data required to send a SMS to the user, these are the details for each entity:
+<br><blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Entity Name</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Value</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">firstName</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">This variable was returned from the JDS_Identity action. Do not ask the user.</td>
+</tr>
+<tr>
+<td style="text-align: center;">lastName</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">This variable was returned from the JDS_Identity action. Do not ask the user.</td>
+</tr>
+<tr>
+<td style="text-align: center;">phone</td>
+<td style="text-align: center;">phone</td>
+<td style="text-align: center;"><strong>Use default regex</strong></td>
+<td style="text-align: center;">A valid phone number with country code. This phone number will be returned from the JDS_Identity action.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the <strong>POD XX</strong> service and the flow <strong>SMS_Deflection</strong>. Click the "Add" button.  </p>
+<details class="info" open="open">
+<summary>SMS Deflection Action IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/SMS_Deflection_Action.png" data-title="SMS Deflection Action IMG" data-desc-position="top"><img alt="SMS Deflection Action IMG" src="../assets/SMS_Deflection_Action.png"></a>
+</figure><p></p>
+</details>
+<details class="info" open="open">
+<summary>List of Actions IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Final_Actions.png" data-title="List of Actions IMG" data-desc-position="top"><img alt="List of Actions IMG" src="../assets/Final_Actions.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Go back to the Profile tab on the AI Agent configuration page. In the instructions section, enter the following: 
+</p><div class="highlight"><pre><span></span><code># Instructions
+  **Execute step 1 before answering any questions or triggering any other actions**
+  1. Inform the user that you will fetch their details, do this by executing the action JDS_Identity. 
+  2. After getting the user details from the JDS_Identity action, greet the user by their first and last name. 
+  3. Answer the user questions. 
+  4. If the user wants to check their order status, collect their account number and use the action Check_Order to get the details. 
+  5. If there are any issues with the order (delays, lost in transit, etc), ask the user if they want to proceed with a refund or replacement. Use the {{initialArrival}} and {{currentArrival}} dates to verify how much time the order has been delayed or lost. **Follow policies from the KB to determine if you can process the refund** 
+  6. **Voice Channel Only** If the user wants to talk to a human agent or the company policies require you to do the transfer, first offer the user if they would like to continue this transaction over SMS. Inform them that our digital queue is faster and this way they won't have to wait long times on queue.  
+  7. If they accept, trigger the action SMS_Initiate and inform the user they will receive a SMS shortly.
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Click the option <strong>Save Changes</strong> and then <strong>Publish</strong>, provide any version name. Your AI Agent is now ready for testing.</p>
+<details class="info" open="open">
+<summary>Final AI Agent IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Final_AI_Agent.png" data-title="Final AI Agent IMG" data-desc-position="top"><img alt="Final AI Agent IMG" src="../assets/Final_AI_Agent.png"></a>
+</figure> <p></p>
+</details>
+</li>
+</ol>
+</details>
+<h2 id="testing">Testing <img alt="🧪" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f9ea.svg" title=":test_tube:"></h2>
+<p>In Lab 3 you configured a voice flow and selected a placeholder AI Agent in the VA V2 node, go back to your voice flow and update that node to use your new AI Agent. Once you make the changes, remember to validate and publish your IVR flow. Once this is done, here's what you can do to test: </p>
+<details class="webex" open="open">
+<summary>Testing AI Agent Integration with CJDS</summary>
+<ol>
+<li>Place a call to your voice flow and select option 1 in the menu. </li>
+<li>Ask a couple of questions that are included in the Knowledge Base file you uploaded, for example: <ul>
+<li>Are there any ongoing promotions? </li>
+<li>How long does shipping normally take? </li>
+<li>Are your sneakers authentic? </li>
+</ul>
+</li>
+<li>After you get some answers, ask about your order status. </li>
+<li>It should tell you the order is delayed, but that it can't help with a refund or replacement for you because of store policies. </li>
+<li>Insist that you want a refund and the AI Agent should offer you to use the SMS channel to talk to a human agent. Say yes and you should receive a SMS (Only US numbers). </li>
+<li>Go to your Agent Desktop and on the JDS widget do a search for your phone number, you should see the events pushed from the AI Agent for Order Status and SMS Deflection. </li>
+</ol>
+</details>
+<p>You have completed the JDS 2851 Lab, Congratulations! </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab3_injecting_JDS_event/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 3 - IVR flow integration with CJDS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 3 - IVR flow integration with CJDS
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,823 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Integrating Customer Journey Data Services for enhanced customer experiences">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado">
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../lab2_query_JDS/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lab 1 - Using Postman to interact with CJDS. - LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-brunopostman-to-interact-with-cjds" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-header__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 1 - Using Postman to interact with CJDS.
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Lab
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-nav__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Using Postman to interact with CJDS.
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Using Postman to interact with CJDS.
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-11-create-a-webex-app-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 1.1 Create a Webex App Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-12-configure-postmanbruno-to-send-apis-to-cjds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 1.2 Configure Postman/Bruno to send APIs to CJDS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-13-sending-api-calls-to-cjds-using-bruno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab 1.3 Sending API Calls to CJDS using Bruno
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_query_JDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_injecting_JDS_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - IVR flow integration with CJDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4_ai_agent_jds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4 - AI Agent Integration with CJDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="using-brunopostman-to-interact-with-cjds">Using Bruno/Postman to interact with CJDS <img alt="🛠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6e0.svg" title=":hammer_and_wrench:"></h1>
+<p>CJDS is an API-first service, meaning that most of the configuration will be done via API using tools such as Postman and Bruno. For this lab, we prefer using Bruno as it doesn't require an account for you to import an API collection later in the lab. Also, all the instructions (including screenshots and gifs) were done using Bruno. </p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>Bruno and Postman clients are installed in the laptop, do not use any web versions. </p>
+</details>
+<details class="tip" open="open">
+<summary>WxCC Connector GIF</summary>
+<p>In this lab tenant, the Webex Contact Center connector for CJDS has been enabled. You DO NOT need to do it and your admin account doesn't have access. However, here's a video showing you how to do it for your learning:<br>
+ </p><figure markdown>
+ <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/CJDS-1.gif" data-title="WxCC Connector" data-desc-position="top"><img alt="WxCC Connector" src="../assets/CJDS-1.gif"></a>
+ </figure><p></p>
+</details>
+<h2 id="lab-11-create-a-webex-app-integration">Lab 1.1 Create a Webex App Integration</h2>
+<details class="webex" open="open">
+<summary>Instructions</summary>
+<ol>
+<li>Navigate to the <a href="https://developer.webex.com" target="_blank">Webex for Developers</a> website. </li>
+<li>Login via the button on the top right and use your admin credentials. </li>
+<li>Once logged in navigate to “My Webex Apps” under your login avatar at the top right and then select “Create a New App”. </li>
+<li>Create a new integration app by clicking "Create an Integration"</li>
+<li>Fill out the new integration with these parameters:<ul>
+<li>Integration Name : JDS with Bruno</li>
+<li>Icon: pick your favorite</li>
+<li>App Hub Description: JDS with Bruno  </li>
+<li>Redirect URL(s): https://oauth.pstmn.io/v1/callback</li>
+<li>Scopes: Check the top three check boxes.
+    <div class="highlight"><pre><span></span><code>-cjp:config
+-cjp:config_write
+-cjp:config_read
+</code></pre></div></li>
+<li>Click Add Integration</li>
+</ul>
+<details class="tip" open="open">
+<summary>Webex App Integration GIF</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Postman-1.gif" data-title="Webex App Integration" data-desc-position="top"><img alt="Webex App Integration" src="../assets/Postman-1.gif"></a>
+</figure><p></p>
+</details>
+</li>
+<li>Copy and save the Client ID and the Client Secret. </li>
+</ol>
+</details>
+<h2 id="lab-12-configure-postmanbruno-to-send-apis-to-cjds">Lab 1.2 Configure Postman/Bruno to send APIs to CJDS</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find the full API documentation <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/customer-identification" target="_blank">here</a></p>
+</div>
+<details class="webex" open="open">
+<summary>Instructions</summary>
+<p>Open Bruno and you should see the collection that was exported during the Getting Started section of the lab. Now let’s change some of the collection settings:</p>
+<ol>
+<li>Click on the collection name "Wx1 JDS Collection" in the left panel and you will see the settings.  </li>
+<li>
+<p>Click on the Variables tab and update the following fields, set the Initial and Current value to the same values described below:  </p>
+<ul>
+<li>client_id – Set this to the Client ID for the Webex App you added earlier.  </li>
+<li>client_secret – Set this to the Client Secret for the Webex App you added earlier.</li>
+<li>org_id – This is an optional setting. </li>
+<li>
+<p>workspaceId – This is the ID for your lab tenant: <strong>67e2e90ec4b84e752570056c</strong></p>
+<details class="info" open="open">
+<summary>Bruno Authentication Variables IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/bruno_variables.png" data-title="Bruno Variables" data-desc-position="top"><img alt="Bruno Variables" src="../assets/bruno_variables.png"></a>
+</figure><p></p>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p>Now click on the Authorization tab to the right of the Variables tab and scroll to the bottom of the screen.</p>
+</li>
+<li>
+<p>Click on the “Get Access Token” button.</p>
+<details class="info" open="open">
+<summary>Get New Access Token IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/get_access_token.png" data-title="Bruno Authorization" data-desc-position="top"><img alt="Bruno Authorization" src="../assets/get_access_token.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>A Webex login window will pop up, enter the admin sandbox credentials that you used to create the Webex App integration. </p>
+<details class="info" open="open">
+<summary>Bruno Permission Request IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Postman3.png" data-title="Bruno Permission" data-desc-position="top"><img alt="Bruno Permission" src="../assets/Postman3.png" width="300"></a>
+</figure>   <p></p>
+</details>
+</li>
+<li>
+<p>Bruno will intercept the bearer Access Token and a Refresh Token from the CallbackURL you setup in the app integration, now you can use the token to send API calls to CJDS. Bruno will also manage the Access Token expiration by using the Refresh Token on your behalf.</p>
+<details class="info" open="open">
+<summary>Bruno Token IMG</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/bruno_accesstoken.png" data-title="Bruno Token" data-desc-position="top"><img alt="Bruno Token" src="../assets/bruno_accesstoken.png"></a></p>
+</details>
+</li>
+</ol>
+</details>
+<h2 id="lab-13-sending-api-calls-to-cjds-using-bruno">Lab 1.3 Sending API Calls to CJDS using Bruno</h2>
+<details class="webex" open="open">
+<summary>Instructions</summary>
+<p>Let’s test one of the API calls from the Bruno collection to confirm it works.</p>
+<ol>
+<li>
+<p>Under the Wx1 JDS Collection on the left navigation pane, Click the green “GET” named “Get History Stream”. This will open the REST call in a tab on the right, Send the request by clicking the arrow icon and you should see in the response tab recent JDS events.</p>
+<details class="info" open="open">
+<summary>GET History IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/get_history.png" data-title="Bruno Get History" data-desc-position="top"><img alt="Bruno Get History" src="../assets/get_history.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>If the previous step is successful, it confirms that the Bruno app is correctly configured to interact with CDJS. Now, let's update other variables in the Wx1 JDS Collection: </p>
+<ul>
+<li>The variables firstName, lastName and address information can be random. </li>
+<li>The phoneNumber and identity has to match the PSTN number you will use to call, make sure the + is included. </li>
+<li>The accountNumber is a random value you assign, it needs to be 8 digits long. <strong>In order to avoid duplicates in the lab, don't use account numbers such as: 12345678, 11111111, 87654321, etc.</strong></li>
+</ul>
+<details class="info" open="open">
+<summary>Update Collection Variables</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/person_variables.png" data-title="Bruno Variables" data-desc-position="top"><img alt="Bruno Variables" src="../assets/person_variables.png"></a>
+</figure> <p></p>
+</details>
+</li>
+<li>
+<p>Open the POST call named “JDS PageVisit” located on the left side under the Wx1 JDS Collection. Edit the Body of the call and change the identity to a <strong>fake email account</strong>, such as test-PODXX@test.com. Send the request and you should get a response stating that the data was “Accepted for processing”.</p>
+<details class="info" open="open">
+<summary>JDS PageVisit POST IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/JDS_PageVisit.png" data-title="Postman POST" data-desc-position="top"><img alt="Postman POST" src="../assets/JDS_PageVisit.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Click on the “Get History Stream by identity” call and replace the identity with the fake email from the previous step. Send the request and you should see your new event in the JDS tape!</p>
+<details class="info" open="open">
+<summary>GET History by Identity IMG</summary>
+<p></p><figure markdown>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/get_history_identity.png" data-title="Postman GET-2" data-desc-position="top"><img alt="Postman GET-2" src="../assets/get_history_identity.png"></a>
+</figure><p></p>
+</details>
+</li>
+</ol>
+</details>
+<p>Congratulations! You have completed this section of the lab.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab2_query_JDS/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
