@@ -1,4 +1,4 @@
-import { products } from "./catalog.js?v=2";
+import { products } from "./catalog.js?v=3";
 
 const productGrid = document.querySelector("#product-grid");
 

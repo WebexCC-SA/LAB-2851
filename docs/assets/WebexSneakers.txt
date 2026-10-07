@@ -12,13 +12,13 @@ All five shoes cost $130.00. Each model is available in whole US sizes 6 through
 
 ORBIT — Orbit Runner
 - Category: Daily running
-- Color: Azure / Cloud
+- Color: Light Blue / White
 - Designed for: everyday running and all-day comfort
 - Features: responsive foam, breathable knit, and cushioned comfort
 
 NOVA — Nova Street
 - Category: Lifestyle
-- Color: Coral / Sand
+- Color: Red / White
 - Designed for: daily wear and casual street style
 - Features: soft cushioning, a rubber cupsole, and a street-ready profile
 

@@ -80,12 +80,10 @@
         }
         ```      
         - Enable the decryption toggle in this node.  
-        - Connect the output of this HTTP Request node to the entry point of the VirtualAgent V2 node. 
-    8. Click the VAV2 Node and configure the following: 
-        - Contact Center AI Config: **Webex AI Agent (Autonomous)**
-        - Virtual Agent: **JDS_Placeholder**
-        ???+ note "JDS Placeholder AI Agent"
-            You will replace this placeholder with the Lace AI Agent in Lab 4. The placeholder lets you publish the flow, assign it to a channel, and verify that the JDS query and event post work first.
+        - Connect the output of this HTTP Request node to the entry point of the Play Message node.
+    8. Temporarily remove the **Virtual Agent V2** node. Add a **Play Message** node in its place and connect the HTTP Request output to it.
+        - Configure the Play Message node with text-to-speech text: **AI Agent Placeholder**.
+        - You will replace this Play Message node with the Lace AI Agent in Lab 4.
     9. Click the QueueContact node and select the queue matching your POD number. 
     10. Save and validate the flow, if there are no errors, proceed with publishing the flow. 
     11. Go back to Control Hub and navigate to the Channels configuration. Find the channel matching your POD number and open it. Assign your new flow to the "Routing Flow" setting. Save changes. 
@@ -95,7 +93,7 @@
 ???+ webex "Instructions"
     1. Find the PSTN phone number in your POD channel. 
     2. Call using the phone number you configured in the Bruno collection in Lab 1. You should hear a welcome message with the name you entered in the collection variables.
-    3. Select the option 1 to connect to the virtual agent and when you hear it, disconnect the call. 
+    3. Select option 1. Confirm that you hear the **AI Agent Placeholder** Play Message, then disconnect the call.
     4. In Bruno, click on the “Get History Stream by identity” call and replace the identity with the phone number you used to call. Send the request and you should see a new AI Agent event in the JDS tape! 
 
 Congratulations! You have completed LAB 3.  
