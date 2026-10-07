@@ -105,13 +105,13 @@ Administrators can use profile templates to customize the data presented to an a
           {
             "version": "1.0",
             "event": "task:new",
-            "metaDataType": "string",
+            "metaDataType": "STRING",
             "metaData": "channelType",
             "limit": 100,
             "displayName": "Page Visits within 48 hours",
-            "lookBackDurationType": "hours",
+            "lookBackDurationType": "HOURS",
             "lookBackPeriod": 48,
-            "aggregationMode": "Count",
+            "aggregationMode": "COUNT",
             "rules": {
               "logic": "SINGLE",
               "condition": "task:new,channelType,string,Value EQ Website"

@@ -7,14 +7,15 @@ This service supports the LAB-2851 customer journey exercise. It hosts:
 - a protected discount-issuance API at `POST /api/discounts`;
 - a protected Streamable HTTP MCP endpoint at `POST /mcp`.
 
-The service is tenant-neutral. It does not connect to JDS, Webex Contact Center, or a learner POD. A JDS Action calls the discount API through a shared Webex Connect webhook. Each learner's AI Agent adds the preapproved MCP tools to place and check simulated orders.
+The service is tenant-neutral. It does not connect to JDS, Webex Contact Center, or a learner POD. A JDS Action calls the discount API through a shared Webex Connect webhook. Each learner's AI Agent adds the preapproved MCP tools to retrieve a phone-linked discount, place a simulated order, and check its status.
 
 ## MCP tools
 
 | Tool | Purpose |
 | --- | --- |
 | `list_products` | Returns the five static shoe products and available sizes. |
-| `place_demo_order` | Validates a single-use code, product SKU, and size; creates a simulated order; returns a tracking ID. |
+| `get_active_discount` | Retrieves an unexpired discount linked to the verified caller phone. |
+| `place_demo_order` | Uses the phone-linked single-use discount with a product SKU and size; creates a simulated order and returns a tracking ID. |
 | `check_demo_order` | Retrieves the status and summary for a simulated order. |
 
 No tool accepts payment or shipping information. The order is a demonstration only.

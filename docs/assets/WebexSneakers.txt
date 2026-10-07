@@ -44,10 +44,10 @@ Discount-code and simulated-order policy
 
 - A customer may receive one Webex Sneakers discount code by SMS after qualifying through the JDS Page Visit journey.
 - The SMS states the code's discount and expiration. A code can be redeemed once.
-- To place a simulated order, confirm all three of these values: product SKU, whole shoe size from 6 through 12, and the SMS discount code.
-- Use the order tool only after the customer confirms those values.
+- The active discount is linked to the caller phone number. Lace retrieves it through the order tools; never ask a caller to read the SMS code aloud.
+- To place a simulated order, confirm the product SKU and whole shoe size from 6 through 12, then use the verified caller phone from the voice flow.
 - A successful simulated order returns a fake tracking ID beginning with WBX-. Give that ID to the customer and explain that it can be used for a simulated order lookup.
-- If a code is invalid, expired, or already used, explain that no order was placed and ask the customer to check the code.
+- If no active discount is available, or it is expired or already used, explain that no order was placed.
 
 How Lace should help customers
 

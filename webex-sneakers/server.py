@@ -94,7 +94,7 @@ mcp = FastMCP(
     name="Webex Sneakers Demo Store",
     instructions=(
         "Use this fictional store for a simulated shoe order only. Present the five available products, "
-        "collect only a product SKU, whole shoe size, and SMS discount code, and use the tools to confirm "
+        "collect only a product SKU and whole shoe size. Use the verified caller phone to retrieve and apply its linked discount, and use the tools to confirm "
         "an order. Never ask for a payment card, address, or other sensitive information."
     ),
     auth=auth_provider,
