@@ -113,13 +113,14 @@ The MCP service is already hosted for the lab. Each POD registers it as an Agent
 
 ## Lab 4.5 Connect the Lab 3 flow to your AI Agent
 
-???+ webex "Replace the placeholder agent"
+???+ webex "Replace the placeholder with your AI Agent"
     1. In Control Hub, open **Contact Center** > **Flows** and open the published Lab 3 flow in Flow Designer.
-    2. Enable **Edit** mode and select the **Virtual Agent V2** node.
-    3. Keep **Contact Center AI Config** set to **Webex AI Agent (Autonomous)**.
-    4. Select `PODXX_Lace_WebexSneakers_AI` as the Virtual Agent.
-    5. Save, validate, and publish the flow.
-    6. Confirm that the POD's existing channel still uses this routing flow.
+    2. Enable **Edit** mode and remove the **AI Agent Placeholder** Play Message node.
+    3. Add a **Virtual Agent V2** node in its place. Connect the output of the JDS event HTTP Request node to the Virtual Agent V2 node.
+    4. Set **Contact Center AI Config** to **Webex AI Agent (Autonomous)**.
+    5. Select `PODXX_Lace_WebexSneakers_AI` as the Virtual Agent.
+    6. Save, validate, and publish the flow.
+    7. Confirm that the POD's existing channel still uses this routing flow.
 
 ## Lab 4.6 Have sneaker-preference conversations
 
