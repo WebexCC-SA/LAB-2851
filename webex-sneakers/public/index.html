@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Webex Sneakers is a simulated storefront for the LAB-2851 customer journey exercise." />
+    <title>Webex Sneakers | Find your next pair</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css?v=2" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Webex Sneakers home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Webex <strong>Sneakers</strong></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#support">Support</a>
+      </nav>
+      <a class="header-offer" href="#how-it-works">Unlock 15% off <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A Webex Sneakers demo store</p>
+          <h1>Find a pair that <em>moves</em> with you.</h1>
+          <p class="hero-description">Browse five easy-to-know styles, earn a personalized offer, then let Lace, your Webex Sneakers concierge, place your simulated order.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#shop">Explore sneakers <span aria-hidden="true">↓</span></a>
+            <a class="button text" href="#how-it-works">How your offer works</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>5</dt><dd>distinct styles</dd></div>
+            <div><dt>6–12</dt><dd>sizes available</dd></div>
+            <div><dt>15%</dt><dd>eligible offer</dd></div>
+          </dl>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of an Orbit Runner sneaker">
+          <div class="offer-pill">Today’s journey<br /><strong>Earn your offer</strong></div>
+          <img class="hero-shoe-photo" src="./images/orbit-runner.jpg" alt="Orbit Runner in Azure and Cloud" />
+          <p class="hero-caption">Orbit Runner <span>Azure / Cloud</span></p>
+        </div>
+      </section>
+
+      <section class="offer-banner" id="how-it-works">
+        <p class="eyebrow">A connected customer journey</p>
+        <h2>Visit. Unlock. Talk. Order.</h2>
+        <ol>
+          <li><span>01</span>Explore this catalog</li>
+          <li><span>02</span>Receive your unique SMS offer</li>
+          <li><span>03</span>Call Lace to redeem it</li>
+        </ol>
+      </section>
+
+      <section class="catalog" id="shop" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The collection</p>
+            <h2 id="catalog-title">One price. Five points of view.</h2>
+          </div>
+          <p>Every demo style is $130 and available in whole sizes 6 through 12.</p>
+        </div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="assistant-callout" id="support">
+        <div>
+          <p class="eyebrow">Ready when you are</p>
+          <h2>Meet Lace, your<br />sneaker concierge.</h2>
+        </div>
+        <div class="assistant-details">
+          <p>Ask Lace for a style recommendation, choose your size, and provide the offer code you received by SMS. Lace will return your simulated order tracking ID.</p>
+          <a class="button primary" href="mailto:support@tmesneakers.com?subject=Webex%20Sneakers%20demo%20support">Talk to Lace <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Webex <strong>Sneakers</strong></span></a>
+      <p>Simulated demo environment for LAB-2851. No purchases, payments, or shipments occur.</p>
+      <p>© 2026 Webex Sneakers</p>
+    </footer>
+    <script src="./app.js?v=2" type="module"></script>
+  </body>
+</html>

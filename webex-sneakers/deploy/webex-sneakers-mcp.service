@@ -1,0 +1,26 @@
+[Unit]
+Description=Webex Sneakers MCP demo store
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/mcp/webex-sneakers
+EnvironmentFile=/opt/mcp/webex-sneakers/.env
+Environment=FASTMCP_CHECK_FOR_UPDATES=off
+ExecStart=/opt/mcp/webex-sneakers/venv/bin/python /opt/mcp/webex-sneakers/server.py
+Restart=always
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/opt/mcp/webex-sneakers/data
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

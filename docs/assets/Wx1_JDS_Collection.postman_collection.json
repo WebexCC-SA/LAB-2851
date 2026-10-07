@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"firstName\": \"{{firstName}}\",\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"phone\": [\r\n    \"{{phoneNumber}}\"\r\n  ],\r\n  \"email\": [\r\n    \"\"\r\n  ],\r\n  \"customerId\": [\r\n    \"{{accountNumber}}\"\r\n  ]\r\n}"
+					"raw": "{\r\n  \"firstName\": \"{{firstName}}\",\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"phone\": [\r\n    \"{{phoneNumber}}\"\r\n  ],\r\n  \"email\": [\r\n    \"\"\r\n  ],\r\n  \"customerId\": [\r\n    \"{{phoneNumber}}\"\r\n  ]\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}",
@@ -77,7 +77,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"phone\": [\n    \"{{phoneNumber}}\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"{{accountNumber}}\"\n  ]\n}",
+					"raw": "{\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"phone\": [\n    \"{{phoneNumber}}\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"{{phoneNumber}}\"\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,7 +129,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"PageVisitandDefault\",\r\n    \"attributes\": [\r\n        {\r\n            \"version\": \"1.0\",\r\n            \"event\": \"task:new\",\r\n            \"metaDataType\": \"string\",\r\n            \"metaData\": \"channelType\",\r\n            \"limit\": 100,\r\n            \"displayName\": \"Page Visit\",\r\n            \"lookBackDurationType\": \"minutes\",\r\n            \"lookBackPeriod\": 20,\r\n            \"aggregationMode\": \"Count\",\r\n            \"rules\": {\r\n                \"logic\": \"SINGLE\",\r\n                \"condition\": \"PageVisit,channelType,string,Value EQ Website\"\r\n            },\r\n            \"widgetAttributes\": {\r\n                \"type\": \"table\"\r\n            },\r\n            \"verbose\": false\r\n        },\r\n        {\r\n                    \"displayName\": \"Contacts within last 10 days\",\r\n                    \"version\": \"1.0\",\r\n                    \"event\": \"task:new\",\r\n                    \"metaDataType\": \"STRING\",\r\n                    \"metaData\": \"origin\",\r\n                    \"limit\": 10000,\r\n                    \"lookBackDurationType\": \"DAYS\",\r\n                    \"lookBackPeriod\": 10,\r\n                    \"aggregationMode\": \"COUNT\",\r\n                    \"verbose\": true,\r\n                    \"widgetAttributes\": {\r\n                        \"type\": \"table\"\r\n                    },\r\n                    \"rules\": null\r\n                },\r\n                {\r\n                    \"displayName\": \"Contacts within 24 hours\",\r\n                    \"version\": \"0.1\",\r\n                    \"event\": \"task:new\",\r\n                    \"metaDataType\": \"STRING\",\r\n                    \"metaData\": \"origin\",\r\n                    \"limit\": 1000,\r\n                    \"lookBackDurationType\": \"HOURS\",\r\n                    \"lookBackPeriod\": 24,\r\n                    \"aggregationMode\": \"COUNT\",\r\n                    \"verbose\": true,\r\n                    \"widgetAttributes\": {\r\n                        \"type\": \"table\"\r\n                    },\r\n                    \"rules\": null\r\n                }\r\n    ]\r\n}"
+					"raw": "{\n  \"name\": \"PageVisitandDefault\",\n  \"attributes\": [\n    {\n      \"version\": \"1.0\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"string\",\n      \"metaData\": \"channelType\",\n      \"limit\": 100,\n      \"displayName\": \"Page Visit\",\n      \"lookBackDurationType\": \"minutes\",\n      \"lookBackPeriod\": 20,\n      \"aggregationMode\": \"Count\",\n      \"rules\": {\n        \"logic\": \"SINGLE\",\n        \"condition\": \"PageVisit,channelType,string,Value EQ Website\"\n      },\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"verbose\": false\n    },\n    {\n      \"displayName\": \"Contacts within last 10 days\",\n      \"version\": \"1.0\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"STRING\",\n      \"metaData\": \"origin\",\n      \"limit\": 10000,\n      \"lookBackDurationType\": \"DAYS\",\n      \"lookBackPeriod\": 10,\n      \"aggregationMode\": \"COUNT\",\n      \"verbose\": true,\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"rules\": null\n    },\n    {\n      \"displayName\": \"Contacts within 24 hours\",\n      \"version\": \"0.1\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"STRING\",\n      \"metaData\": \"origin\",\n      \"limit\": 1000,\n      \"lookBackDurationType\": \"HOURS\",\n      \"lookBackPeriod\": 24,\n      \"aggregationMode\": \"COUNT\",\n      \"verbose\": true,\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"rules\": null\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}",
@@ -282,191 +287,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n  \"id\": \"{{$guid}}\",\n  \"specversion\": \"1.0\",\n  \"type\": \"task:new\",\n  \"source\": \"web\",\n  \"identity\": \"\",\n  \"identitytype\": \"email\",\n  \"datacontenttype\": \"application/json\",\n  \"data\": {\n    \"taskId\": \"{{$guid}}\",\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"phone\": \"{{phoneNumber}}\",\n    \"channelType\": \"Website\",\n    \"uiData\": {\n      \"title\": \"Page Visit\",\n      \"iconType\": \"Page Visit\",\n      \"subTitle\": \"No Purchase\",\n      \"filterTags\": [\n        \"Page Visit\"\n      ]\n    }\n  }\n}"
-				},
-				"url": {
-					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publish",
-						"v1",
-						"api",
-						"event"
-					],
-					"query": [
-						{
-							"key": "workspaceId",
-							"value": "{{workspaceId}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "JDS Purchase Post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"//Get call to Mockio to get all records and print them to the Postman Console",
-							"/*var url = pm.collectionVariables.get(\"MockioURL\") + \"?\" +\"AccountNumber=\" + pm.collectionVariables.get(\"accountNumber\")",
-							"pm.sendRequest(url, (error, response) => {",
-							"  if (error) {",
-							"    console.log(error);",
-							"  } else {",
-							"  console.log(response);",
-							"  }",
-							"});*/",
-							"",
-							"//Add the purchase to Mockio so IVR can find the record based on account number",
-							"var postURL = pm.collectionVariables.get(\"MockioURL\") + \"?\" + \"AccountNumber=\" + pm.collectionVariables.get(\"accountNumber\")",
-							"const postRequest = {",
-							"  url: postURL,",
-							"  method: 'POST',",
-							"  header: {",
-							"    'Content-Type': 'application/json',",
-							"  },",
-							"  body: {",
-							"        mode: 'raw',",
-							"        raw: JSON.stringify({",
-							"            \"First\": pm.collectionVariables.get(\"firstName\"),",
-							"            \"Last\": pm.collectionVariables.get(\"lastName\"),",
-							"            \"Street\": pm.collectionVariables.get(\"street\"),",
-							"            \"City\": pm.collectionVariables.get(\"city\"),",
-							"            \"State\": pm.collectionVariables.get(\"state\"),",
-							"            \"Zip\": pm.collectionVariables.get(\"zip\"),",
-							"            \"Phone\": pm.collectionVariables.get(\"phoneNumber\"),",
-							"            \"Price\": \"130.00\",",
-							"            \"AccountNumber\": pm.collectionVariables.get(\"accountNumber\"),",
-							"            \"Product\": \"Sneakers\",",
-							"            \"PurchaseDate\": \"Sept. 20th\",",
-							"            \"PreferVoice\": false,",
-							"            \"lastUpdate\":\"Sept. 28th\",",
-							"            \"initialArrival\":\"Sept. 28th\",",
-							"            \"currentArrival\":\"Sept. 30th\",",
-							"            \"paymentType\":\"Credit Card\",",
-							"            \"orderStatus\":\"Delayed\"",
-							"        })",
-							"  }",
-							"};",
-							"pm.sendRequest(postRequest, (error, response) => {",
-							"  console.log(error ? error : response.json());",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"WebsiteOrder\",\n    \"source\": \"web\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"channelType\": \"Website\",\n        \"paymentType\": \"Credit Card\",\n        \"product\": \"Sneakers\",\n        \"uiData\": {\n            \"title\": \"Website Order\",\n            \"iconType\": \"Page Visit\",\n            \"subTitle\": \"Single Purchase\",\n            \"filterTags\": [\"Website Order\"]\n        }\n    }\n}"
-				},
-				"url": {
-					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publish",
-						"v1",
-						"api",
-						"event"
-					],
-					"query": [
-						{
-							"key": "workspaceId",
-							"value": "{{workspaceId}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "JDS Order Status Post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"Order Status\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"product\": \"{{product}}\",\n        \"paymentType\": \"{{paymentType}}\",\n        \"channelType\": \"IVR\",\n        \"lastUpdate\": \"{{lastUpdate}}\",\n        \"expectedArrival\": \"{{expectedDate}}\",\n        \"currentArrival\": \"{{delayedDate}}\",\n        \"uiData\": {\n            \"title\": \"Check Order Status\",\n            \"iconType\": \"icon-event_16\",\n            \"subTitle\": \"{{orderStatus}}\",\n            \"filterTags\": [\"Order Status\"]\n        }\n    }\n}"
-				},
-				"url": {
-					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"publish",
-						"v1",
-						"api",
-						"event"
-					],
-					"query": [
-						{
-							"key": "workspaceId",
-							"value": "{{workspaceId}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "JDS Deflection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"{{$guid}}\",\n    \"specversion\": \"1.0\",\n    \"type\": \"SMSDeflection\",\n    \"source\": \"IVR\",\n    \"identity\": \"{{phoneNumber}}\",\n    \"identitytype\": \"phone\",\n    \"datacontenttype\": \"application/json\",\n    \"data\": {\n        \"taskId\": \"{{$guid}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"phone\": \"{{phoneNumber}}\",\n        \"channelType\": \"IVR\",\n        \"uiData\": {\n            \"title\": \"Digital Channel Deflection\",\n            \"iconType\": \"icon-sms_16\",\n            \"subTitle\": \"SMS\",\n            \"filterTags\": [\"Digital Channel Deflection\"]\n        }\n    }\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
@@ -745,6 +565,70 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Page Visit Journey Action",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"journey-actions",
+						"workspace-id",
+						"{{workspaceId}}",
+						"template-id",
+						"{{pageVisitProfileTemplateId}}"
+					]
+				},
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"{{journeyActionName}}\",\n  \"isActive\": true,\n  \"cooldownPeriodInMinutes\": 1440,\n  \"rules\": {\n    \"logic\": \"SINGLE\",\n    \"condition\": \"task:new,channelType,string,value GT 2\"\n  },\n  \"actionTriggers\": [\n    {\n      \"type\": \"Webhook\",\n      \"webhookURL\": \"{{journeyActionWebhookUrl}}\",\n      \"attributes\": {\n        \"httpverb\": \"post\",\n        \"requestbody\": \"{\\\"actionTitle\\\":\\\"Webex Sneakers Page Visit Discount\\\",\\\"phone\\\":\\\"{{phoneNumber}}\\\",\\\"identityType\\\":\\\"phone\\\",\\\"discountPercent\\\":15,\\\"expiresInHours\\\":24}\"\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"description": "Set pageVisitProfileTemplateId and journeyActionWebhookUrl before sending this request."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Page Visit Journey Actions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"journey-actions",
+						"workspace-id",
+						"{{workspaceId}}",
+						"template-id",
+						"{{pageVisitProfileTemplateId}}"
+					]
+				},
+				"description": "Use after creating the action to confirm its name, active state, rule, cooldown, and webhook trigger."
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -857,10 +741,6 @@
 			"value": "1222333444"
 		},
 		{
-			"key": "MockioURL",
-			"value": "https://66d8867237b1cadd8054f426.mockapi.io/CustomerDatabase"
-		},
-		{
 			"key": "firstName",
 			"value": "John"
 		},
@@ -869,48 +749,16 @@
 			"value": "Doe"
 		},
 		{
-			"key": "street",
-			"value": "1122 mystreet"
-		},
-		{
-			"key": "city",
-			"value": "Denver"
-		},
-		{
-			"key": "state",
-			"value": "Colorado"
-		},
-		{
-			"key": "zip",
-			"value": "80107"
-		},
-		{
-			"key": "accountNumber",
-			"value": "222333444"
-		},
-		{
-			"key": "product",
+			"key": "pageVisitProfileTemplateId",
 			"value": ""
 		},
 		{
-			"key": "paymentType",
+			"key": "journeyActionWebhookUrl",
 			"value": ""
 		},
 		{
-			"key": "lastUpdate",
-			"value": ""
-		},
-		{
-			"key": "expectedDate",
-			"value": ""
-		},
-		{
-			"key": "delayedDate",
-			"value": ""
-		},
-		{
-			"key": "orderStatus",
-			"value": ""
+			"key": "journeyActionName",
+			"value": "Webex Sneakers Page Visit Discount"
 		}
 	]
 }

@@ -10,7 +10,43 @@ Although the lab design and configuration examples could be used as a reference,
 
 ## Lab Access :key:
 
-You'll be assigned a lab number and sandbox credentials by an instructor. 
+Use the POD number assigned by your instructor to look up your lab tenant details. Enter the lab passcode provided by your instructor to reveal the POD password and the Webex Sneakers MCP API key. Use these values throughout the lab.
+
+???+ webex "Find Your POD Information"
+    <div class="pod-lookup" id="pod-lookup">
+      <div class="pod-lookup__controls">
+        <div class="pod-lookup__field">
+          <label class="pod-lookup__label" for="pod-number">POD Number</label>
+          <input id="pod-number" class="pod-lookup__input" type="number" min="1" max="33" inputmode="numeric" placeholder="1-33" aria-describedby="pod-lookup-message">
+        </div>
+        <div class="pod-lookup__field">
+          <label class="pod-lookup__label" for="pod-passcode">Lab Passcode</label>
+          <input id="pod-passcode" class="pod-lookup__input pod-lookup__input--passcode" type="password" autocomplete="off" placeholder="Passcode">
+        </div>
+        <div class="pod-lookup__field pod-lookup__field--button">
+          <button id="pod-lookup-button" class="pod-lookup__button" type="button">Show POD Info</button>
+        </div>
+      </div>
+      <p id="pod-lookup-message" class="pod-lookup__message">Enter your assigned POD number.</p>
+
+      <div id="pod-lookup-result" class="pod-lookup__result" hidden>
+        <table>
+          <tbody>
+            <tr><th scope="row">POD Name</th><td><code id="pod-name"></code></td></tr>
+            <tr><th scope="row">Org ID</th><td><code id="pod-org-id"></code></td></tr>
+            <tr><th scope="row">Admin User</th><td><code id="pod-admin-user"></code></td></tr>
+            <tr><th scope="row">Agent User</th><td><code id="pod-agent-user"></code></td></tr>
+            <tr><th scope="row">Password</th><td><code id="pod-password"></code></td></tr>
+            <tr><th scope="row">Webex Sneakers MCP API Key</th><td><code id="pod-mcp-api-key"></code></td></tr>
+            <tr><th scope="row">Control Hub</th><td><a id="pod-control-hub" href="https://admin.webex.com" target="_blank" rel="noopener">https://admin.webex.com</a></td></tr>
+            <tr><th scope="row">Agent Desktop</th><td><a id="pod-agent-desktop" href="https://desktop.wxcc-us1.cisco.com" target="_blank" rel="noopener">https://desktop.wxcc-us1.cisco.com</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    !!! warning "Use Your Assigned POD"
+        Do not use another attendee's POD credentials. The Org ID and users are unique to each POD.
 
 ## Getting Started :rocket:
 

@@ -77,11 +77,15 @@ CJDS is an API-first service, meaning that most of the configuration will be don
             <figure markdown>
             ![Bruno Get History](./assets/get_history.png)
             </figure>
+
+        ???+ note "A 404 response can be expected"
+            A new POD or tenant may not have any JDS history yet, so this request can return **404 Not Found**. You can continue as long as the response is not an authentication or unauthorized error. You will create events in the next steps.
+
     2. If the previous step is successful, it confirms that the Bruno app is correctly configured to interact with CDJS. Now, let's update other variables in the Wx1 JDS Collection: 
 
-        - The variables firstName, lastName and address information can be random. 
+        - The variables firstName and lastName can be random.
         - The phoneNumber and identity has to match the PSTN number you will use to call, make sure the + is included. 
-        - The accountNumber is a random value you assign, it needs to be 8 digits long. **In order to avoid duplicates in the lab, don't use account numbers such as: 12345678, 11111111, 87654321, etc.**
+        - Keep the fake email identity you use for the Page Visit request. You will merge it with the phone number in Lab 2 so the web and voice events resolve to the same person.
         ???+ info "Update Collection Variables"
             <figure markdown>
             ![Bruno Variables](./assets/person_variables.png)

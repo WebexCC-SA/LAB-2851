@@ -42,6 +42,7 @@ extra_css:
 extra_javascript:
   - template_assets/js/newLoad.js
   - template_assets/js/setInfo.js
+  - javascripts/pod-lookup.js
 plugins:
   - search
   
@@ -101,4 +102,3 @@ nav:
   #      - Markdown and Other References: howToUse/references.md
   #      - Custom Features: howToUse/customFeatures.md
   #      - Custom Admonitions: howToUse/admonition.md
- 

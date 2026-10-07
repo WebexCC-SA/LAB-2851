@@ -85,7 +85,7 @@
         - Contact Center AI Config: **Webex AI Agent (Autonomous)**
         - Virtual Agent: **JDS_Placeholder**
         ???+ note "JDS Placeholder AI Agent"
-            You will create your own AI Agent in the next lab, this placeholder AI agent allows you to publish the flow and assign it to a channel to test that the CJDS query and post worked fine. 
+            You will replace this placeholder with the Lace AI Agent in Lab 4. The placeholder lets you publish the flow, assign it to a channel, and verify that the JDS query and event post work first.
     9. Click the QueueContact node and select the queue matching your POD number. 
     10. Save and validate the flow, if there are no errors, proceed with publishing the flow. 
     11. Go back to Control Hub and navigate to the Channels configuration. Find the channel matching your POD number and open it. Assign your new flow to the "Routing Flow" setting. Save changes. 
@@ -94,7 +94,7 @@
 
 ???+ webex "Instructions"
     1. Find the PSTN phone number in your POD channel. 
-    2. Call using the phone number you entered in the API collection. You should hear a welcome message with the name you entered in the postman variable in lab 2. 
+    2. Call using the phone number you configured in the Bruno collection in Lab 1. You should hear a welcome message with the name you entered in the collection variables.
     3. Select the option 1 to connect to the virtual agent and when you hear it, disconnect the call. 
     4. In Bruno, click on the “Get History Stream by identity” call and replace the identity with the phone number you used to call. Send the request and you should see a new AI Agent event in the JDS tape! 
 
