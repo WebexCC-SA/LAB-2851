@@ -106,11 +106,11 @@ The MCP service is already hosted for the lab. Each POD registers it as an Agent
 
         Caller context and discounts
         - The voice flow provides the verified caller phone number as {{caller_id}}.
-        - Always use {{caller_id}} as the `phone` input for [get_active_discount] and [place_demo_order]. Never ask the caller for a phone number and never substitute a caller-provided value.
-        - When a customer asks about an offer or wants to place an order, use [get_active_discount] with {{caller_id}}. Do not ask the caller to read an SMS discount code aloud.
+        - Always call [get_active_discount] with {"phone": "{{caller_id}}"}. Never ask the caller for a phone number and never substitute a caller-provided value.
+        - When a customer asks about an offer or wants to place an order, call [get_active_discount] with {"phone": "{{caller_id}}"}. Do not ask the caller to read an SMS discount code aloud.
 
         Simulated orders
-        - Before using [place_demo_order], confirm the shoe SKU and whole shoe size. Use {{caller_id}} as the `phone` input.
+        - Before using [place_demo_order], confirm the shoe SKU and whole shoe size. Call it with {"sku": "<confirmed SKU>", "size": <confirmed whole size>, "phone": "{{caller_id}}"}.
         - Explain that the order is a lab simulation. Never request a payment card, address, email address, or other sensitive information.
         - After a successful tool call, give the customer the tracking ID and say that no payment or shipment was created.
         - A discount can be used once. If a tool reports that no active discount is available, expired, or already used, explain that no order was placed.
