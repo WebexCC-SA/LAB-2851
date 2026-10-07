@@ -540,73 +540,6 @@
           "mode": "inherit"
         }
       }
-    },
-    {
-      "type": "http",
-      "name": "Create Page Visit Journey Action",
-      "filename": "Create Page Visit Journey Action.bru",
-      "seq": 13,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
-        "method": "POST",
-        "headers": [
-          {
-            "name": "Content-Type",
-            "value": "application/json",
-            "enabled": true
-          }
-        ],
-        "params": [],
-        "body": {
-          "mode": "json",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": [],
-          "json": "{\n  \"name\": \"{{journeyActionName}}\",\n  \"isActive\": true,\n  \"cooldownPeriodInMinutes\": 1440,\n  \"rules\": {\n    \"logic\": \"SINGLE\",\n    \"condition\": \"task:new,channelType,string,value GT 2\"\n  },\n  \"actionTriggers\": [\n    {\n      \"type\": \"Webhook\",\n      \"webhookURL\": \"{{journeyActionWebhookUrl}}\",\n      \"attributes\": {\n        \"httpverb\": \"post\",\n        \"requestbody\": \"{\\\"actionTitle\\\":\\\"Webex Sneakers Page Visit Discount\\\",\\\"phone\\\":\\\"{{phoneNumber}}\\\",\\\"identityType\\\":\\\"phone\\\",\\\"discountPercent\\\":15,\\\"expiresInHours\\\":24}\"\n      }\n    }\n  ]\n}"
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "Set pageVisitProfileTemplateId and journeyActionWebhookUrl before sending this request.",
-        "auth": {
-          "mode": "inherit"
-        }
-      }
-    },
-    {
-      "type": "http",
-      "name": "Get Page Visit Journey Actions",
-      "filename": "Get Page Visit Journey Actions.bru",
-      "seq": 14,
-      "settings": {
-        "encodeUrl": true
-      },
-      "tags": [],
-      "request": {
-        "url": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
-        "method": "GET",
-        "headers": [],
-        "params": [],
-        "body": {
-          "mode": "none",
-          "formUrlEncoded": [],
-          "multipartForm": [],
-          "file": []
-        },
-        "script": {},
-        "vars": {},
-        "assertions": [],
-        "tests": "",
-        "docs": "Use after creating the action to confirm its name, active state, rule, cooldown, and webhook trigger.",
-        "auth": {
-          "mode": "inherit"
-        }
-      }
     }
   ],
   "environments": [],
@@ -698,27 +631,6 @@
             "enabled": true,
             "local": false,
             "uid": "kFu8bVJm1s1egTjDElJ7F"
-          },
-          {
-            "name": "pageVisitProfileTemplateId",
-            "value": "",
-            "enabled": true,
-            "local": false,
-            "uid": "journey-action-pageVisitProfileTemplateId"
-          },
-          {
-            "name": "journeyActionWebhookUrl",
-            "value": "",
-            "enabled": true,
-            "local": false,
-            "uid": "journey-action-journeyActionWebhookUrl"
-          },
-          {
-            "name": "journeyActionName",
-            "value": "Webex Sneakers Page Visit Discount",
-            "enabled": true,
-            "local": false,
-            "uid": "journey-action-journeyActionName"
           }
         ]
       }

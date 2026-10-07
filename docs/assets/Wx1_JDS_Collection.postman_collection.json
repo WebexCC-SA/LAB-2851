@@ -565,70 +565,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Create Page Visit Journey Action",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"admin",
-						"v1",
-						"api",
-						"journey-actions",
-						"workspace-id",
-						"{{workspaceId}}",
-						"template-id",
-						"{{pageVisitProfileTemplateId}}"
-					]
-				},
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"{{journeyActionName}}\",\n  \"isActive\": true,\n  \"cooldownPeriodInMinutes\": 1440,\n  \"rules\": {\n    \"logic\": \"SINGLE\",\n    \"condition\": \"task:new,channelType,string,value GT 2\"\n  },\n  \"actionTriggers\": [\n    {\n      \"type\": \"Webhook\",\n      \"webhookURL\": \"{{journeyActionWebhookUrl}}\",\n      \"attributes\": {\n        \"httpverb\": \"post\",\n        \"requestbody\": \"{\\\"actionTitle\\\":\\\"Webex Sneakers Page Visit Discount\\\",\\\"phone\\\":\\\"{{phoneNumber}}\\\",\\\"identityType\\\":\\\"phone\\\",\\\"discountPercent\\\":15,\\\"expiresInHours\\\":24}\"\n      }\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"description": "Set pageVisitProfileTemplateId and journeyActionWebhookUrl before sending this request."
-			},
-			"response": []
-		},
-		{
-			"name": "Get Page Visit Journey Actions",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/admin/v1/api/journey-actions/workspace-id/{{workspaceId}}/template-id/{{pageVisitProfileTemplateId}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"admin",
-						"v1",
-						"api",
-						"journey-actions",
-						"workspace-id",
-						"{{workspaceId}}",
-						"template-id",
-						"{{pageVisitProfileTemplateId}}"
-					]
-				},
-				"description": "Use after creating the action to confirm its name, active state, rule, cooldown, and webhook trigger."
-			},
-			"response": []
 		}
 	],
 	"auth": {
@@ -747,18 +683,6 @@
 		{
 			"key": "lastName",
 			"value": "Doe"
-		},
-		{
-			"key": "pageVisitProfileTemplateId",
-			"value": ""
-		},
-		{
-			"key": "journeyActionWebhookUrl",
-			"value": ""
-		},
-		{
-			"key": "journeyActionName",
-			"value": "Webex Sneakers Page Visit Discount"
 		}
 	]
 }

@@ -1,24 +1,23 @@
 # Webex AI Agent, MCP, and AI Memory :robot:
 
-This lab completes the Webex Sneakers journey. The three Page Visit events and the JDS Action created in Lab 2 qualify a customer for a discount. The customer then calls an AI Agent, which retrieves the phone-linked discount for a simulated shoe order, and sees the journey and AI Memory in the Agent Desktop.
+This lab completes the Webex Sneakers experience. You create an AI Agent that helps callers choose a shoe based on their preferences, then review the resulting customer context and AI Memory in Agent Desktop.
 
-The shared Webex Sneakers MCP service has no access to a POD's JDS data. It only exposes the product catalog and simulated-order tools. This keeps the same service safe to use from every lab POD.
+The shared Webex Sneakers MCP service has no access to a POD's JDS data. It provides the current product catalog, so every POD can use the same service safely.
 
 ???+ purpose "Lab objectives"
     By the end of this lab, you will:
 
     * Create a Webex Sneakers AI Agent and attach its knowledge base.
     * Register and provision the shared MCP service as an Agentic App for your organization.
-    * Add the MCP tools to the agent as available actions.
-    * Retrieve a phone-linked discount and use it to place and check a simulated shoe order.
+    * Add the catalog action to the agent.
+    * Have sneaker-preference conversations with the AI Agent.
     * Review the customer's JDS journey and AI Memory from Agent Desktop.
 
 ## Before you begin
 
 You need the following before starting this lab:
 
-* A published JDS Action from Lab 2 that sends an SMS discount code after three Page Visit events within 48 hours.
-* Access to the phone number used in your JDS identity. The phone must be in E.164 format in the collection, for example `+15551234567`.
+* The progressive profile template that you created in Lab 2.
 * The **Webex Sneakers MCP API key** shown in the protected POD lookup on the Overview page. Do not add it to the knowledge base, agent instructions, collection, or any lab file.
 * Your Lab 3 flow published with a Virtual Agent V2 node that can be updated to use the agent you create here.
 
@@ -42,14 +41,14 @@ You need the following before starting this lab:
         | --- | --- |
         | Agent name | `PODXX_Lace_WebexSneakers_AI` |
         | AI engine | Select an available Webex AI engine |
-        | Agent goal | Help Webex Sneakers customers choose a shoe, retrieve their phone-linked discount, place a simulated order, and check a simulated order. |
+        | Agent goal | Help Webex Sneakers customers choose a shoe that fits how and where they plan to wear it. |
 
-    7. Create the agent. Set the welcome message to: `Hi, I'm Lace, your Webex Sneakers concierge. I can help you find a shoe, check your available offer, or check a demo order. What would you like to do?`
+    7. Create the agent. Set the welcome message to: `Hi, I'm Lace, your Webex Sneakers concierge. Tell me how you plan to use your next pair, and I'll help you choose a shoe.`
     8. On the **Knowledge** tab, select `PODXX_WebexSneakers_KB`, then select **Save changes**.
 
 ## Lab 4.2 Register the shared MCP service
 
-The MCP service is already hosted for the lab. Each POD registers it as an Agentic App so that Webex can discover and govern its tools for that organization.
+The MCP service is already hosted for the lab. Each POD registers it as an Agentic App so that Webex can discover and govern its catalog tool for that organization.
 
 ???+ important "Use a Customer Administrator account"
     The Developer Portal registration and **Apps > Agentic Apps** provisioning must be completed with a Customer Administrator account for the POD. A Partner account does not expose the required organization settings.
@@ -64,37 +63,32 @@ The MCP service is already hosted for the lab. Each POD registers it as an Agent
         | Agentic App Module | `MCP` |
         | Transport Type | `Streamable HTTP` |
         | Agentic App Name | `PODXX_WebexSneakers_MCP` |
-        | Description | Shared lab MCP service for the Webex Sneakers catalog and simulated orders. |
+        | Description | Shared lab MCP service for the Webex Sneakers catalog. |
         | Agentic App URL | `https://mcp.cx-tme.com/webex-sneakers/mcp` |
         | Authentication type | `API Key` |
 
     4. Add the Agentic App. Do not submit it to App Hub; it is only needed in this POD organization.
 
-## Lab 4.3 Provision the Agentic App and enable its tools
+## Lab 4.3 Provision the Agentic App and enable its tool
 
 ???+ webex "Configure the Agentic App in Control Hub"
     1. In [Control Hub](https://admin.webex.com), open **Apps** > **Agentic Apps**, then select `PODXX_WebexSneakers_MCP`.
     2. On the **General** tab, set the app to **Allowed** and save.
     3. On the **Authentication** tab, enter the Webex Sneakers MCP API key from the protected POD lookup and save.
-    4. On the **Tools** tab, enable these four tools and save:
+    4. On the **Tools** tab, enable `list_products` and save.
 
         | Tool | Use in the lab |
         | --- | --- |
-        | `list_products` | Lists the five shoes and available sizes. |
-        | `get_active_discount` | Retrieves the active discount linked to the verified caller phone. |
-        | `place_demo_order` | Uses the active discount linked to the verified caller phone, confirms a simulated order, and returns a fake tracking ID. |
-        | `check_demo_order` | Returns a simulated order from its tracking ID. |
+        | `list_products` | Lists the five shoes and their available sizes. |
 
-    The service creates no payment, shipment, customer record, or JDS event. It stores only a salted phone hash for the SMS-code lifecycle and a simulated order record.
+## Lab 4.4 Add the MCP action and agent instructions
 
-## Lab 4.4 Add the MCP actions and agent instructions
-
-???+ webex "Add the available MCP actions"
+???+ webex "Add the available MCP action"
     1. Return to **AI Agent Studio** and open `PODXX_Lace_WebexSneakers_AI`.
     2. Select the **Actions** tab.
     3. Select **Add Actions** > **Select Available**.
-    4. Add `list_products`, `get_active_discount`, `place_demo_order`, and `check_demo_order`.
-    5. Verify that their input schemas come from the MCP service. Do not create Webex Connect fulfillment flows for these actions.
+    4. Add `list_products`.
+    5. Verify that its input schema comes from the MCP service. Do not create a Webex Connect fulfillment flow for this action.
     6. On the **Profile** tab, add the following instructions and then select **Save changes**:
 
         ```text
@@ -104,23 +98,15 @@ The MCP service is already hosted for the lab. Each POD registers it as an Agent
         - Use [list_products] when a customer asks what shoes are available, needs a SKU, or needs sizes.
         - Offer only products and sizes returned by the tool.
 
-        Caller context and discounts
-        - The voice flow provides the verified caller phone number as {{caller_id}}.
-        - Always call [get_active_discount] with {"phone": "{{caller_id}}"}. Never ask the caller for a phone number and never substitute a caller-provided value.
-        - When a customer asks about an offer or wants to place an order, call [get_active_discount] with {"phone": "{{caller_id}}"}. Do not ask the caller to read an SMS discount code aloud.
+        Sneaker preferences
+        - Ask how the customer plans to use the shoes, such as daily running, casual daily wear, court-inspired style, light trails, or easy comfort.
+        - Recommend one or two models that match the customer's stated preference and explain the relevant features.
+        - State that every model costs $130.00.
+        - Do not ask for payment, address, email address, or other sensitive information.
 
-        Simulated orders
-        - Before using [place_demo_order], confirm the shoe SKU and whole shoe size. Call it with {"sku": "<confirmed SKU>", "size": <confirmed whole size>, "phone": "{{caller_id}}"}.
-        - Explain that the order is a lab simulation. Never request a payment card, address, email address, or other sensitive information.
-        - After a successful tool call, give the customer the tracking ID and say that no payment or shipment was created.
-        - A discount can be used once. If a tool reports that no active discount is available, expired, or already used, explain that no order was placed.
-
-        Order lookup
-        - Use [check_demo_order] only when the customer provides a tracking ID.
-        - Summarize the order and its simulated status from the tool response.
-
-        Escalation
-        - For requests outside the catalog or simulated-order experience, offer to transfer to a human agent according to the contact center policy.
+        Scope
+        - This is a product-advice experience. Do not offer discounts, take orders, or create shipments.
+        - For requests outside the catalog experience, offer to transfer to a human agent according to the contact center policy.
         ```
 
     7. Publish the agent.
@@ -135,33 +121,25 @@ The MCP service is already hosted for the lab. Each POD registers it as an Agent
     5. Save, validate, and publish the flow.
     6. Confirm that the POD's existing channel still uses this routing flow.
 
-## Lab 4.6 Test the discount-to-order journey
-
-???+ webex "Create the qualifying Page Visits"
-    1. In the Bruno collection, use the identity configuration from Lab 2.4: set the Page Visit identity to the caller's `phoneNumber` and `identitytype` to `phone`.
-    2. Send **JDS PageVisit** three times. Use a different request ID for each event.
-    3. Confirm the three Page Visit events with **Get History Stream by identity**, using that phone number.
-    4. Wait for the JDS Action to invoke the shared webhook and for the Webex Connect SMS flow to deliver the discount code to the phone associated with the profile.
+## Lab 4.6 Have sneaker-preference conversations
 
 ???+ webex "Browse and call"
-    1. Open the [Webex Sneakers storefront](https://cx-tme.com/webex-sneakers/) and choose one of the five displayed shoes.
-    2. Call the POD phone number, choose the Virtual Agent option, and ask about the shoe you selected.
-    3. Give the AI Agent the SKU and a size from 6 through 12. Lace retrieves the discount linked to the caller phone automatically.
-    4. Record the fake tracking ID returned by the AI Agent.
-    5. Ask the AI Agent to check that tracking ID. It should return the same simulated order.
+    1. Open the [Webex Sneakers storefront](https://cx-tme.com/webex-sneakers/) and review the five displayed shoes.
+    2. Call the POD phone number, choose the Virtual Agent option, and describe how you plan to use the shoes. For example, ask for a recommendation for daily running, a light trail, or casual wear.
+    3. Ask a follow-up question about the recommended shoe's features, available sizes, or another model.
+    4. End the call, then complete a second short conversation with Lace for the same caller. Discuss a different preference or ask for a comparison between two models.
 
 ???+ note "Expected result"
-    A successful conversation proves that a JDS audience event can lead to a shared webhook, an SMS incentive, and an AI Agent action. The order is deliberately simulated: there is no payment, inventory reservation, fulfillment, or shipment.
+    The conversations demonstrate product discovery through the knowledge base and shared MCP catalog. They also create the conversation insights that AI Memory uses.
 
 ## Lab 4.7 View AI Memory and the JDS journey
 
 AI Memory does not require configuration in this lab. It becomes useful after you have conversations with the AI Agent and/or a human agent for the same customer.
 
 ???+ webex "Review the customer context"
-    1. Complete at least two short conversations for the same caller. One can be the order conversation and another can be an order-status question or a transfer to a human agent.
-    2. Sign in to Agent Desktop with the POD agent credentials and open the JDS widget.
-    3. Search for the customer's phone number or merged identity.
-    4. Review the Page Visit events, the profile metric, and the interaction history.
-    5. During or after an eligible interaction, inspect the AI Memory content in the JDS widget. It is created from the conversation insights and may take a short time to appear.
+    1. Sign in to Agent Desktop with the POD agent credentials and open the JDS widget.
+    2. Search for the customer's phone number or merged identity.
+    3. Review the Page Visit events, the profile metric, and the interaction history.
+    4. During or after an eligible interaction, inspect the AI Memory content in the JDS widget. It is created from the sneaker-preference conversation insights and may take a short time to appear.
 
 Congratulations! You have completed the Webex Sneakers JDS, MCP, and AI Memory journey.

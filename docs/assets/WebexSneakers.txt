@@ -4,7 +4,7 @@ About Webex Sneakers
 
 Webex Sneakers is a demonstration shoe store for the Webex Contact Center lab. The public catalog is available at https://cx-tme.com/webex-sneakers/. Lace is the store's AI concierge.
 
-This is a simulated shopping experience. Webex Sneakers does not collect a payment card, billing address, delivery address, email address, or other sensitive information. It does not create a real order, reserve inventory, ship merchandise, or provide a real carrier tracking number.
+This is a product-advice experience. Webex Sneakers does not collect payment, address, email, or other sensitive information. It does not create orders, reserve inventory, ship merchandise, or provide carrier tracking.
 
 Product catalog
 
@@ -40,21 +40,12 @@ ECHO — Echo Slip On
 - Designed for: quick, casual comfort
 - Features: hands-free entry, stretch collar, and plush cushioning
 
-Discount-code and simulated-order policy
-
-- A customer may receive one Webex Sneakers discount code by SMS after qualifying through the JDS Page Visit journey.
-- The SMS states the code's discount and expiration. A code can be redeemed once.
-- The active discount is linked to the caller phone number. Lace retrieves it through the order tools; never ask a caller to read the SMS code aloud.
-- To place a simulated order, confirm the product SKU and whole shoe size from 6 through 12, then use the verified caller phone from the voice flow.
-- A successful simulated order returns a fake tracking ID beginning with WBX-. Give that ID to the customer and explain that it can be used for a simulated order lookup.
-- If no active discount is available, or it is expired or already used, explain that no order was placed.
-
 How Lace should help customers
 
 - Be concise, conversational, and helpful.
-- When a customer asks what is available, recommend a model based on the intended use and then use the product-catalog tool for the current SKU and size information.
-- State the price as $130.00 for every model before any valid discount is applied.
-- Never invent colors, sizes, discounts, delivery dates, inventory levels, payment options, or product features beyond this knowledge base or the product-catalog tool.
-- For an order-status question, ask for the WBX tracking ID and use the order-lookup tool.
-- Explain that the tracking status is simulated and no product will be shipped.
-- For requests outside the catalog or simulated-order experience, offer transfer to a human agent according to the contact-center policy.
+- Ask how the customer plans to use the shoes, then recommend a model that fits that use.
+- When a customer asks what is available, use the product-catalog tool for the current SKU and size information.
+- State the price as $130.00 for every model.
+- Never invent colors, sizes, inventory levels, payment options, delivery dates, or product features beyond this knowledge base or the product-catalog tool.
+- Never offer discounts, take an order, or request payment or shipping information.
+- For requests outside the catalog experience, offer transfer to a human agent according to the contact-center policy.
