@@ -1,0 +1,688 @@
+{
+	"info": {
+		"_postman_id": "9e9d9538-45cd-4983-becf-9ea7e28276e9",
+		"name": "Wx1 JDS Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2194236"
+	},
+	"item": [
+		{
+			"name": "Create Identity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"{{firstName}}\",\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"phone\": [\r\n    \"{{phoneNumber}}\"\r\n  ],\r\n  \"email\": [\r\n    \"\"\r\n  ],\r\n  \"customerId\": [\r\n    \"{{phoneNumber}}\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"person",
+						"workspace-id",
+						"{{workspaceId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person Details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"identities\": [\"{{phoneNumber}}\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/person/workspace-id/{{workspaceId}}/aliases/search",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"person",
+						"workspace-id",
+						"{{workspaceId}}",
+						"aliases",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Merge Identity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"phone\": [\n    \"{{phoneNumber}}\"\n  ],\n  \"email\": [\n    \"\"\n  ],\n  \"customerId\": [\n    \"{{phoneNumber}}\"\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/person/merge-identities/workspace-id/{{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"person",
+						"merge-identities",
+						"workspace-id",
+						"{{workspaceId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Profile Template",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"encodedAlias\", btoa(\"LeyTlRcYmi7xH4OfQUr0HKpH6YFrvCXRIlD\"));",
+							"console.log(pm.environment.get(\"encodedAlias\"));",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"PageVisits_PODXX\",\n  \"attributes\": [\n    {\n      \"version\": \"1.0\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"STRING\",\n      \"metaData\": \"channelType\",\n      \"limit\": 100,\n      \"displayName\": \"Page Visits within 48 hours\",\n      \"lookBackDurationType\": \"HOURS\",\n      \"lookBackPeriod\": 48,\n      \"aggregationMode\": \"COUNT\",\n      \"rules\": {\n        \"logic\": \"SINGLE\",\n        \"condition\": \"task:new,channelType,string,Value EQ Website\"\n      },\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"verbose\": false\n    },\n    {\n      \"displayName\": \"Contacts within last 10 days\",\n      \"version\": \"1.0\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"STRING\",\n      \"metaData\": \"origin\",\n      \"limit\": 10000,\n      \"lookBackDurationType\": \"DAYS\",\n      \"lookBackPeriod\": 10,\n      \"aggregationMode\": \"COUNT\",\n      \"verbose\": true,\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"rules\": null\n    },\n    {\n      \"displayName\": \"Contacts within 24 hours\",\n      \"version\": \"0.1\",\n      \"event\": \"task:new\",\n      \"metaDataType\": \"STRING\",\n      \"metaData\": \"origin\",\n      \"limit\": 1000,\n      \"lookBackDurationType\": \"HOURS\",\n      \"lookBackPeriod\": 24,\n      \"aggregationMode\": \"COUNT\",\n      \"verbose\": true,\n      \"widgetAttributes\": {\n        \"type\": \"table\"\n      },\n      \"rules\": null\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"profile-view-template",
+						"workspace-id",
+						"{{workspaceId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile Template",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"PageVisits\",\r\n    \"attributes\": [\r\n        {\r\n            \"version\": \"1.0\",\r\n            \"event\": \"PageVisit\",\r\n            \"metaDataType\": \"STRING\",\r\n            \"metaData\": \"channelType\",\r\n            \"limit\": 100,\r\n            \"displayName\": \"Page Visits within 2 hours\",\r\n            \"lookBackDurationType\": \"MINUTES\",\r\n            \"lookBackPeriod\": 120,\r\n            \"aggregationMode\": \"COUNT\",\r\n            \"rules\": {\r\n                \"logic\": \"SINGLE\",\r\n                \"condition\": \"PageVisit,channelType,string,Value EQ Website\"\r\n            },\r\n            \"widgetAttributes\": {\r\n                \"type\": \"table\"\r\n            },\r\n            \"verbose\": false\r\n        },\r\n        {\r\n                    \"displayName\": \"Contacts within last 10 days\",\r\n                    \"version\": \"1.0\",\r\n                    \"event\": \"task:new\",\r\n                    \"metaDataType\": \"STRING\",\r\n                    \"metaData\": \"origin\",\r\n                    \"limit\": 10000,\r\n                    \"lookBackDurationType\": \"DAYS\",\r\n                    \"lookBackPeriod\": 10,\r\n                    \"aggregationMode\": \"COUNT\",\r\n                    \"verbose\": true,\r\n                    \"widgetAttributes\": {\r\n                        \"type\": \"table\"\r\n                    },\r\n                    \"rules\": null\r\n                },\r\n                {\r\n                    \"displayName\": \"Contacts within 24 hours\",\r\n                    \"version\": \"0.1\",\r\n                    \"event\": \"task:new\",\r\n                    \"metaDataType\": \"STRING\",\r\n                    \"metaData\": \"origin\",\r\n                    \"limit\": 1000,\r\n                    \"lookBackDurationType\": \"HOURS\",\r\n                    \"lookBackPeriod\": 24,\r\n                    \"aggregationMode\": \"COUNT\",\r\n                    \"verbose\": true,\r\n                    \"widgetAttributes\": {\r\n                        \"type\": \"table\"\r\n                    },\r\n                    \"rules\": null\r\n                }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}/template-id/<<Template-ID>>",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"profile-view-template",
+						"workspace-id",
+						"{{workspaceId}}",
+						"template-id",
+						"<<Template-ID>>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profiles",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/v1/api/profile-view-template/workspace-id/{{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"v1",
+						"api",
+						"profile-view-template",
+						"workspace-id",
+						"{{workspaceId}}"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "1eb65fdf-9643-417f-9974-ad72cae0e10f",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "createdBy%3D%3Dsatjonna%40cisco.com",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "DESC",
+							"disabled": true
+						},
+						{
+							"key": "sortBy",
+							"value": "updatedAt",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JDS PageVisit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"{{$guid}}\",\n  \"specversion\": \"1.0\",\n  \"type\": \"task:new\",\n  \"source\": \"web\",\n  \"identity\": \"\",\n  \"identitytype\": \"email\",\n  \"datacontenttype\": \"application/json\",\n  \"data\": {\n    \"taskId\": \"{{$guid}}\",\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"phone\": \"{{phoneNumber}}\",\n    \"channelType\": \"Website\",\n    \"uiData\": {\n      \"title\": \"Page Visit\",\n      \"iconType\": \"Page Visit\",\n      \"subTitle\": \"No Purchase\",\n      \"filterTags\": [\n        \"Page Visit\"\n      ]\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publish",
+						"v1",
+						"api",
+						"event"
+					],
+					"query": [
+						{
+							"key": "workspaceId",
+							"value": "{{workspaceId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get History Stream by Identity",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/api/events/workspace-id/{{workspaceId}}?identity={{phoneNumber}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"events",
+						"workspace-id",
+						"{{workspaceId}}"
+					],
+					"query": [
+						{
+							"key": "organizationId",
+							"value": "1eb65fdf-9643-417f-9974-ad72cae0e10f",
+							"disabled": true
+						},
+						{
+							"key": "sortBy",
+							"value": "identity",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "identityType%3D%3D%27phone%27",
+							"disabled": true
+						},
+						{
+							"key": "data",
+							"value": "agentid%3D%3D%273224343fddfdfdf%27",
+							"disabled": true
+						},
+						{
+							"key": "taskId",
+							"value": "a924734b-4cd2-4c61-b9f5-6d94211c2c2a",
+							"disabled": true
+						},
+						{
+							"key": "identity",
+							"value": "{{phoneNumber}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile View per Identity",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/api/progressive-profile-view/workspace-id/{{workspaceId}}/person-id/<<Person ID>>/template-id/<<Template-ID>>",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"progressive-profile-view",
+						"workspace-id",
+						"{{workspaceId}}",
+						"person-id",
+						"<<Person ID>>",
+						"template-id",
+						"<<Template-ID>>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get History Stream",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/api/events/workspace-id/{{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"events",
+						"workspace-id",
+						"{{workspaceId}}"
+					],
+					"query": [
+						{
+							"key": "sortBy",
+							"value": "identity",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "data",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Full Featured Custom Post w/ Comments needs to be edited",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "See https://github.com/CiscoDevNet/cjaas-widgets/blob/main/CustomerJourney/README_VERSION_10.0.0.md\n{\n  \"id\": \"{{$guid}}\",\n  \"specversion\": \"1.0\",\n  \"type\": \"task:new\",\n  \"source\": \"custom/{{$guid}}\",\n  \"identity\": \"12223334444\",\n  \"identitytype\": \"phone\",\n  \"datacontenttype\": \"application/json\",\n  \"data\": {\n    \"Website visited\": \"[google](https://www.google.com)\",\n    \"Visit Duration\": \"any fields you want goes in the data section\",\n    \"transcript\":\"Text here will go into a modal window! You can fetch your transcript using the Captures API and post it in here! You may want to parse the script first\",\n    \"uiData\": {\n      \"division\": \"Department 1\", <-- If you set the CAD Variable JDSDivision within flow control, the widget will only show events filtered by that value\n      \"hidden\": \"Test\",   <--  This will hide your entry from the agent desktop, but will still store it in JDS\n      \"title\": \"My main title screen\",\n      \"iconType\": \"Pick your custom ICON here!\",\n      \"subTitle\": \"Smaller case subtitle! You can use Java escape codes in any text for emoji's \\u2705\",\n      \"filterTags\": [\"mortage\"]  <-- If you set the CAD Variable JDSDefaultFilter within flow control, the widget will initially load with that particular filter set.\n    }\n  }\n} \n"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/publish/v1/api/event?workspaceId={{workspaceId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"publish",
+						"v1",
+						"api",
+						"event"
+					],
+					"query": [
+						{
+							"key": "workspaceId",
+							"value": "{{workspaceId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "cjp:config cjp:config_read cjp:config_write",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "access_tokenJDS",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "state",
+				"value": "new",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://webexapis.com/v1/access_token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://webexapis.com/v1/authorize",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/callback",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "client_id",
+			"value": "client Id for App"
+		},
+		{
+			"key": "client_secret",
+			"value": "secret Key for App"
+		},
+		{
+			"key": "org_idJDS",
+			"value": "get orgId from Control Hub"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://api.wxcc-us1.cisco.com"
+		},
+		{
+			"key": "workspaceId",
+			"value": "<get from Control Hub>"
+		},
+		{
+			"key": "identity",
+			"value": "19842185090"
+		},
+		{
+			"key": "phoneNumber",
+			"value": "1222333444"
+		},
+		{
+			"key": "firstName",
+			"value": "John"
+		},
+		{
+			"key": "lastName",
+			"value": "Doe"
+		}
+	]
+}

@@ -1,0 +1,785 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Integrating Customer Journey Data Services for enhanced customer experiences">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>JDS Actions and AI Memory: Recommendation Brief - LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jds-actions-and-ai-memory-recommendation-brief" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-header__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              JDS Actions and AI Memory: Recommendation Brief
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../overview/" class="md-tabs__link">
+          
+  
+  
+  Lab
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" class="md-nav__button md-logo" aria-label="LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences" data-md-component="logo">
+      
+  <img src="../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-2851: Integrating Customer Journey Data Services for enhanced customer experiences
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1_bruno/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 - Using Postman to interact with CJDS.
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2_query_JDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 - CJDS Identity Management, Progressive Profiles and Actions.
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3_injecting_JDS_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 - IVR flow integration with CJDS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab4_ai_agent_jds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4 - AI Agent Integration with CJDS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="jds-actions-and-ai-memory-recommendation-brief">JDS Actions and AI Memory: Recommendation Brief</h1>
+<h2 id="decision">Decision</h2>
+<p>Add <strong>one Journey Action exercise</strong> immediately after the existing progressive-profile work. It must reuse the lab's existing Page Visit scenario and the <code>PageVisits_PODXX</code> progressive profile; attendees should not create a second scenario or profile template.</p>
+<p>Add a <strong>15–20 minute AI Memory observation</strong> to the existing Lab 4 testing path. The target lab tenants already expose AI Memory in the Journey widget. Attendees make several normal test calls, then open Agent Desktop and inspect the generated insights and AI Memory profile. They do not configure AI Memory.</p>
+<p>This was the design brief used for the revised attendee path. The current implementation is documented in Labs 2 and 4. Its historical action-schema examples remain research evidence only; they are not a substitute for validating the shared Webex Connect webhook in a lab POD.</p>
+<h2 id="sources-reviewed">Sources reviewed</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What was reviewed</th>
+<th>How it informs the recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/Users/luisga/Downloads/BRKCCT-2295+-+003.pptx">BRKCCT-2295 presentation</a></td>
+<td>All 54 slides and 25 embedded speaker-note files.</td>
+<td>Slides 39 and 42–48 show the intended model: aggregate events in a progressive profile, set a threshold, and deliver an action through a Webex Connect webhook. The two demonstration scenarios are repeated abandoned calls and low AutoCSAT.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ctg-tme/BRKCCT-2295-Postman-Collection/blob/main/BRKCCT-2295.postman_collection.json">BRKCCT-2295 Postman collection</a></td>
+<td>Every file in the repository (one collection JSON) and all 18 requests.</td>
+<td>The collection supplies two end-to-end patterns: repeated abandoned calls and low AutoCSAT. Each creates a profile template, posts test events, and creates an action with a webhook trigger.</td>
+</tr>
+<tr>
+<td><a href="https://developer.webex.com/webex-contact-center/docs/journey-getting-started">CJDS getting started</a></td>
+<td>Current official CJDS guide.</td>
+<td>Confirms CJDS is API-driven, describes Action APIs for business-rule workflows, and explains that the designated Customer-Journey-Widget project receives the default Contact Center event feed.</td>
+</tr>
+<tr>
+<td><a href="https://developer.webex.com/webex-contact-center/docs/api/v1/trigger-actions">Journey Actions API reference</a></td>
+<td>Current official API reference index.</td>
+<td>Confirms that Journey/Trigger Actions remain a documented, generally available CJDS capability.</td>
+</tr>
+<tr>
+<td><a href="https://help.webex.com/article/nv7abhz/What">Webex Contact Center administrator release notes</a></td>
+<td>Public AI Memory release information.</td>
+<td>The public release information does not establish the behavior of these prepared lab tenants. The lab owner confirms that AI Memory is already available in the target Journey widget.</td>
+</tr>
+</tbody>
+</table>
+<p><code>developer.wire.com</code> is not the Cisco/Webex developer source for this work; it belongs to Wire, a separate collaboration product. The current Cisco sources are hosted on <code>developer.webex.com</code>; the supplied presentation itself points to the earlier <code>developer.webex-cx.com</code> documentation domain. This brief therefore relies on the current Cisco documentation above.</p>
+<h2 id="what-the-source-material-establishes">What the source material establishes</h2>
+<p>The deck's lifecycle is <strong>Listen → Identify → Analyze → Act</strong>. It says that events, progressive-profile templates, and actions belong to a CJDS project/workspace (slides 17, 20, and 39–44). Its concrete action example posts a webhook after a profile measurement crosses a threshold. The repeated-abandon scenario is more than three abandoned calls in 24 hours; the low-AutoCSAT scenario begins a campaign when the measured score falls below three (slides 46 and 48). Those slides are marked as live-demo placeholders, so they are design evidence, not ready-to-publish lab instructions.</p>
+<p>The deck's connector/subscription explanation (slides 20–22) is historical for this lab. Current Cisco guidance says that Contact Center events automatically flow to the designated <code>Customer-Journey-Widget</code> workspace; administrators do not activate or configure a Contact Center connector for that default feed. Keep only the workspace verification step. Create an additional journey project only for a custom data source, such as CRM events. This aligns with LAB-2851's current statement that the CJDS connector is already enabled, while avoiding an obsolete attendee setup task.</p>
+<p>The collection mirrors that model:</p>
+<ol>
+<li>It creates a progressive profile based on either <code>abandonCall</code> events or <code>LowCSAT</code> events.</li>
+<li>It posts synthetic events to the CJDS publish endpoint.</li>
+<li>It creates an active action beneath a profile-template ID, with a cooldown and a webhook trigger.</li>
+<li>It contains retrieval and update requests for identity, profile-template, progressive-profile, and action objects.</li>
+</ol>
+<p>The existing lab already supplies the early portions of this chain: its Bruno collection publishes Page Visit, purchase, and order-status events; Lab 2 creates a profile template; and Lab 4 creates Webex Connect fulfillment flows that use CJDS context. See <a href="/Users/luisga/Documents/GitHub/LAB-2851/docs/lab1_bruno.md">Lab 1</a>, <a href="/Users/luisga/Documents/GitHub/LAB-2851/docs/lab2_query_JDS.md">Lab 2</a>, and <a href="/Users/luisga/Documents/GitHub/LAB-2851/docs/lab4_ai_agent_jds.md">Lab 4</a>.</p>
+<h2 id="recommended-four-hour-design">Recommended four-hour design</h2>
+<h3 id="core-addition-one-observable-journey-action">Core addition: one observable Journey Action</h3>
+<p>Add <strong>Lab 2.4 - Trigger a Journey Action from the Page Visit Profile</strong> immediately after Lab 2.3. It should extend the participant's existing synthetic web-event path.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Recommendation</th>
+<th>Why it fits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signal</td>
+<td>Reuse the existing <code>JDS PageVisit</code> event tied to the identity merged in Lab 2.1.</td>
+<td>The attendee has already produced, inspected, and linked these records.</td>
+</tr>
+<tr>
+<td>Profile measurement</td>
+<td>Reuse the existing <code>PageVisits_PODXX</code> profile template created in Lab 2.3.</td>
+<td>The action directly builds on a visible lab outcome.</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>Create one inactive action first, review its rule and cooldown, then enable it.</td>
+<td>This introduces the safety controls before it fires.</td>
+</tr>
+<tr>
+<td>Trigger</td>
+<td>Send an authenticated POST to a <strong>pre-provisioned POD-specific Webex Connect webhook</strong> that only records the event and returns success.</td>
+<td>It makes the action testable and avoids an unsolicited customer communication during a lab.</td>
+</tr>
+<tr>
+<td>Proof</td>
+<td>Post the synthetic event enough times to cross the threshold, verify the webhook receipt, then inspect the profile and CJDS timeline.</td>
+<td>The attendee can demonstrate all four stages: event, profile, action, outcome.</td>
+</tr>
+</tbody>
+</table>
+<p>The attendee flow should follow the lab's existing numbered <code>???+ webex "Instructions"</code> pattern:</p>
+<ol>
+<li>Copy the ID of the existing <code>PageVisits_PODXX</code> profile template.</li>
+<li>Create an inactive Journey Action under that profile with the supplied POD-specific Webex Connect webhook, rule, and cooldown value.</li>
+<li>Review the action before enabling it.</li>
+<li>Re-run the existing <code>JDS PageVisit</code> request enough times to meet the existing profile measurement threshold.</li>
+<li>Confirm the action event in the prepared Webex Connect webhook receiver, then inspect the identity's timeline and progressive-profile value.</li>
+</ol>
+<p>Target <strong>25–30 minutes</strong> for this addition. Keep the existing Lab 4 AI Agent work, but use its <code>JDS_Identity</code> fulfillment flow as an example of retrieving profile context. Webex Connect webhook delivery remains the required proof point because it is the smallest observable action boundary for a timed lab.</p>
+<h3 id="optional-instructor-demonstration-repeated-abandoned-calls">Optional instructor demonstration: repeated abandoned calls</h3>
+<p>Use the deck/collection's repeated-abandon pattern as an instructor-led demonstration or an advanced appendix. It has a strong business story, but the lab needs reliable production-style Contact Center event delivery, a confirmed profile-rule syntax, and a configured outreach destination. It should only become hands-on after those prerequisites are prevalidated for every POD.</p>
+<h3 id="do-not-make-autocsat-a-core-exercise">Do not make AutoCSAT a core exercise</h3>
+<p>The AutoCSAT example has more tenant dependencies than it first appears: AutoCSAT availability, an eligible event source, and an applicable customer scenario. It is a useful architecture example, but it should remain a discussion or a prepared demo in a four-hour lab.</p>
+<h2 id="ai-memory-addition">AI Memory addition</h2>
+<p>Add <strong>Lab 4.4 - Observe AI Memory in Agent Desktop</strong> after the existing Lab 4 test call. This is an observation task, not a configuration exercise.</p>
+<p>The attendee path should be:</p>
+<ol>
+<li>Place at least two calls using the existing Lab 4 voice flow.</li>
+<li>Have a normal conversation with the AI Agent during one call. If the call escalates, continue a normal conversation with the human agent.</li>
+<li>Open Agent Desktop and search for the test phone number in the Journey widget.</li>
+<li>Locate the generated insights and AI Memory profile in the widget.</li>
+</ol>
+<p>Target <strong>15–20 minutes</strong>. The lab owner confirms that AI Memory is already available in the target tenants, so the guide should not include an enablement, entitlement, or configuration path. Before publishing the attendee instructions, verify the exact widget label and location in one POD so the steps use the current UI text.</p>
+<h2 id="time-budget-and-recommended-cut">Time budget and recommended cut</h2>
+<p>The existing manual <strong>SMS_Deflection</strong> fulfillment-flow and AI Agent action build is the recommended cut from the required path. It asks attendees to create an outbound SMS flow, but the guide does not configure the inbound <code>GoToQueue</code> reply handling or an SMS queue handoff. Move this part to an advanced appendix or instructor demonstration.</p>
+<p>That cut creates enough room for the 25–30 minute Journey Action exercise and the 15–20 minute AI Memory observation without expanding the four-hour lab. Keep the existing JDS identity, progressive profile, IVR, and core AI Agent exercises.</p>
+<h2 id="prerequisites-and-implementation-gates">Prerequisites and implementation gates</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Needed before lab instructions are written</th>
+<th>Risk if omitted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CJDS project</td>
+<td>Confirm the project/workspace receiving the relevant events for each POD. Current official guidance says the designated Customer-Journey-Widget project receives the default Contact Center event feed.</td>
+<td>The profile or action watches a different workspace from the event stream.</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Use the same normalized phone identity across the web event, voice call, and profile lookup; verify merge behavior.</td>
+<td>Separate person records prevent thresholds from being reached.</td>
+</tr>
+<tr>
+<td>Current action schema</td>
+<td>Validate the create/update payload, action condition grammar, and cooldown behavior in a disposable tenant using the current API reference.</td>
+<td>The supplied deck and collection are examples, not a current schema contract.</td>
+</tr>
+<tr>
+<td>Webhook receiver</td>
+<td>Pre-provision a POD-specific endpoint, auth method, accepted body, response, timeout, retry policy, and audit location.</td>
+<td>An action can fire with no observable result or leak data to the wrong destination.</td>
+</tr>
+<tr>
+<td>Safety policy</td>
+<td>Define consent, opt-out, re-entry, deduplication, rate limits, and teardown for any real outreach.</td>
+<td>A lab test can cause repeated or unauthorized customer messaging.</td>
+</tr>
+<tr>
+<td>Student access</td>
+<td>Confirm the exact scopes and roles needed for profile/action creation.</td>
+<td>Attendees reach a permission failure late in the lab.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="collection-review-reuse-carefully">Collection review: reuse carefully</h2>
+<p>The collection is valuable as an architectural reference, but it needs a cleanup and tenant validation pass before it becomes a LAB-2851 download:</p>
+<ul>
+<li>It includes two scenario families—repeated abandoned calls and low AutoCSAT—and 18 requests total. Several update/read requests hard-code person, template, and action IDs, so they cannot be safely reused across PODs.</li>
+<li>The webhook URL fields are blank. A receiving Webex Connect event flow is therefore implied, but not delivered by the collection.</li>
+<li>Authentication is mixed: creation requests set OAuth explicitly while several update/read/publish requests inherit authentication. A lab collection needs one documented auth model and a preflight request.</li>
+<li>The example action conditions compare values in ways that must be checked against the current action API and actual profile measurement. Do not copy their condition strings verbatim into attendee instructions before a live validation.</li>
+<li>The collection has no automated assertions, teardown, retry test, or proof of webhook delivery. Add these only after the action contract is confirmed.</li>
+</ul>
+<h2 id="recommended-order-of-work">Recommended order of work</h2>
+<ol>
+<li>In one disposable tenant, validate a minimal profile-template → action → authenticated Webex Connect webhook path against the current APIs.</li>
+<li>Pre-provision and test the webhook receiver for every POD; record only non-sensitive test metadata.</li>
+<li>Build an importable, POD-neutral collection with variables for workspace, template, action, webhook, and identity. Do not store credentials or tenant-specific IDs in it.</li>
+<li>Verify the exact Journey widget location and label for AI Memory in one POD.</li>
+<li>Time the complete attendee path after moving SMS Deflection to the appendix.</li>
+</ol>
+<h2 id="open-questions-to-resolve-before-implementation">Open questions to resolve before implementation</h2>
+<ol>
+<li>Is a separate, POD-specific Connect webhook and service already available for all lab tenants?</li>
+<li>Which identity format does each incoming channel produce, and how will the lab prove they resolve to the same CJDS person?</li>
+<li>Are the required CJDS configuration scopes assigned to the student admin accounts in every POD?</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../template_assets/js/newLoad.js"></script>
+      
+        <script src="../../template_assets/js/setInfo.js"></script>
+      
+        <script src="../../javascripts/pod-lookup.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
